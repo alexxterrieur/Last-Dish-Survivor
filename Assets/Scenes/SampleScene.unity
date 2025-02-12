@@ -785,9 +785,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  player: {fileID: 0}
+  playerTarget: {fileID: 0}
   playerLifeManager: {fileID: 0}
-  attackRange: 10
+  attackRange: 3
   attackInterval: 3
   attackDamage: 20
 --- !u!114 &931712092

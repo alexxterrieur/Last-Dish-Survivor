@@ -18,6 +18,9 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
         playerTarget = GameObject.FindWithTag("Player");
         playerLifeManager = playerTarget.GetComponent<LifeManager>();
 
@@ -25,7 +28,7 @@ public class EnemyAI : MonoBehaviour
         //BT
         RushPlayer rushPlayer = new RushPlayer(agent, playerTarget);
         CanAttack canAttack = new CanAttack(agent, playerTarget, attackRange);
-        Attack attack = new Attack(playerLifeManager, attackInterval, attackDamage);
+        Attack attack = new Attack(playerLifeManager, attackInterval, attackDamage, agent, attackRange);
 
         Sequence sequence1 = new Sequence(new List<Node> { canAttack, attack });
         Selector selector1 = new Selector(new List<Node> { sequence1, rushPlayer });

@@ -20,10 +20,12 @@ public class CanAttack : Node
 
         if (distance < attackRange)
         {
+            agent.isStopped = true;
             _nodeState = NodeState.SUCCESS;
         }
         else
         {
+            agent.isStopped = false;
             _nodeState = NodeState.FAILURE;
         }
 
