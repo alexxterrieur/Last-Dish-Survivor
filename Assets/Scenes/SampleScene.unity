@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 207915010}
   - component: {fileID: 207915009}
   - component: {fileID: 207915008}
+  - component: {fileID: 207915015}
   - component: {fileID: 207915014}
   m_Layer: 0
   m_Name: PlayerTest
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc57acef370a7dc4f81db29acd323433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 7
+  _speed: 0
 --- !u!61 &207915009
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -355,8 +356,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf9c71df5364f1439e1f2b505147073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 0
   currentHealth: 0
+--- !u!114 &207915015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207915007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04e20524cfb4db4f90d80767257ba29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterClass: {fileID: 11400000, guid: 5499d4ce3048f104abae6ceac0786421, type: 2}
+  equippedWeapons: []
+  activeAbilities: []
+  equippedBonuses: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,8 +710,10 @@ GameObject:
   - component: {fileID: 931712090}
   - component: {fileID: 931712089}
   - component: {fileID: 931712093}
-  - component: {fileID: 931712092}
+  - component: {fileID: 931712095}
+  - component: {fileID: 931712094}
   - component: {fileID: 931712091}
+  - component: {fileID: 931712092}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -787,9 +806,9 @@ MonoBehaviour:
   agent: {fileID: 0}
   playerTarget: {fileID: 0}
   playerLifeManager: {fileID: 0}
-  attackRange: 3
-  attackInterval: 3
-  attackDamage: 20
+  attackRange: 0
+  attackInterval: 0
+  attackDamage: 0
 --- !u!114 &931712092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,6 +845,65 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &931712094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931712088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474e1e8da81d89440aab1586031fe9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesScriptable: {fileID: 11400000, guid: d7e04257f9a4c6d4db17d75c3fc0d925, type: 2}
+--- !u!61 &931712095
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931712088}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1302204608
 GameObject:
   m_ObjectHideFlags: 0
