@@ -7,18 +7,20 @@ public class Ability : ScriptableObject
     public float cooldown;
     public Sprite icon;
     public GameObject abilityPrefab;
-    public float range;
     public float duration;
+    public float damage;
+
+    protected GameObject lastInstance;
 
     public virtual void Activate(GameObject user)
     {
-        Debug.Log($"{abilityName} activée par {user.name}");
         if (abilityPrefab)
         {
-            GameObject instance = Instantiate(abilityPrefab, user.transform.position, Quaternion.identity);
-            Destroy(instance, duration);
+            lastInstance = Instantiate(abilityPrefab, user.transform.position, Quaternion.identity);
+            Destroy(lastInstance, duration);
         }
     }
+
 
     public bool CanActivate(float timer)
     {

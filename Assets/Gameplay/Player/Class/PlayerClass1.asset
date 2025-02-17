@@ -17,4 +17,5 @@ MonoBehaviour:
   speed: 7
   damageBonus: 2
   activeAbilities: []
-  startWeapon: []
+  startWeapon:
+  - {fileID: 11400000, guid: 59a9ee817823f7640b3f0a32c79abd9e, type: 2}

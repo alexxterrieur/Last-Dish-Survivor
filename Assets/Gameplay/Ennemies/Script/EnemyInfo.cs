@@ -12,7 +12,7 @@ public class EnemyInfo : MonoBehaviour
     private float attackDamage;
     private float speed;
 
-    private void Start()
+    private void Awake()
     {
         if (enemiesScriptable != null)
         {

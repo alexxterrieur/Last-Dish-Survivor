@@ -14,6 +14,7 @@ public class PlayerInfos : MonoBehaviour
     public List<Bonus> equippedBonuses = new List<Bonus>();
 
     LifeManager lifeManager;
+    AbilityManager abilityManager;
 
     void Start()
     {
@@ -27,6 +28,15 @@ public class PlayerInfos : MonoBehaviour
         if (lifeManager != null)
         {
             lifeManager.Initialize(maxHealth);
+        }
+
+        abilityManager = GetComponent<AbilityManager>();
+        if (abilityManager != null)
+        {
+            foreach (Weapon weapon in equippedWeapons)
+            {
+                abilityManager.AddWeapon(weapon);
+            }
         }
     }
 
@@ -54,6 +64,8 @@ public class PlayerInfos : MonoBehaviour
         {
             equippedWeapons.Add(newWeapon);
             Debug.Log($"Nouvelle arme équipée : {newWeapon.abilityName}");
+
+            abilityManager?.AddWeapon(newWeapon);
         }
     }
 

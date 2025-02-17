@@ -23,7 +23,13 @@ public class LifeManager : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("death " + gameObject.name);
-        //Destroy(gameObject);
+        if(gameObject.tag != "Player")
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("death " + gameObject.name);
+        }
     }
 }

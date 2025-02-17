@@ -8,12 +8,18 @@ public class AbilityManager : MonoBehaviour
     public List<Ability> activeAbilities = new List<Ability>();
 
     private Dictionary<Ability, float> cooldownTimers = new Dictionary<Ability, float>();
+    private PlayerInfos playerInfos;
 
     void Start()
     {
-        foreach (var ability in equippedWeapons)
+        playerInfos = GetComponent<PlayerInfos>();
+
+        if (playerInfos != null)
         {
-            cooldownTimers[ability] = 0f;
+            foreach (Weapon weapon in playerInfos.equippedWeapons)
+            {
+                AddWeapon(weapon);
+            }
         }
     }
 
@@ -28,6 +34,9 @@ public class AbilityManager : MonoBehaviour
         for (int i = 0; i < equippedWeapons.Count; i++)
         {
             Ability weapon = equippedWeapons[i];
+
+            if (!cooldownTimers.ContainsKey(weapon))
+                cooldownTimers[weapon] = 0f;
 
             if (cooldownTimers[weapon] <= 0)
             {
@@ -48,7 +57,10 @@ public class AbilityManager : MonoBehaviour
             Ability ability = activeAbilities[i];
             KeyCode key = KeyCode.Alpha1 + i; // Ex: 1, 2, 3 pour les capacités actives
 
-            if (Input.GetKeyDown(key) && cooldownTimers.GetValueOrDefault(ability, 0) <= 0)
+            if (!cooldownTimers.ContainsKey(ability))
+                cooldownTimers[ability] = 0f;
+
+            if (Input.GetKeyDown(key) && cooldownTimers[ability] <= 0)
             {
                 ability.Activate(gameObject);
                 cooldownTimers[ability] = ability.cooldown;
@@ -62,6 +74,7 @@ public class AbilityManager : MonoBehaviour
         {
             equippedWeapons.Add(weapon);
             cooldownTimers[weapon] = 0f;
+            Debug.Log($"Nouvelle arme ajoutée : {weapon.abilityName}");
         }
     }
 
@@ -71,6 +84,7 @@ public class AbilityManager : MonoBehaviour
         {
             activeAbilities.Add(ability);
             cooldownTimers[ability] = 0f;
+            Debug.Log($"Nouvelle capacité ajoutée : {ability.abilityName}");
         }
     }
 }
