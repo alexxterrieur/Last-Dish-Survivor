@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002f164f4cf03c24498c624a6cf67d4e, type: 3}
-  m_Name: PlayerClass1
+  m_Script: {fileID: 11500000, guid: ed2fdafcbf9950049a3fe1c0058dae1f, type: 3}
+  m_Name: GarlickWeapon
   m_EditorClassIdentifier: 
-  className: TestClass
-  maxHealth: 150
-  speed: 7
-  damageBonus: 2
-  activeAbilities: []
-  startWeapon:
-  - {fileID: 11400000, guid: bef220440a871b54e8567b8e8027271c, type: 2}
+  abilityName: Garlick
+  cooldown: 2
+  icon: {fileID: 0}
+  abilityPrefab: {fileID: 4803187480762533967, guid: 4402fe1dcbf9dd748a41a366b96e10fc, type: 3}
+  duration: 0
+  damage: 10

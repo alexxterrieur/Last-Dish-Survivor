@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewHomingWeapon", menuName = "Scriptable Objects/Weapon/HomingWeapon")]
+[CreateAssetMenu(fileName = "HomingWeapon", menuName = "Scriptable Objects/Weapon/HomingWeapon")]
 public class HomingWeapon : Weapon
 {
     public float projectileSpeed;
