@@ -18,4 +18,4 @@ MonoBehaviour:
   damageBonus: 2
   activeAbilities: []
   startWeapon:
-  - {fileID: 11400000, guid: 3b7b907c9f9d31342a9a71f5d3363760, type: 2}
+  - {fileID: 11400000, guid: 7c2372e21b7a69f4f9c37a9653c7f446, type: 2}

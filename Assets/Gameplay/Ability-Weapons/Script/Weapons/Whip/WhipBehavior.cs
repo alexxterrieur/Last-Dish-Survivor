@@ -8,22 +8,16 @@ public class WhipBehavior : MonoBehaviour
     public float colliderCooldown;
 
     private Collider2D[] colliders;
-    private SpriteRenderer[] spriteRenderers;
     private bool isAttacking = false;
     private SpriteRenderer playerSprite;
 
     private void Awake()
     {
         colliders = GetComponentsInChildren<Collider2D>(true);
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
 
         foreach (Collider2D col in colliders)
         {
             col.gameObject.SetActive(false);
-        }
-        foreach (SpriteRenderer sprite in spriteRenderers)
-        {
-            sprite.gameObject.SetActive(false);
         }
     }
 
@@ -55,21 +49,15 @@ public class WhipBehavior : MonoBehaviour
         {
             col.gameObject.SetActive(false);
         }
-        foreach (SpriteRenderer sprite in spriteRenderers)
-        {
-            sprite.gameObject.SetActive(false);
-        }
 
         // Activation séquentielle des colliders
         foreach (Collider2D col in colliders)
         {
             int index = System.Array.IndexOf(colliders, col); // Récupère l'index du collider
             col.gameObject.SetActive(true); // Active le collider
-            spriteRenderers[index].gameObject.SetActive(true); // Active le sprite associé
             DealDamage(col); // Applique les dégâts
             yield return new WaitForSeconds(colliderCooldown); // Attente entre chaque activation de collider
             col.gameObject.SetActive(false); // Désactive le collider
-            spriteRenderers[index].gameObject.SetActive(false); // Désactive le sprite
         }
     }
 
