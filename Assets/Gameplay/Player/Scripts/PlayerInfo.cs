@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerInfos : MonoBehaviour
 {
+    public static PlayerInfos Instance { get; private set; }
+
     public CharacterClass characterClass;
 
     private float maxHealth;
@@ -15,6 +17,23 @@ public class PlayerInfos : MonoBehaviour
 
     LifeManager lifeManager;
     AbilityManager abilityManager;
+    PlayerMovement playerMovement;
+
+    public enum PlayerDirection { Right, Left, Up, Down }
+    public PlayerDirection currentDirection = PlayerDirection.Right;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     void Start()
     {
@@ -25,17 +44,34 @@ public class PlayerInfos : MonoBehaviour
         }
 
         lifeManager = GetComponent<LifeManager>();
+        abilityManager = GetComponent<AbilityManager>();
+        playerMovement = GetComponent<PlayerMovement>();
+
         if (lifeManager != null)
         {
             lifeManager.Initialize(maxHealth);
         }
 
-        abilityManager = GetComponent<AbilityManager>();
         if (abilityManager != null)
         {
             foreach (Weapon weapon in equippedWeapons)
             {
                 abilityManager.AddWeapon(weapon);
+            }
+        }
+    }
+
+    public void UpdatePlayerDirection(Vector2 moveDirection)
+    {
+        if (moveDirection.sqrMagnitude > 0.01f)
+        {
+            if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
+            {
+                currentDirection = moveDirection.x > 0 ? PlayerDirection.Right : PlayerDirection.Left;
+            }
+            else
+            {
+                currentDirection = moveDirection.y > 0 ? PlayerDirection.Up : PlayerDirection.Down;
             }
         }
     }

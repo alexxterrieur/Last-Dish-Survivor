@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19931dfc4870b234abbf796db541b150, type: 3}
   m_Name: WhipWheapon
   m_EditorClassIdentifier: 
-  abilityName: 
+  abilityName: Whip
   cooldown: 3
   icon: {fileID: 0}
   abilityPrefab: {fileID: 7144468707925474340, guid: 3756f2303e0e6524da0369b6d12c716c, type: 3}
   duration: 0
   damage: 10
+  needAttackHandler: 0
   delayBetweenCollider: 0.5

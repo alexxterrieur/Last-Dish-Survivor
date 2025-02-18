@@ -4,22 +4,16 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    public List<Ability> equippedWeapons = new List<Ability>();
+    public List<Weapon> equippedWeapons = new List<Weapon>();
     public List<Ability> activeAbilities = new List<Ability>();
 
     private Dictionary<Ability, float> cooldownTimers = new Dictionary<Ability, float>();
-    private PlayerInfos playerInfos;
 
     void Start()
     {
-        playerInfos = GetComponent<PlayerInfos>();
-
-        if (playerInfos != null)
+        foreach (Weapon weapon in PlayerInfos.Instance.equippedWeapons)
         {
-            foreach (Weapon weapon in playerInfos.equippedWeapons)
-            {
-                AddWeapon(weapon);
-            }
+            AddWeapon(weapon);
         }
     }
 
@@ -68,13 +62,22 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void AddWeapon(Ability weapon)
+    public void AddWeapon(Weapon weapon)
     {
         if (!equippedWeapons.Contains(weapon))
         {
             equippedWeapons.Add(weapon);
             cooldownTimers[weapon] = 0f;
             Debug.Log($"Nouvelle arme ajoutée : {weapon.abilityName}");
+
+            if(weapon.needAttackHandler)
+            {
+                if (gameObject.GetComponent<AttackHandler>() == null)
+                {
+                    gameObject.AddComponent<AttackHandler>();
+                    Debug.Log("AttackHandler ajouté au joueur");
+                }
+            }
         }
     }
 

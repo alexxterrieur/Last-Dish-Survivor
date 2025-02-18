@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
+
+        PlayerInfos.Instance.UpdatePlayerDirection(move);
     }
 
     public void MovementPlayer(InputAction.CallbackContext ctx)

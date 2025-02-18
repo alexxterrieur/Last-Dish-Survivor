@@ -14,7 +14,7 @@ public class HomingWeapon : Weapon
         Transform target = FindClosestEnemy(user);
         if (target == null)
         {
-            Debug.Log("Aucun ennemi trouvé !");
+            Debug.Log("No enemy Found");
             return;
         }
 
