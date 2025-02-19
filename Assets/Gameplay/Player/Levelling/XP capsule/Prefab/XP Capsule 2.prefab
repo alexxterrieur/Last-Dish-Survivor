@@ -149,4 +149,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capsuleScriptable: {fileID: 11400000, guid: 19f5f4681ad59b6409b67f05919128e9, type: 2}
   isAttracted: 0
-  attractionSpeed: 5
+  attractionSpeed: 10

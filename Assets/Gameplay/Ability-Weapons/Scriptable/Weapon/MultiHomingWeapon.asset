@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2d00efd2fc0c454487a91c33b0a192a, type: 3}
-  m_Name: HomingWeapon
+  m_Script: {fileID: 11500000, guid: 0a63ca264012a7c4ba6b1644f4ad3d0a, type: 3}
+  m_Name: MultiHomingWeapon
   m_EditorClassIdentifier: 
-  abilityName: HomingWeapon
+  abilityName: MultiHomingWeapon
   cooldown: 2
   icon: {fileID: 0}
   abilityPrefab: {fileID: 4760189001365621660, guid: 514dfc4823de1f342969ffda7702c9f7, type: 3}
   duration: 10
-  damage: 20
+  damage: 15
   needAttackHandler: 0
   projectileSpeed: 12
+  maxTargets: 3
