@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002f164f4cf03c24498c624a6cf67d4e, type: 3}
-  m_Name: PlayerClass1
+  m_Script: {fileID: 11500000, guid: ca2fa84680741684b96e1dfdc9a485e7, type: 3}
+  m_Name: Wave4
   m_EditorClassIdentifier: 
-  className: TestClass
-  maxHealth: 150
-  speed: 7
-  damageBonus: 2
-  activeAbilities: []
-  startWeapon:
-  - {fileID: 11400000, guid: 3b7b907c9f9d31342a9a71f5d3363760, type: 2}
+  enemies:
+  - enemyPrefab: {fileID: 785225504891053019, guid: 8ec4ff75810836d42889ec0be69a8053, type: 3}
+    spawnChance: 1
+  spawnRate: 0.1
+  waveDuration: 0

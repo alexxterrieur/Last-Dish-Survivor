@@ -1,0 +1,88 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class EnemiesSpawnerManager : MonoBehaviour
+{
+    public List<WaveConfig> waves;
+    private int currentWaveIndex = 0;
+    private bool isWaveActive = false;
+
+    void Start()
+    {
+        if (waves.Count > 0)
+        {
+            StartCoroutine(SpawnWaves());
+        }
+        else
+        {
+            Debug.LogError("Aucune vague définie dans la liste des vagues.");
+        }
+    }
+
+    IEnumerator SpawnWaves()
+    {
+        while (currentWaveIndex < waves.Count)
+        {
+            WaveConfig currentWave = waves[currentWaveIndex];
+            Debug.Log($"Démarrage de la vague {currentWaveIndex + 1}/{waves.Count}");
+
+            isWaveActive = true;
+
+            float waveTimer = 0f;
+            while (waveTimer < currentWave.waveDuration)
+            {
+                SpawnEnemyFromWave(currentWave);
+
+                waveTimer += currentWave.spawnRate;
+                yield return new WaitForSeconds(currentWave.spawnRate);
+            }
+
+            Debug.Log($"Vague {currentWaveIndex + 1} terminée.");
+            isWaveActive = false;
+            currentWaveIndex++;
+
+            if (currentWaveIndex >= waves.Count)
+            {
+                Debug.Log("Fin de la partie");
+            }
+        }
+    }
+
+    void SpawnEnemyFromWave(WaveConfig wave)
+    {
+        float totalChance = 0f;
+
+        foreach (var enemy in wave.enemies)
+        {
+            totalChance += enemy.spawnChance;
+        }
+
+        float randomValue = Random.Range(0f, totalChance);
+        float cumulativeChance = 0f;
+
+        foreach (var enemy in wave.enemies)
+        {
+            cumulativeChance += enemy.spawnChance;
+            if (randomValue <= cumulativeChance)
+            {
+                Vector2 spawnPosition = GetRandomSpawnPosition();
+                Instantiate(enemy.enemyPrefab, spawnPosition, Quaternion.identity);
+                break;
+            }
+        }
+    }
+
+    Vector2 GetRandomSpawnPosition()
+    {
+        Camera mainCamera = Camera.main;
+        float screenWidth = mainCamera.orthographicSize * mainCamera.aspect;
+        float screenHeight = mainCamera.orthographicSize;
+
+        // Choisir une position en dehors de l'écran, à gauche/droite ou en haut/bas
+        float xPosition = Random.Range(-screenWidth - 5f, screenWidth + 5f);  // Hors de l'écran horizontalement
+        float yPosition = Random.Range(-screenHeight - 5f, screenHeight + 5f);  // Hors de l'écran verticalement
+
+        return new Vector2(xPosition, yPosition);
+    }
+}

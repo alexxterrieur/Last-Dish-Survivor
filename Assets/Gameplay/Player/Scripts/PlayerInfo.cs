@@ -143,3 +143,11 @@ public class PlayerInfos : MonoBehaviour
     public float GetSpeed() => speed;
     public float GetDamageBonus() => damageBonus;
 }
+
+
+[System.Serializable]
+public class DropItem
+{
+    public GameObject itemPrefab;
+    [Range(0f, 1f)] public float dropChance;
+}

@@ -1,9 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LifeManager : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
+
+    private EnemyInfo enemyInfo;
+
+    private void Awake()
+    {
+        enemyInfo = GetComponent<EnemyInfo>();
+    }
 
     public void Initialize(float maxLife)
     {
@@ -25,6 +33,11 @@ public class LifeManager : MonoBehaviour
     {
         if(gameObject.tag != "Player")
         {
+            if (enemyInfo != null)
+            {
+                TryDropItem();
+            }
+
             Destroy(gameObject);
         }
         else
@@ -32,4 +45,22 @@ public class LifeManager : MonoBehaviour
             Debug.Log("death " + gameObject.name);
         }
     }
+
+    private void TryDropItem()
+    {
+        List<DropItem> dropItems = enemyInfo.GetDropItems();
+
+        if (dropItems != null && dropItems.Count > 0)
+        {
+            foreach (var dropItem in dropItems)
+            {
+                if (Random.value <= dropItem.dropChance)
+                {
+                    Instantiate(dropItem.itemPrefab, transform.position, Quaternion.identity);
+                    break;
+                }
+            }
+        }
+    }
+
 }

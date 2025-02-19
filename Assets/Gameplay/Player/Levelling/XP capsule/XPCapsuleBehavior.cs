@@ -17,13 +17,13 @@ public class XPCapsuleBehavior : MonoBehaviour
         if (isAttracted && playerTransform != null)
         {
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, attractionSpeed * Time.deltaTime);
-        }
 
-        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
-        if(distanceToPlayer <= 0.5f)
-        {
-            playerTransform.gameObject.GetComponent<PlayerLevelManager>().AddXP(capsuleScriptable.xpValue);
-            Destroy(gameObject);
+            float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+            if (distanceToPlayer <= 0.5f)
+            {
+                playerTransform.gameObject.GetComponent<PlayerLevelManager>().AddXP(capsuleScriptable.xpValue);
+                Destroy(gameObject);
+            }
         }
     }
 

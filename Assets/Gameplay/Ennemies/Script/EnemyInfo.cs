@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyInfo : MonoBehaviour
@@ -43,4 +44,7 @@ public class EnemyInfo : MonoBehaviour
     public float GetAttackInterval() => attackInterval;
     public float GetAttackDamage() => attackDamage;
     public float GetSpeed() => speed;
+
+    public List<DropItem> GetDropItems() => enemiesScriptable != null ? enemiesScriptable.dropItems : null;
+
 }

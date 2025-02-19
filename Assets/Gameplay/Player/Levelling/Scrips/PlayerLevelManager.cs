@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerLevelManager : MonoBehaviour
 {
     public float currentXP;
-    public float xpNeededForNextLevel;
+    private float xpNeededForNextLevel;
     public int currentLevel;
 
     void Start()
