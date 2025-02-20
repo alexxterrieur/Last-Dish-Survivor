@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerInfos : MonoBehaviour
 {
     public static PlayerInfos Instance { get; private set; }
@@ -11,12 +12,17 @@ public class PlayerInfos : MonoBehaviour
     private float speed;
     private float damageBonus;
 
+    public int maxWeapons = 4;
+    public int maxBonuses = 4;
+
     public List<Weapon> equippedWeapons = new List<Weapon>();
-    public List<Ability> activeAbilities = new List<Ability>();
     public List<Bonus> equippedBonuses = new List<Bonus>();
+
+    public List<Ability> activeAbilities = new List<Ability>();
 
     LifeManager lifeManager;
     AbilityManager abilityManager;
+
     PlayerMovement playerMovement;
 
     public enum PlayerDirection { Right, Left, Up, Down }
@@ -24,15 +30,8 @@ public class PlayerInfos : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     void Start()
@@ -94,17 +93,6 @@ public class PlayerInfos : MonoBehaviour
         }
     }
 
-    public void AddWeapon(Weapon newWeapon)
-    {
-        if (!equippedWeapons.Contains(newWeapon))
-        {
-            equippedWeapons.Add(newWeapon);
-            Debug.Log($"Nouvelle arme équipée : {newWeapon.abilityName}");
-
-            abilityManager?.AddWeapon(newWeapon);
-        }
-    }
-
     public void AddAbility(Ability newAbility)
     {
         if (!activeAbilities.Contains(newAbility))
@@ -114,13 +102,43 @@ public class PlayerInfos : MonoBehaviour
         }
     }
 
+    public void AddWeapon(Weapon newWeapon)
+    {
+        if (equippedWeapons.Count >= maxWeapons && !equippedWeapons.Contains(newWeapon))
+        {
+            Debug.Log("Nombre maximum d'armes atteint !");
+            return;
+        }
+
+        if (!equippedWeapons.Contains(newWeapon))
+        {
+            equippedWeapons.Add(newWeapon);
+            Debug.Log($"Nouvelle arme équipée : {newWeapon.abilityName}");
+            abilityManager?.AddWeapon(newWeapon);
+        }
+        else
+        {
+            Debug.Log($"L'arme {newWeapon.abilityName} est déjà possédée.");
+        }
+    }
+
     public void AddBonus(Bonus newBonus)
     {
+        if (equippedBonuses.Count >= maxBonuses && !equippedBonuses.Contains(newBonus))
+        {
+            Debug.Log("Nombre maximum de bonus atteint !");
+            return;
+        }
+
         if (!equippedBonuses.Contains(newBonus))
         {
             equippedBonuses.Add(newBonus);
             newBonus.ApplyEffect(this);
             Debug.Log($"Nouveau bonus acquis : {newBonus.bonusName}");
+        }
+        else
+        {
+            Debug.Log($"Le bonus {newBonus.bonusName} est déjà possédé.");
         }
     }
 
@@ -129,7 +147,7 @@ public class PlayerInfos : MonoBehaviour
     {
         lifeManager.currentHealth += amount;
 
-        if(lifeManager.currentHealth > lifeManager.maxHealth)
+        if (lifeManager.currentHealth > lifeManager.maxHealth)
         {
             lifeManager.currentHealth = lifeManager.maxHealth;
         }
@@ -143,7 +161,6 @@ public class PlayerInfos : MonoBehaviour
     public float GetSpeed() => speed;
     public float GetDamageBonus() => damageBonus;
 }
-
 
 [System.Serializable]
 public class DropItem

@@ -5,6 +5,7 @@ public class PlayerLevelManager : MonoBehaviour
     public float currentXP;
     private float xpNeededForNextLevel;
     public int currentLevel;
+    public LevelUpWindow levelUpManager;
 
     void Start()
     {
@@ -12,27 +13,21 @@ public class PlayerLevelManager : MonoBehaviour
         xpNeededForNextLevel = 15;
     }
 
-
     public void AddXP(int xpValue)
     {
         currentXP += xpValue;
-
-        if(currentXP >= xpNeededForNextLevel)
+        if (currentXP >= xpNeededForNextLevel)
         {
             LevelUp();
         }
     }
 
-
     private void LevelUp()
     {
-        //pause game
-        //open choice panel
         currentLevel++;
         currentXP = 0;
-        xpNeededForNextLevel = xpNeededForNextLevel * 1.4f;
-        //calcul xp pour next level
+        xpNeededForNextLevel *= 1.4f;
+
+        levelUpManager.OpenLevelUpMenu();
     }
-
-
 }
