@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +12,4 @@ public class UpgradeableBonus : ScriptableObject
             return bonusLevels[level];
         return bonusLevels[bonusLevels.Count - 1];
     }
-
-
 }

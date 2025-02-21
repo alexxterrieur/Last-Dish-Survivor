@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonusLevels:
   - {fileID: 11400000, guid: c2398d53ca45be440b84add3f08e55fd, type: 2}
-  - {fileID: 11400000, guid: c2398d53ca45be440b84add3f08e55fd, type: 2}
+  - {fileID: 11400000, guid: 76d524d7fbe5dd9438fc99aa2be3fc37, type: 2}
+  - {fileID: 11400000, guid: c4e106ba890ab0e4bac1989fea7cc193, type: 2}

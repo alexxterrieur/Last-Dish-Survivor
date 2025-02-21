@@ -6,6 +6,7 @@ public class Ability : ScriptableObject
     public string abilityName;
     public float cooldown;
     public Sprite icon;
+    public string description;
     public GameObject abilityPrefab;
     public float duration;
     public float damage;
@@ -20,7 +21,6 @@ public class Ability : ScriptableObject
             Destroy(lastInstance, duration);
         }
     }
-
 
     public bool CanActivate(float timer)
     {

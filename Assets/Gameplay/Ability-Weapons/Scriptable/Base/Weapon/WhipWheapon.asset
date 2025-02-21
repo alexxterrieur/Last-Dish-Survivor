@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Whip
   cooldown: 3
-  icon: {fileID: 0}
+  icon: {fileID: 8701271187640215789, guid: 97bc20939f05cb94297c3791e338fd22, type: 3}
+  description: Blablabla whip blabla
   abilityPrefab: {fileID: 7144468707925474340, guid: 3756f2303e0e6524da0369b6d12c716c, type: 3}
   duration: 0
   damage: 10

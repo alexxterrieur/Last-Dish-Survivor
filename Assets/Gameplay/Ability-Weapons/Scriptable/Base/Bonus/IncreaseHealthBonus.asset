@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: IncreaseHealthBonus
   m_EditorClassIdentifier: 
   bonusName: Increase Health Bonus
+  icon: {fileID: 9062205111687478463, guid: 8395d55377a926b46ab149b830f7b7e5, type: 3}
+  description: Blablabla increase health blabla
   type: 0
   value: 20

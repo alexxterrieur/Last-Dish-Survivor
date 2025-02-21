@@ -4,6 +4,8 @@ using UnityEngine;
 public class Bonus : ScriptableObject
 {
     public string bonusName;
+    public Sprite icon;
+    public string description;
     public BonusType type;
     public float value;
 

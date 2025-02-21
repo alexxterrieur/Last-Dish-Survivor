@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19931dfc4870b234abbf796db541b150, type: 3}
+  m_Name: WhipWheapon 1
+  m_EditorClassIdentifier: 
+  abilityName: Whip
+  cooldown: 3
+  icon: {fileID: 8701271187640215789, guid: 97bc20939f05cb94297c3791e338fd22, type: 3}
+  description: Blablabla whip blabla lvl 2
+  abilityPrefab: {fileID: 7144468707925474340, guid: 3756f2303e0e6524da0369b6d12c716c, type: 3}
+  duration: 0
+  damage: 10
+  needAttackHandler: 0
+  delayBetweenCollider: 0.5
