@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class PlayerInfos : MonoBehaviour
 {
     public static PlayerInfos Instance { get; private set; }
@@ -15,8 +14,8 @@ public class PlayerInfos : MonoBehaviour
     public int maxWeapons = 4;
     public int maxBonuses = 4;
 
-    public List<Weapon> equippedWeapons = new List<Weapon>();
-    public List<Bonus> equippedBonuses = new List<Bonus>();
+    public Dictionary<UpgradeableWeapon, int> weaponLevels = new Dictionary<UpgradeableWeapon, int>();
+    public Dictionary<UpgradeableBonus, int> bonusLevels = new Dictionary<UpgradeableBonus, int>();
 
     public List<Ability> activeAbilities = new List<Ability>();
 
@@ -53,9 +52,9 @@ public class PlayerInfos : MonoBehaviour
 
         if (abilityManager != null)
         {
-            foreach (Weapon weapon in equippedWeapons)
+            foreach (var weaponEntry in weaponLevels)
             {
-                abilityManager.AddWeapon(weapon);
+                abilityManager.AddWeapon(weaponEntry.Key, weaponEntry.Value);
             }
         }
     }
@@ -74,7 +73,6 @@ public class PlayerInfos : MonoBehaviour
             }
         }
     }
-
 
     private void InitializeStats()
     {
@@ -102,45 +100,55 @@ public class PlayerInfos : MonoBehaviour
         }
     }
 
-    public void AddWeapon(Weapon newWeapon)
+    public void AddWeapon(UpgradeableWeapon upgradeableWeapon)
     {
-        if (equippedWeapons.Count >= maxWeapons && !equippedWeapons.Contains(newWeapon))
+        if (weaponLevels.ContainsKey(upgradeableWeapon))
         {
-            Debug.Log("Nombre maximum d'armes atteint !");
-            return;
-        }
+            // Amélioration de l'arme existante
+            weaponLevels[upgradeableWeapon]++;
+            int newLevel = weaponLevels[upgradeableWeapon];
 
-        if (!equippedWeapons.Contains(newWeapon))
+            Debug.Log($"Amélioration de {upgradeableWeapon.weaponLevels[0].abilityName} au niveau {newLevel} !");
+        }
+        else if (weaponLevels.Count < maxWeapons)
         {
-            equippedWeapons.Add(newWeapon);
-            Debug.Log($"Nouvelle arme équipée : {newWeapon.abilityName}");
-            abilityManager?.AddWeapon(newWeapon);
+            // Ajout d'une nouvelle arme si slots disponibles
+            weaponLevels[upgradeableWeapon] = 0;
+            Debug.Log($"Nouvelle arme équipée : {upgradeableWeapon.weaponLevels[0].abilityName}");
+
+            abilityManager?.AddWeapon(upgradeableWeapon, 0);
         }
         else
         {
-            Debug.Log($"L'arme {newWeapon.abilityName} est déjà possédée.");
+            Debug.Log("Nombre maximum d'armes atteint !");
         }
     }
 
-    public void AddBonus(Bonus newBonus)
+
+    public void AddBonus(UpgradeableBonus upgradeableBonus)
     {
-        if (equippedBonuses.Count >= maxBonuses && !equippedBonuses.Contains(newBonus))
+        if (bonusLevels.ContainsKey(upgradeableBonus))
+        {
+            // Amélioration du bonus existant
+            bonusLevels[upgradeableBonus]++;
+            Debug.Log($"Amélioration du bonus {upgradeableBonus.bonusLevels[0].bonusName} au niveau {bonusLevels[upgradeableBonus]} !");
+        }
+        else if (bonusLevels.Count < maxBonuses)
+        {
+            // Ajout d'un nouveau bonus si slots disponibles
+            bonusLevels[upgradeableBonus] = 0;
+            Debug.Log($"Nouveau bonus acquis : {upgradeableBonus.bonusLevels[0].bonusName}");
+        }
+        else
         {
             Debug.Log("Nombre maximum de bonus atteint !");
             return;
         }
 
-        if (!equippedBonuses.Contains(newBonus))
-        {
-            equippedBonuses.Add(newBonus);
-            newBonus.ApplyEffect(this);
-            Debug.Log($"Nouveau bonus acquis : {newBonus.bonusName}");
-        }
-        else
-        {
-            Debug.Log($"Le bonus {newBonus.bonusName} est déjà possédé.");
-        }
+        Bonus currentBonus = upgradeableBonus.GetBonusAtLevel(bonusLevels[upgradeableBonus]);
+        currentBonus.ApplyEffect(this);
     }
+
 
     public void IncreaseMaxHealth(float amount) => lifeManager.maxHealth += amount;
     public void IncreaseCurrentHealth(float amount)
@@ -155,7 +163,6 @@ public class PlayerInfos : MonoBehaviour
 
     public void IncreaseDamageBonus(float amount) => damageBonus += amount;
     public void IncreaseSpeed(float amount) => speed += amount;
-
 
     public float GetMaxHealth() => maxHealth;
     public float GetSpeed() => speed;

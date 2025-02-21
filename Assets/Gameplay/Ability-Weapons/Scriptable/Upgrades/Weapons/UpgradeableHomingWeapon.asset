@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4e56197cb465542b37b57492cc239b, type: 3}
+  m_Name: UpgradeableHomingWeapon
+  m_EditorClassIdentifier: 
+  weaponLevels:
+  - {fileID: 11400000, guid: 59a9ee817823f7640b3f0a32c79abd9e, type: 2}
+  - {fileID: 11400000, guid: 7c2372e21b7a69f4f9c37a9653c7f446, type: 2}
+  - {fileID: 11400000, guid: 0dbe042daad377d4eafdcd5ef601fb75, type: 2}

@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002f164f4cf03c24498c624a6cf67d4e, type: 3}
-  m_Name: PlayerClass1
+  m_Script: {fileID: 11500000, guid: 8ea9c79e82f333044b0e988bca994554, type: 3}
+  m_Name: UpgradeableBonusMaxHealth
   m_EditorClassIdentifier: 
-  className: TestClass
-  maxHealth: 150
-  speed: 7
-  damageBonus: 2
-  activeAbilities: []
-  startWeapon:
-  - {fileID: 11400000, guid: 3cb518c94592c354cb7bd47fd27f8a7e, type: 2}
+  bonusLevels:
+  - {fileID: 11400000, guid: 15c20d1f39748b348ace502a26d6f81e, type: 2}
+  - {fileID: 11400000, guid: 15c20d1f39748b348ace502a26d6f81e, type: 2}

@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 207915016}
   - component: {fileID: 207915014}
   - component: {fileID: 207915017}
+  - component: {fileID: 207915018}
   m_Layer: 0
   m_Name: PlayerTest
   m_TagString: Player
@@ -377,8 +378,6 @@ MonoBehaviour:
   characterClass: {fileID: 11400000, guid: 5499d4ce3048f104abae6ceac0786421, type: 2}
   maxWeapons: 4
   maxBonuses: 4
-  equippedWeapons: []
-  equippedBonuses: []
   activeAbilities: []
   currentDirection: 0
 --- !u!114 &207915016
@@ -410,6 +409,18 @@ MonoBehaviour:
   currentXP: 0
   currentLevel: 0
   levelUpManager: {fileID: 1553242689}
+--- !u!114 &207915018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207915007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5794da54ec07c70459cbe8efc5656b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,8 +1373,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: 90f3b356b9e1f84488f278e36b4f4c45, type: 2}
-  - {fileID: 11400000, guid: a9fbd006114fac947ac1ba2dc6a6fae9, type: 2}
+  - {fileID: 11400000, guid: a9516aa81d53eab4994fc3286edd8370, type: 2}
+  - {fileID: 11400000, guid: a9516aa81d53eab4994fc3286edd8370, type: 2}
   - {fileID: 11400000, guid: a9516aa81d53eab4994fc3286edd8370, type: 2}
   - {fileID: 11400000, guid: daadaa6ed68bc354181c41cdcb94f12d, type: 2}
   - {fileID: 11400000, guid: 15d1da2dac5e00a4aa00d50aaae8990a, type: 2}
@@ -1986,17 +1997,17 @@ MonoBehaviour:
   - {fileID: 673330151}
   - {fileID: 1587017467}
   allWeapons:
-  - {fileID: 11400000, guid: 7c2372e21b7a69f4f9c37a9653c7f446, type: 2}
-  - {fileID: 11400000, guid: 0dbe042daad377d4eafdcd5ef601fb75, type: 2}
-  - {fileID: 11400000, guid: 59a9ee817823f7640b3f0a32c79abd9e, type: 2}
-  - {fileID: 11400000, guid: 3b7b907c9f9d31342a9a71f5d3363760, type: 2}
-  - {fileID: 11400000, guid: 5b917acb9b65069479bb30a0cc77d877, type: 2}
-  - {fileID: 11400000, guid: bef220440a871b54e8567b8e8027271c, type: 2}
+  - {fileID: 11400000, guid: 29a114b490b6f3843b58faca39e48de5, type: 2}
+  - {fileID: 11400000, guid: 59ee9582160174642b0a0cbce55b7afd, type: 2}
+  - {fileID: 11400000, guid: c39bb78ec81882449b2a1bbd5d4fe637, type: 2}
+  - {fileID: 11400000, guid: 9c9bd174c77d6114a8fd109a54f971ed, type: 2}
+  - {fileID: 11400000, guid: 3cb518c94592c354cb7bd47fd27f8a7e, type: 2}
+  - {fileID: 11400000, guid: f81d3ba3cedb2a245a0890ca20aa6fa6, type: 2}
   allBonuses:
-  - {fileID: 11400000, guid: 161cf5895d2fe974498de4396eb9a58d, type: 2}
-  - {fileID: 11400000, guid: c2398d53ca45be440b84add3f08e55fd, type: 2}
-  - {fileID: 11400000, guid: 15c20d1f39748b348ace502a26d6f81e, type: 2}
-  - {fileID: 11400000, guid: 2c7ce8ed6a8c2f84b9fbd917dc040a2a, type: 2}
+  - {fileID: 11400000, guid: dbad35b3e43a03044a90e2533af4c3d1, type: 2}
+  - {fileID: 11400000, guid: 04e715696162a09429378159dd4eacb2, type: 2}
+  - {fileID: 11400000, guid: b467205ecf0362945b922aaa6c430ef9, type: 2}
+  - {fileID: 11400000, guid: 162a1cde530228040b94591171220723, type: 2}
 --- !u!4 &1553242690
 Transform:
   m_ObjectHideFlags: 0

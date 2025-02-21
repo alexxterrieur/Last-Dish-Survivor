@@ -8,8 +8,8 @@ public class LevelUpWindow : MonoBehaviour
 {
     public GameObject levelUpPanel;
     public Button[] choiceButtons;
-    public List<Weapon> allWeapons;
-    public List<Bonus> allBonuses;
+    public List<UpgradeableWeapon> allWeapons;
+    public List<UpgradeableBonus> allBonuses;
 
     private void Start()
     {
@@ -22,17 +22,22 @@ public class LevelUpWindow : MonoBehaviour
         levelUpPanel.SetActive(true);
 
         List<object> choices = GetRandomChoices();
+
+        foreach (var button in choiceButtons)
+        {
+            button.gameObject.SetActive(false);
+        }
+
         for (int i = 0; i < choiceButtons.Length; i++)
         {
             if (i < choices.Count)
             {
                 object choice = choices[i];
-                string choiceName = choice is Weapon ? ((Weapon)choice).abilityName : ((Bonus)choice).bonusName;
+                string choiceName = choice is UpgradeableWeapon ? ((UpgradeableWeapon)choice).weaponLevels[0].abilityName : ((UpgradeableBonus)choice).bonusLevels[0].bonusName;
 
                 choiceButtons[i].gameObject.SetActive(true);
                 choiceButtons[i].GetComponentInChildren<TMP_Text>().text = choiceName;
                 choiceButtons[i].onClick.RemoveAllListeners();
-
                 choiceButtons[i].onClick.AddListener(() => SelectOption(choice));
             }
             else
@@ -42,41 +47,71 @@ public class LevelUpWindow : MonoBehaviour
         }
     }
 
+
     private List<object> GetRandomChoices()
     {
         List<object> possibleChoices = new List<object>();
         PlayerInfos player = PlayerInfos.Instance;
 
-        // Si le joueur n'a pas atteint les limites, proposer armes et bonus aléatoires
-        if (player.equippedWeapons.Count < player.maxWeapons || player.equippedBonuses.Count < player.maxBonuses)
-        {
-            List<Weapon> availableWeapons = allWeapons.Where(w => !player.equippedWeapons.Contains(w)).ToList();
-            List<Bonus> availableBonuses = allBonuses.Where(b => !player.equippedBonuses.Contains(b)).ToList();
+        // Vérification des armes disponibles non encore équipées ou pas au max
+        List<UpgradeableWeapon> availableWeapons = allWeapons
+            .Where(weapon => !player.weaponLevels.ContainsKey(weapon) || player.weaponLevels[weapon] < weapon.weaponLevels.Count - 1)
+            .ToList();
 
-            if (availableWeapons.Count > 0) possibleChoices.Add(availableWeapons[Random.Range(0, availableWeapons.Count)]);
-            if (availableBonuses.Count > 0) possibleChoices.Add(availableBonuses[Random.Range(0, availableBonuses.Count)]);
+        // Vérification des bonus disponibles non encore équipés ou pas au max
+        List<UpgradeableBonus> availableBonuses = allBonuses
+            .Where(bonus => !player.bonusLevels.ContainsKey(bonus) || player.bonusLevels[bonus] < bonus.bonusLevels.Count - 1)
+            .ToList();
+
+        // Ajoute des armes et bonus si la limite n'est pas atteinte
+        if (player.weaponLevels.Count < player.maxWeapons && availableWeapons.Count > 0)
+        {
+            possibleChoices.Add(availableWeapons[Random.Range(0, availableWeapons.Count)]);
+        }
+        if (player.bonusLevels.Count < player.maxBonuses && availableBonuses.Count > 0)
+        {
+            possibleChoices.Add(availableBonuses[Random.Range(0, availableBonuses.Count)]);
         }
 
-        // Si le joueur a atteint les limites, proposer uniquement des améliorations d'objets existants
-        if (possibleChoices.Count < 3)
+        // Si la limite d'arme ou bonus est atteinte, proposer uniquement des objets existants à améliorer
+        if (player.weaponLevels.Count >= player.maxWeapons || player.bonusLevels.Count >= player.maxBonuses)
         {
-            if (player.equippedWeapons.Count > 0) possibleChoices.Add(player.equippedWeapons[Random.Range(0, player.equippedWeapons.Count)]);
-            if (player.equippedBonuses.Count > 0) possibleChoices.Add(player.equippedBonuses[Random.Range(0, player.equippedBonuses.Count)]);
+            // Filtrer les armes ou bonus déjà possédés et améliorables (pas au niveau max)
+            List<object> upgradeOptions = new List<object>();
+
+            // Filtrer les armes déjà possédées et pas au max
+            upgradeOptions.AddRange(player.weaponLevels.Keys.Where(weapon => player.weaponLevels[weapon] < weapon.weaponLevels.Count - 1));
+            // Filtrer les bonus déjà possédés et pas au max
+            upgradeOptions.AddRange(player.bonusLevels.Keys.Where(bonus => player.bonusLevels[bonus] < bonus.bonusLevels.Count - 1));
+
+            // Si aucune option d'amélioration n'est disponible (toutes au max), on ne propose rien
+            if (upgradeOptions.Count == 0)
+            {
+                Debug.Log("Toutes les armes et bonus sont au niveau maximum.");
+                return possibleChoices;  // Aucun autre choix n'est disponible
+            }
+
+            // Mélanger les options et choisir 3 parmi elles
+            possibleChoices.AddRange(upgradeOptions.OrderBy(x => Random.value).Take(3));
         }
 
-        //Shuffle and chose options
+        // Si nous avons trop de choix, limiter à 3
         return possibleChoices.OrderBy(x => Random.value).Take(3).ToList();
     }
+
+
+
+
 
     public void SelectOption(object choice)
     {
         PlayerInfos player = PlayerInfos.Instance;
 
-        if (choice is Weapon weapon)
+        if (choice is UpgradeableWeapon weapon)
         {
             player.AddWeapon(weapon);
         }
-        else if (choice is Bonus bonus)
+        else if (choice is UpgradeableBonus bonus)
         {
             player.AddBonus(bonus);
         }

@@ -10,5 +10,5 @@ public class CharacterClass : ScriptableObject
     public float damageBonus;
 
     public Ability[] activeAbilities;
-    public Weapon[] startWeapon;
+    public UpgradeableWeapon[] startWeapon;
 }

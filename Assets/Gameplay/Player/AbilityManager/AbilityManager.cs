@@ -1,19 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    public List<Weapon> equippedWeapons = new List<Weapon>();
+    public List<UpgradeableWeapon> equippedWeapons = new List<UpgradeableWeapon>();
     public List<Ability> activeAbilities = new List<Ability>();
 
     private Dictionary<Ability, float> cooldownTimers = new Dictionary<Ability, float>();
 
     void Start()
     {
-        foreach (Weapon weapon in PlayerInfos.Instance.equippedWeapons)
+        foreach (var weaponEntry in PlayerInfos.Instance.weaponLevels)
         {
-            AddWeapon(weapon);
+            AddWeapon(weaponEntry.Key, weaponEntry.Value);
         }
     }
 
@@ -25,21 +24,22 @@ public class AbilityManager : MonoBehaviour
 
     private void HandleWeaponAbilities()
     {
-        for (int i = 0; i < equippedWeapons.Count; i++)
+        foreach (var upgradeableWeapon in equippedWeapons)
         {
-            Ability weapon = equippedWeapons[i];
+            int weaponLevel = PlayerInfos.Instance.weaponLevels[upgradeableWeapon];
+            Weapon currentWeapon = upgradeableWeapon.GetWeaponAtLevel(weaponLevel);
 
-            if (!cooldownTimers.ContainsKey(weapon))
-                cooldownTimers[weapon] = 0f;
+            if (!cooldownTimers.ContainsKey(currentWeapon))
+                cooldownTimers[currentWeapon] = 0f;
 
-            if (cooldownTimers[weapon] <= 0)
+            if (cooldownTimers[currentWeapon] <= 0)
             {
-                weapon.Activate(gameObject);
-                cooldownTimers[weapon] = weapon.cooldown;
+                currentWeapon.Activate(gameObject);
+                cooldownTimers[currentWeapon] = currentWeapon.cooldown;
             }
             else
             {
-                cooldownTimers[weapon] -= Time.deltaTime;
+                cooldownTimers[currentWeapon] -= Time.deltaTime;
             }
         }
     }
@@ -49,7 +49,7 @@ public class AbilityManager : MonoBehaviour
         for (int i = 0; i < activeAbilities.Count; i++)
         {
             Ability ability = activeAbilities[i];
-            KeyCode key = KeyCode.Alpha1 + i; // Ex: 1, 2, 3 pour les capacités actives
+            KeyCode key = KeyCode.Alpha1 + i;
 
             if (!cooldownTimers.ContainsKey(ability))
                 cooldownTimers[ability] = 0f;
@@ -62,24 +62,28 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void AddWeapon(Weapon weapon)
+    public void AddWeapon(UpgradeableWeapon upgradeableWeapon, int level)
     {
-        if (!equippedWeapons.Contains(weapon))
+        if (!equippedWeapons.Contains(upgradeableWeapon))
         {
-            equippedWeapons.Add(weapon);
-            cooldownTimers[weapon] = 0f;
-            Debug.Log($"Nouvelle arme ajoutée : {weapon.abilityName}");
+            equippedWeapons.Add(upgradeableWeapon);
+            Debug.Log($"Nouvelle arme ajoutée : {upgradeableWeapon.weaponLevels[level].abilityName}");
+        }
+        else
+        {
+            Debug.Log($"Arme améliorée : {upgradeableWeapon.weaponLevels[level].abilityName} Niveau {level}");
+        }
 
-            if(weapon.needAttackHandler)
-            {
-                if (gameObject.GetComponent<AttackHandler>() == null)
-                {
-                    gameObject.AddComponent<AttackHandler>();
-                    Debug.Log("AttackHandler ajouté au joueur");
-                }
-            }
+        Weapon currentWeapon = upgradeableWeapon.GetWeaponAtLevel(level);
+        cooldownTimers[currentWeapon] = 0f;
+
+        if (currentWeapon.needAttackHandler && gameObject.GetComponent<AttackHandler>() == null)
+        {
+            gameObject.AddComponent<AttackHandler>();
+            Debug.Log("AttackHandler ajouté au joueur");
         }
     }
+
 
     public void AddActiveAbility(Ability ability)
     {
