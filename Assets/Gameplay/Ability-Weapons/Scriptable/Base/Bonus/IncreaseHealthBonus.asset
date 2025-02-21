@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ff8545d1b1a9e4e8002c16986087db, type: 3}
   m_Name: IncreaseHealthBonus
   m_EditorClassIdentifier: 
-  bonusName: IncreaseHealthBonus
+  bonusName: Increase Health Bonus
   type: 0
   value: 20

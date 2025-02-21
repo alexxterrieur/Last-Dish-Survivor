@@ -149,7 +149,6 @@ public class PlayerInfos : MonoBehaviour
         currentBonus.ApplyEffect(this);
     }
 
-
     public void IncreaseMaxHealth(float amount) => lifeManager.maxHealth += amount;
     public void IncreaseCurrentHealth(float amount)
     {

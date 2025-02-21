@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a63ca264012a7c4ba6b1644f4ad3d0a, type: 3}
   m_Name: MultiHomingWeapon
   m_EditorClassIdentifier: 
-  abilityName: MultiHomingWeapon
+  abilityName: Multi Homing Weapon
   cooldown: 2
   icon: {fileID: 0}
   abilityPrefab: {fileID: 4760189001365621660, guid: 514dfc4823de1f342969ffda7702c9f7, type: 3}

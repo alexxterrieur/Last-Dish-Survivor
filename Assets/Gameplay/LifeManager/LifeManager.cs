@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ public class LifeManager : MonoBehaviour
     public float currentHealth;
 
     private EnemyInfo enemyInfo;
+
+    public static Action OnDeath;
+
 
     private void Awake()
     {
@@ -38,6 +42,10 @@ public class LifeManager : MonoBehaviour
                 TryDropItem();
             }
 
+
+            OnDeath();
+
+
             Destroy(gameObject);
         }
         else
@@ -54,7 +62,7 @@ public class LifeManager : MonoBehaviour
         {
             foreach (var dropItem in dropItems)
             {
-                if (Random.value <= dropItem.dropChance)
+                if (UnityEngine.Random.value <= dropItem.dropChance)
                 {
                     Instantiate(dropItem.itemPrefab, transform.position, Quaternion.identity);
                     break;
