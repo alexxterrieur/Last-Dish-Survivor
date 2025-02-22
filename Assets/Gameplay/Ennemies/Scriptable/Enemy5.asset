@@ -17,7 +17,7 @@ MonoBehaviour:
   maxLife: 40
   attackRange: 2
   attackInterval: 2
-  attackDamage: 20
+  attackDamage: 3.5
   speed: 2
   dropItems:
   - itemPrefab: {fileID: 504400690112065596, guid: 5179fae22e420874a9fdf9b6079bc19d, type: 3}

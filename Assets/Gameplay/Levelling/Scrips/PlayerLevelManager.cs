@@ -7,10 +7,10 @@ public class PlayerLevelManager : MonoBehaviour
     public float currentXP;
     private float xpNeededForNextLevel;
     public int currentLevel;
-    public LevelUpWindow levelUpManager;
-    public TMP_Text levelText;
-    public Slider xpBar;
-    public float fillSpeed = 1000f;
+    [SerializeField] private LevelUpWindow levelUpManager;
+    [SerializeField] private TMP_Text levelText;
+    [SerializeField] private Slider xpBar;
+    [SerializeField] private float fillSpeed;
 
     private float targetXP; 
 
@@ -21,7 +21,7 @@ public class PlayerLevelManager : MonoBehaviour
         xpBar.value = 0;
         targetXP = 0;
 
-        levelText.text = "Level: " + (currentLevel + 1);
+        levelText.text = (currentLevel + 1).ToString();
     }
 
     void Update()
@@ -42,7 +42,7 @@ public class PlayerLevelManager : MonoBehaviour
     private void LevelUp()
     {
         currentLevel++;
-        levelText.text = "Level: " + (currentLevel + 1);
+        levelText.text = (currentLevel + 1).ToString();
         currentXP = 0;
         xpNeededForNextLevel *= 1.4f;
         levelUpManager.OpenLevelUpMenu();

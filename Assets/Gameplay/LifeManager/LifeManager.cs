@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LifeManager : MonoBehaviour
 {
@@ -8,24 +10,57 @@ public class LifeManager : MonoBehaviour
     public float currentHealth;
 
     private EnemyInfo enemyInfo;
-
     public static Action OnDeath;
 
+    [Header("Health Bar UI")]
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private TMP_Text healthText;
+    [SerializeField] private float fillSpeed;
+    private float targetHealth;
 
     private void Awake()
     {
         enemyInfo = GetComponent<EnemyInfo>();
     }
 
+    private void Start()
+    {
+        if (gameObject.CompareTag("Player"))
+        {
+            healthBar.value = 1;
+            targetHealth = 1;
+        }
+    }
+
+    private void Update()
+    {
+        if (gameObject.CompareTag("Player"))
+        {
+            healthBar.value = Mathf.Lerp(healthBar.value, targetHealth, fillSpeed * Time.deltaTime);
+        }
+    }
+
     public void Initialize(float maxLife)
     {
         maxHealth = maxLife;
         currentHealth = maxHealth;
+
+        if (gameObject.CompareTag("Player"))
+        {
+            healthBar.value = 1;
+            targetHealth = 1;
+        }
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+
+        if (gameObject.CompareTag("Player"))
+        {
+            targetHealth = currentHealth / maxHealth;
+            healthText.text = currentHealth.ToString();
+        }
 
         if (currentHealth <= 0)
         {
@@ -35,22 +70,19 @@ public class LifeManager : MonoBehaviour
 
     private void Death()
     {
-        if(gameObject.tag != "Player")
+        if (gameObject.CompareTag("Player"))
+        {
+            Debug.Log("death " + gameObject.name);
+        }
+        else
         {
             if (enemyInfo != null)
             {
                 TryDropItem();
             }
 
-
-            OnDeath();
-
-
+            OnDeath?.Invoke();
             Destroy(gameObject);
-        }
-        else
-        {
-            Debug.Log("death " + gameObject.name);
         }
     }
 
@@ -70,5 +102,4 @@ public class LifeManager : MonoBehaviour
             }
         }
     }
-
 }

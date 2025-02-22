@@ -16,8 +16,8 @@ MonoBehaviour:
   enemyName: Enemy5
   maxLife: 60
   attackRange: 2
-  attackInterval: 2
-  attackDamage: 25
+  attackInterval: 3
+  attackDamage: 5
   speed: 2
   dropItems:
   - itemPrefab: {fileID: 1570744041671280148, guid: 7bd4800b14b5bd944be329e4b97a9c04, type: 3}
