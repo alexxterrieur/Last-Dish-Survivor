@@ -104,9 +104,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 1000
   m_LinearDamping: 5
-  m_AngularDamping: 0
+  m_AngularDamping: 5
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -129,7 +129,7 @@ CircleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 48d6dea8bb2659e48b1734d93b241557, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -200,3 +200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  healthBar: {fileID: 0}
+  healthText: {fileID: 0}
+  fillSpeed: 10

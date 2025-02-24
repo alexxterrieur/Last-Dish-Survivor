@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,6 +19,9 @@ public class LifeManager : MonoBehaviour
     [SerializeField] private float fillSpeed;
     private float targetHealth;
 
+    private SpriteRenderer playerSpriteRenderer;
+    private Coroutine damageCoroutine;
+
     private void Awake()
     {
         enemyInfo = GetComponent<EnemyInfo>();
@@ -27,6 +31,7 @@ public class LifeManager : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
+            playerSpriteRenderer = GetComponent<SpriteRenderer>();
             healthBar.value = 1;
             targetHealth = 1;
         }
@@ -58,14 +63,27 @@ public class LifeManager : MonoBehaviour
 
         if (gameObject.CompareTag("Player"))
         {
+            playerSpriteRenderer.color = Color.red;
             targetHealth = currentHealth / maxHealth;
             healthText.text = currentHealth.ToString();
+
+            if (damageCoroutine != null)
+                StopCoroutine(damageCoroutine);
+
+            damageCoroutine = StartCoroutine(SpriteRed());
         }
 
         if (currentHealth <= 0)
         {
             Death();
         }
+    }
+
+    private IEnumerator SpriteRed()
+    {
+        playerSpriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        playerSpriteRenderer.color = Color.white;
     }
 
     private void Death()

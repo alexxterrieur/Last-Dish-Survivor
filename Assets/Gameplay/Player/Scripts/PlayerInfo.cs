@@ -6,6 +6,7 @@ public class PlayerInfos : MonoBehaviour
     public static PlayerInfos Instance { get; private set; }
 
     public CharacterClass characterClass;
+    SpriteRenderer spriteRenderer;
 
     private float maxHealth;
     private float speed;
@@ -21,6 +22,7 @@ public class PlayerInfos : MonoBehaviour
 
     LifeManager lifeManager;
     AbilityManager abilityManager;
+    [SerializeField] private WeaponsBonusUI weaponsBonusUI;
 
     PlayerMovement playerMovement;
 
@@ -40,6 +42,9 @@ public class PlayerInfos : MonoBehaviour
             InitializeStats();
             EquipStartingWeapons();
         }
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = characterClass.playerSprite;
 
         lifeManager = GetComponent<LifeManager>();
         abilityManager = GetComponent<AbilityManager>();
@@ -104,15 +109,13 @@ public class PlayerInfos : MonoBehaviour
     {
         if (weaponLevels.ContainsKey(upgradeableWeapon))
         {
-            // Amélioration de l'arme existante
+            //Upgrade weapon
             weaponLevels[upgradeableWeapon]++;
-            int newLevel = weaponLevels[upgradeableWeapon];
-
-            Debug.Log($"Amélioration de {upgradeableWeapon.weaponLevels[0].abilityName} au niveau {newLevel} !");
+            Debug.Log($"Amélioration de {upgradeableWeapon.weaponLevels[0].abilityName} au niveau {weaponLevels[upgradeableWeapon] + 1} !");
         }
         else if (weaponLevels.Count < maxWeapons)
         {
-            // Ajout d'une nouvelle arme si slots disponibles
+            //Add weapon with index 0 of upgradeabloWeapon
             weaponLevels[upgradeableWeapon] = 0;
             Debug.Log($"Nouvelle arme équipée : {upgradeableWeapon.weaponLevels[0].abilityName}");
 
@@ -122,20 +125,21 @@ public class PlayerInfos : MonoBehaviour
         {
             Debug.Log("Nombre maximum d'armes atteint !");
         }
-    }
 
+        UpdateUI();
+    }
 
     public void AddBonus(UpgradeableBonus upgradeableBonus)
     {
         if (bonusLevels.ContainsKey(upgradeableBonus))
         {
-            // Amélioration du bonus existant
+            //Upgrade Bonus
             bonusLevels[upgradeableBonus]++;
-            Debug.Log($"Amélioration du bonus {upgradeableBonus.bonusLevels[0].bonusName} au niveau {bonusLevels[upgradeableBonus]} !");
+            Debug.Log($"Amélioration du bonus {upgradeableBonus.bonusLevels[0].bonusName} au niveau {bonusLevels[upgradeableBonus] + 1} !");
         }
         else if (bonusLevels.Count < maxBonuses)
         {
-            // Ajout d'un nouveau bonus si slots disponibles
+            //Add weapon with index 0 of upgradeabloBonus
             bonusLevels[upgradeableBonus] = 0;
             Debug.Log($"Nouveau bonus acquis : {upgradeableBonus.bonusLevels[0].bonusName}");
         }
@@ -147,6 +151,13 @@ public class PlayerInfos : MonoBehaviour
 
         Bonus currentBonus = upgradeableBonus.GetBonusAtLevel(bonusLevels[upgradeableBonus]);
         currentBonus.ApplyEffect(this);
+
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        weaponsBonusUI?.UpdateUI(weaponLevels, bonusLevels);
     }
 
     public void IncreaseMaxHealth(float amount) => lifeManager.maxHealth += amount;
@@ -167,6 +178,7 @@ public class PlayerInfos : MonoBehaviour
     public float GetSpeed() => speed;
     public float GetDamageBonus() => damageBonus;
 }
+
 
 [System.Serializable]
 public class DropItem

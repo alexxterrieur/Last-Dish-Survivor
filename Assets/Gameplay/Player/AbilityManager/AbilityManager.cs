@@ -76,12 +76,6 @@ public class AbilityManager : MonoBehaviour
 
         Weapon currentWeapon = upgradeableWeapon.GetWeaponAtLevel(level);
         cooldownTimers[currentWeapon] = 0f;
-
-        if (currentWeapon.needAttackHandler && gameObject.GetComponent<AttackHandler>() == null)
-        {
-            gameObject.AddComponent<AttackHandler>();
-            Debug.Log("AttackHandler ajouté au joueur");
-        }
     }
 
 

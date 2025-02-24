@@ -29,7 +29,7 @@ public class LevelUpWindow : MonoBehaviour
             {
                 object choice = choices[i];
 
-                // Récupération des enfants du bouton
+                //Get button childs
                 Transform buttonTransform = choiceButtons[i].transform;
                 Image iconImage = buttonTransform.GetChild(0).GetComponent<Image>();
                 TMP_Text nameText = buttonTransform.GetChild(1).GetComponent<TMP_Text>();
@@ -43,14 +43,14 @@ public class LevelUpWindow : MonoBehaviour
                     int nextLevel;
                     if (player.weaponLevels.ContainsKey(weapon))
                     {
-                        nextLevel = player.weaponLevels[weapon] + 1; // Niveau suivant
+                        nextLevel = player.weaponLevels[weapon] + 1; //Next level
                     }
                     else
                     {
-                        nextLevel = 0; // Nouvelle arme, commence au niveau 0
+                        nextLevel = 0; //New weapon
                     }
 
-                    // Récupération des données du niveau suivant (ou dernier niveau dispo)
+                    //Get next level infos
                     Weapon weaponData = weapon.GetWeaponAtLevel(nextLevel);
                     nameText.text = weaponData.abilityName;
                     descriptionText.text = weaponData.description;
@@ -62,14 +62,14 @@ public class LevelUpWindow : MonoBehaviour
                     int nextLevel;
                     if (player.bonusLevels.ContainsKey(bonus))
                     {
-                        nextLevel = player.bonusLevels[bonus] + 1; // Niveau suivant
+                        nextLevel = player.bonusLevels[bonus] + 1; //Next level
                     }
                     else
                     {
-                        nextLevel = 0; // Nouveau bonus, commence au niveau 0
+                        nextLevel = 0; //New bonus
                     }
 
-                    // Récupération des données du niveau suivant (ou dernier niveau dispo)
+                    //Get next level infos
                     Bonus bonusData = bonus.GetBonusAtLevel(nextLevel);
                     nameText.text = bonusData.bonusName;
                     descriptionText.text = bonusData.description;
@@ -77,7 +77,7 @@ public class LevelUpWindow : MonoBehaviour
                     levelText.text = player.bonusLevels.ContainsKey(bonus) ? "Lv. " + (nextLevel + 1) : "New !";
                 }
 
-                // Activer le bouton et ajouter l'événement
+                //Enable button and add event
                 choiceButtons[i].gameObject.SetActive(true);
                 choiceButtons[i].onClick.RemoveAllListeners();
                 choiceButtons[i].onClick.AddListener(() => SelectOption(choice));

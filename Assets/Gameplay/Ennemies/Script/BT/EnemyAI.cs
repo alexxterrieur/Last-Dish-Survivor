@@ -45,8 +45,8 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !isAttacking)
         {
             isAttacking = true;
-            playerSprite = collision.gameObject.GetComponent<SpriteRenderer>();
-            playerSprite.color = Color.red;
+            //playerSprite = collision.gameObject.GetComponent<SpriteRenderer>();
+            //playerSprite.color = Color.red;
 
             StartCoroutine(AttackPlayer());
         }
@@ -57,7 +57,7 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isAttacking = false;
-            playerSprite.color = Color.white;
+            //playerSprite.color = Color.white;
             StopCoroutine(AttackPlayer());
         }
     }
