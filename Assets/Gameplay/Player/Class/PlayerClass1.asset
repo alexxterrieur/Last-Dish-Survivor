@@ -17,6 +17,7 @@ MonoBehaviour:
   maxHealth: 150
   speed: 7
   damageBonus: 2
-  activeAbilities: []
+  activeAbilities:
+  - {fileID: 11400000, guid: e12e8b71d14cf304885335d37b690d4c, type: 2}
   startWeapon:
   - {fileID: 11400000, guid: 3cb518c94592c354cb7bd47fd27f8a7e, type: 2}

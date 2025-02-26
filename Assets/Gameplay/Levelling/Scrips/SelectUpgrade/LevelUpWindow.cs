@@ -97,15 +97,6 @@ public class LevelUpWindow : MonoBehaviour
         List<UpgradeableWeapon> availableWeapons = allWeapons.Where(w => !player.weaponLevels.ContainsKey(w)).ToList();
         List<UpgradeableBonus> availableBonuses = allBonuses.Where(b => !player.bonusLevels.ContainsKey(b)).ToList();
 
-        if (player.weaponLevels.Count < player.maxWeapons)
-        {
-            possibleChoices.AddRange(availableWeapons);
-        }
-        if (player.bonusLevels.Count < player.maxBonuses)
-        {
-            possibleChoices.AddRange(availableBonuses);
-        }
-
         List<object> upgradeOptions = new List<object>();
 
         foreach (var weapon in player.weaponLevels.Keys)
@@ -124,12 +115,24 @@ public class LevelUpWindow : MonoBehaviour
             }
         }
 
-        upgradeOptions = upgradeOptions.OrderBy(_ => Random.value).ToList();
+        List<object> allOptions = new List<object>();
 
-        while (possibleChoices.Count < 3 && upgradeOptions.Count > 0)
+        if (player.weaponLevels.Count < player.maxWeapons)
         {
-            possibleChoices.Add(upgradeOptions[0]);
-            upgradeOptions.RemoveAt(0);
+            allOptions.AddRange(availableWeapons);
+        }
+        if (player.bonusLevels.Count < player.maxBonuses)
+        {
+            allOptions.AddRange(availableBonuses);
+        }
+        allOptions.AddRange(upgradeOptions);
+
+        allOptions = allOptions.OrderBy(_ => Random.value).ToList();
+
+        while (possibleChoices.Count < 3 && allOptions.Count > 0)
+        {
+            possibleChoices.Add(allOptions[0]);
+            allOptions.RemoveAt(0);
         }
 
         while (possibleChoices.Count < 3)
@@ -139,6 +142,7 @@ public class LevelUpWindow : MonoBehaviour
 
         return possibleChoices;
     }
+
 
     public void SelectOption(object choice)
     {

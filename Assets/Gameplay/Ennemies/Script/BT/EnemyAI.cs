@@ -4,7 +4,8 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public GameObject playerTarget;
-    public LifeManager playerLifeManager;
+    private GameObject currentTarget;
+    private LifeManager targetLifeManager;
     private EnemyInfo enemyInfo;
 
     public float speed;
@@ -14,12 +15,16 @@ public class EnemyAI : MonoBehaviour
     public float attackDamage;
 
     private bool isAttacking = false;
+
+    public LifeManager playerLifeManager;
+
     SpriteRenderer playerSprite;
 
     void Start()
     {
         playerTarget = GameObject.FindWithTag("Player");
-        playerLifeManager = playerTarget.GetComponent<LifeManager>();
+        currentTarget = playerTarget;
+        targetLifeManager = playerTarget.GetComponent<LifeManager>();
         enemyInfo = GetComponent<EnemyInfo>();
 
         InitializeStats();
@@ -27,11 +32,40 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        distance = Vector2.Distance(transform.position, playerTarget.transform.position);
+        if (currentTarget == null)
+        {
+            currentTarget = playerTarget;
+        }
 
-        Vector2 direction = playerTarget.transform.position - transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, speed * Time.deltaTime);
     }
+
+    public void SetTarget(GameObject newTarget)
+    {
+        currentTarget = newTarget;
+
+        if (newTarget.CompareTag("Player"))
+        {
+            targetLifeManager = playerTarget.GetComponent<LifeManager>();
+        }
+        else
+        {
+            targetLifeManager = newTarget.GetComponent<LifeManager>();
+        }
+    }
+
+    private IEnumerator AttackTarget()
+    {
+        while (isAttacking)
+        {
+            if (targetLifeManager != null)
+            {
+                targetLifeManager.TakeDamage(attackDamage);
+            }
+            yield return new WaitForSeconds(attackInterval);
+        }
+    }
+
 
     private void InitializeStats()
     {

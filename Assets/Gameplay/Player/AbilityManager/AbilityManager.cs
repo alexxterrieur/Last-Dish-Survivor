@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class AbilityManager : MonoBehaviour
 
     private Dictionary<Ability, float> cooldownTimers = new Dictionary<Ability, float>();
 
-    void Start()
+    private void Start()
     {
         foreach (var weaponEntry in PlayerInfos.Instance.weaponLevels)
         {
@@ -16,10 +17,10 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         HandleWeaponAbilities();
-        HandleActiveAbilitiesInput();
+        UpdateCooldowns();
     }
 
     private void HandleWeaponAbilities()
@@ -37,28 +38,55 @@ public class AbilityManager : MonoBehaviour
                 currentWeapon.Activate(gameObject);
                 cooldownTimers[currentWeapon] = currentWeapon.cooldown;
             }
-            else
+        }
+    }
+
+    private void UpdateCooldowns()
+    {
+        List<Ability> keys = new List<Ability>(cooldownTimers.Keys);
+        foreach (var ability in keys)
+        {
+            if (cooldownTimers[ability] > 0)
             {
-                cooldownTimers[currentWeapon] -= Time.deltaTime;
+                cooldownTimers[ability] -= Time.deltaTime;
             }
         }
     }
 
-    private void HandleActiveAbilitiesInput()
+    public void OnAbility1(InputAction.CallbackContext context)
     {
-        for (int i = 0; i < activeAbilities.Count; i++)
+        if (context.performed)
         {
-            Ability ability = activeAbilities[i];
-            KeyCode key = KeyCode.Alpha1 + i;
+            UseAbility(0);
+            Debug.Log("ability 1 used");
+        }
+    }
 
-            if (!cooldownTimers.ContainsKey(ability))
-                cooldownTimers[ability] = 0f;
+    public void OnAbility2(InputAction.CallbackContext context)
+    {
+        if (context.performed) UseAbility(1);
+    }
 
-            if (Input.GetKeyDown(key) && cooldownTimers[ability] <= 0)
-            {
-                ability.Activate(gameObject);
-                cooldownTimers[ability] = ability.cooldown;
-            }
+    public void OnAbility3(InputAction.CallbackContext context)
+    {
+        if (context.performed) UseAbility(2);
+    }
+
+    public void OnAbility4(InputAction.CallbackContext context)
+    {
+        if (context.performed) UseAbility(3);
+    }
+
+    private void UseAbility(int abilityIndex)
+    {
+        if (abilityIndex >= activeAbilities.Count) return;
+
+        Ability ability = activeAbilities[abilityIndex];
+
+        if (!cooldownTimers.ContainsKey(ability) || cooldownTimers[ability] <= 0)
+        {
+            ability.Activate(gameObject);
+            cooldownTimers[ability] = ability.cooldown;
         }
     }
 
@@ -77,7 +105,6 @@ public class AbilityManager : MonoBehaviour
         Weapon currentWeapon = upgradeableWeapon.GetWeaponAtLevel(level);
         cooldownTimers[currentWeapon] = 0f;
     }
-
 
     public void AddActiveAbility(Ability ability)
     {

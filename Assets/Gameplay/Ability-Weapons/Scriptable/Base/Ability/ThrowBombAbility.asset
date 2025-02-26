@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853ac7fa6b7b69c439352c8da40007d1, type: 3}
+  m_Name: ThrowBombAbility
+  m_EditorClassIdentifier: 
+  abilityName: Throw Bomb
+  cooldown: 2
+  icon: {fileID: -9133574774732128784, guid: e2ce309af8e56834f813617f3fad03df, type: 3}
+  description: Throw a bomb
+  abilityPrefab: {fileID: 6410562247507953453, guid: 1efb7c822b705714b876a6b86075ef82, type: 3}
+  duration: 2
+  damage: 40
+  bombSpeed: 8

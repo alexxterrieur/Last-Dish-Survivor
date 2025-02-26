@@ -20,11 +20,17 @@ public class AttackHandler : MonoBehaviour
 
             GameObject projectile = Instantiate(projectilePrefab, user.transform.position, Quaternion.Euler(0, 0, angle));
 
-            //knife only
+            //knife
             KnifeProjectile projectileScript = projectile.GetComponent<KnifeProjectile>();
             if (projectileScript != null)
             {
                 projectileScript.Initialize(direction, projectileSpeed, damage);
+            }
+
+            BombProjectile bombProjectile = projectile.GetComponent<BombProjectile>();
+            if(bombProjectile != null)
+            {
+                bombProjectile.Initialize(direction, projectileSpeed, damage, 2f);
             }
 
             yield return new WaitForSeconds(timeBetweenProjectiles);

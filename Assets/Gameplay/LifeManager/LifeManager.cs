@@ -19,7 +19,7 @@ public class LifeManager : MonoBehaviour
     [SerializeField] private float fillSpeed;
     private float targetHealth;
 
-    private SpriteRenderer playerSpriteRenderer;
+    private SpriteRenderer spriteRenderer;
     private Coroutine damageCoroutine;
 
     private void Awake()
@@ -31,7 +31,7 @@ public class LifeManager : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            playerSpriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
             healthBar.value = 1;
             targetHealth = 1;
         }
@@ -63,7 +63,7 @@ public class LifeManager : MonoBehaviour
 
         if (gameObject.CompareTag("Player"))
         {
-            playerSpriteRenderer.color = Color.red;
+            spriteRenderer.color = Color.red;
             targetHealth = currentHealth / maxHealth;
             healthText.text = currentHealth.ToString();
 
@@ -79,11 +79,45 @@ public class LifeManager : MonoBehaviour
         }
     }
 
+    public enum TargetType
+    {
+        Player,
+        Enemy,
+        Both
+    }
+
+    public void ApplyDamageOverTime(float damagePerTick, float tickInterval, float duration, TargetType targetType)
+    {
+        if ((targetType == TargetType.Player && CompareTag("Player")) || (targetType == TargetType.Enemy && CompareTag("Enemy")) || (targetType == TargetType.Both))
+        {
+            StartCoroutine(DamageOverTimeCoroutine(damagePerTick, tickInterval, duration));
+        }
+    }
+
+
+    private IEnumerator DamageOverTimeCoroutine(float damagePerTick, float tickInterval, float duration)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            TakeDamage(damagePerTick);
+
+            spriteRenderer.color = Color.yellow;
+            yield return new WaitForSeconds(0.3f);
+            spriteRenderer.color = Color.white;
+
+            yield return new WaitForSeconds(tickInterval);
+            elapsedTime += tickInterval;
+        }
+    }
+
+
     private IEnumerator SpriteRed()
     {
-        playerSpriteRenderer.color = Color.red;
+        spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        playerSpriteRenderer.color = Color.white;
+        spriteRenderer.color = Color.white;
     }
 
     private void Death()
