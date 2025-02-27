@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 756ea7caf624cd04faf0afabed6eecd3, type: 3}
-  m_Name: DashAbility
+  m_Name: DashAbility 1
   m_EditorClassIdentifier: 
   abilityName: Dash
   cooldown: 5
   icon: {fileID: -4114059874322739585, guid: 14db2b013964c1b45b528e5cf57709cc, type: 3}
-  description: Dash 3 times
+  description: Dash 3 times lvl 2
   abilityPrefab: {fileID: 0}
   duration: 0
   damage: 0

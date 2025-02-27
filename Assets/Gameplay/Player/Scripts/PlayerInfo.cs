@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class PlayerInfos : MonoBehaviour
 
     public Dictionary<UpgradeableWeapon, int> weaponLevels = new Dictionary<UpgradeableWeapon, int>();
     public Dictionary<UpgradeableBonus, int> bonusLevels = new Dictionary<UpgradeableBonus, int>();
+    public Dictionary<UpgradeableAbility, int> abilityLevels = new Dictionary<UpgradeableAbility, int>();
 
     public List<Ability> activeAbilities = new List<Ability>();
 
@@ -35,8 +37,12 @@ public class PlayerInfos : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.1f);
+
+        LoadAbilityLevels();
+
         if (characterClass != null)
         {
             InitializeStats();
@@ -61,8 +67,16 @@ public class PlayerInfos : MonoBehaviour
             {
                 abilityManager.AddWeapon(weaponEntry.Key, weaponEntry.Value);
             }
+
+            foreach (var abilityEntry in abilityLevels)
+            {
+                abilityManager.EquipAbility(abilityEntry.Key, abilityEntry.Value);
+            }
         }
+
+        UpdateUI();
     }
+
 
     public void UpdatePlayerDirection(Vector2 moveDirection)
     {
@@ -85,7 +99,15 @@ public class PlayerInfos : MonoBehaviour
         maxHealth = characterClass.maxHealth;
         damageBonus = characterClass.damageBonus;
 
-        activeAbilities.AddRange(characterClass.activeAbilities);
+        foreach (var upgradeableAbility in characterClass.upgradeableAbilities)
+        {
+            int abilityLevel = abilityLevels.ContainsKey(upgradeableAbility) ? abilityLevels[upgradeableAbility] : 0;
+            Ability abilityInstance = upgradeableAbility.GetAbilityAtLevel(abilityLevel);
+            if (abilityInstance != null)
+            {
+                activeAbilities.Add(abilityInstance);
+            }
+        }
     }
 
     private void EquipStartingWeapons()
@@ -96,26 +118,15 @@ public class PlayerInfos : MonoBehaviour
         }
     }
 
-    public void AddAbility(Ability newAbility)
-    {
-        if (!activeAbilities.Contains(newAbility))
-        {
-            activeAbilities.Add(newAbility);
-            Debug.Log($"Nouvelle capacité apprise : {newAbility.abilityName}");
-        }
-    }
-
     public void AddWeapon(UpgradeableWeapon upgradeableWeapon)
     {
         if (weaponLevels.ContainsKey(upgradeableWeapon))
         {
-            //Upgrade weapon
             weaponLevels[upgradeableWeapon]++;
             Debug.Log($"Amélioration de {upgradeableWeapon.weaponLevels[0].abilityName} au niveau {weaponLevels[upgradeableWeapon] + 1} !");
         }
         else if (weaponLevels.Count < maxWeapons)
         {
-            //Add weapon with index 0 of upgradeabloWeapon
             weaponLevels[upgradeableWeapon] = 0;
             Debug.Log($"Nouvelle arme équipée : {upgradeableWeapon.weaponLevels[0].abilityName}");
 
@@ -129,17 +140,51 @@ public class PlayerInfos : MonoBehaviour
         UpdateUI();
     }
 
+    public void AddAbility(UpgradeableAbility upgradeableAbility)
+    {
+        if (!abilityLevels.ContainsKey(upgradeableAbility))
+        {
+            abilityLevels[upgradeableAbility] = PlayerPrefs.GetInt(upgradeableAbility.name, 0);
+        }
+
+        int level = abilityLevels[upgradeableAbility];
+        Ability abilityInstance = upgradeableAbility.GetAbilityAtLevel(level);
+        if (abilityInstance != null && !activeAbilities.Contains(abilityInstance))
+        {
+            activeAbilities.Add(abilityInstance);
+            Debug.Log($"Nouvelle capacité apprise : {abilityInstance.abilityName}");
+        }
+    }
+
+    public void UpgradeAbility(UpgradeableAbility upgradeableAbility)
+    {
+        if (abilityLevels.ContainsKey(upgradeableAbility))
+        {
+            abilityLevels[upgradeableAbility]++;
+            PlayerPrefs.SetInt(upgradeableAbility.name, abilityLevels[upgradeableAbility]);
+            PlayerPrefs.Save();
+            Debug.Log($"Capacité améliorée : {upgradeableAbility.abilityLevels[0].abilityName} au niveau {abilityLevels[upgradeableAbility]} !");
+        }
+    }
+
+    private void LoadAbilityLevels()
+    {
+        foreach (var ability in characterClass.upgradeableAbilities)
+        {
+            int savedLevel = PlayerPrefs.GetInt(ability.name, 0);
+            abilityLevels[ability] = savedLevel;
+        }
+    }
+
     public void AddBonus(UpgradeableBonus upgradeableBonus)
     {
         if (bonusLevels.ContainsKey(upgradeableBonus))
         {
-            //Upgrade Bonus
             bonusLevels[upgradeableBonus]++;
             Debug.Log($"Amélioration du bonus {upgradeableBonus.bonusLevels[0].bonusName} au niveau {bonusLevels[upgradeableBonus] + 1} !");
         }
         else if (bonusLevels.Count < maxBonuses)
         {
-            //Add weapon with index 0 of upgradeabloBonus
             bonusLevels[upgradeableBonus] = 0;
             Debug.Log($"Nouveau bonus acquis : {upgradeableBonus.bonusLevels[0].bonusName}");
         }
@@ -157,14 +202,13 @@ public class PlayerInfos : MonoBehaviour
 
     private void UpdateUI()
     {
-        weaponsBonusUI?.UpdateUI(weaponLevels, bonusLevels);
+        weaponsBonusUI?.UpdateUI(weaponLevels, bonusLevels, abilityLevels);
     }
 
     public void IncreaseMaxHealth(float amount) => lifeManager.maxHealth += amount;
     public void IncreaseCurrentHealth(float amount)
     {
         lifeManager.currentHealth += amount;
-
         if (lifeManager.currentHealth > lifeManager.maxHealth)
         {
             lifeManager.currentHealth = lifeManager.maxHealth;
@@ -178,6 +222,7 @@ public class PlayerInfos : MonoBehaviour
     public float GetSpeed() => speed;
     public float GetDamageBonus() => damageBonus;
 }
+
 
 
 [System.Serializable]

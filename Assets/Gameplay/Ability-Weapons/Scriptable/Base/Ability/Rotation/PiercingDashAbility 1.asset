@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ee61ebf20ef51c449feeabeebb090df, type: 3}
-  m_Name: PiercingDashAbility
+  m_Name: PiercingDashAbility 1
   m_EditorClassIdentifier: 
   abilityName: Piercing Dash
   cooldown: 3
   icon: {fileID: -4266753839414821178, guid: 7e6f5226a53fa904daf6da2437865149, type: 3}
-  description: Dash and damages enemies on your road
+  description: Dash and damages enemies on your road lvl 2
   abilityPrefab: {fileID: 0}
   duration: 0
   damage: 40

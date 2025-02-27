@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewThrowBombAbility", menuName = "Scriptable Objects/Abilities/Throw Bomb")]
-public class ThrowBombAbility : Weapon
+public class ThrowBombAbility : Ability
 {
     public int numberOfBombs = 1;
     public float timeBetweenBombs = 0f;
@@ -12,7 +12,14 @@ public class ThrowBombAbility : Weapon
         AttackHandler attackHandler = user.GetComponent<AttackHandler>();
         if (attackHandler != null)
         {
-            attackHandler.StartAttack(user, abilityPrefab, numberOfBombs, timeBetweenBombs, cooldown, projectileSpeed, damage);
+            attackHandler.StartAttack(user, abilityPrefab, numberOfBombs, timeBetweenBombs, 0f, projectileSpeed, damage);
+
+            AbilityManager abilityManager = user.GetComponent<AbilityManager>();
+            if (abilityManager != null)
+            {
+                abilityManager.SetCooldown(this, cooldown);
+            }
         }
     }
+
 }

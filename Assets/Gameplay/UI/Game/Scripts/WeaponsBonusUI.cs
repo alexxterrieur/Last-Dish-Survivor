@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,9 +7,12 @@ public class WeaponsBonusUI : MonoBehaviour
 {
     public Transform weaponsParent;
     public Transform bonusesParent;
+    public Transform abilitiesContainer;
+
 
     private List<GameObject> weaponIcons = new List<GameObject>();
     private List<GameObject> bonusIcons = new List<GameObject>();
+    private List<GameObject> abilitiesIcons = new List<GameObject>();
 
     private void Start()
     {
@@ -17,12 +21,16 @@ public class WeaponsBonusUI : MonoBehaviour
 
         foreach (Transform child in bonusesParent)
             bonusIcons.Add(child.gameObject);
+
+        foreach (Transform child in abilitiesContainer)
+            abilitiesIcons.Add(child.gameObject);
     }
 
-    public void UpdateUI(Dictionary<UpgradeableWeapon, int> weaponLevels, Dictionary<UpgradeableBonus, int> bonusLevels)
+    public void UpdateUI(Dictionary<UpgradeableWeapon, int> weaponLevels, Dictionary<UpgradeableBonus, int> bonusLevels, Dictionary<UpgradeableAbility, int> abilityLevels)
     {
         UpdateWeaponsUI(weaponLevels);
         UpdateBonusesUI(bonusLevels);
+        UpdateAbitiliesUI(abilityLevels);
     }
 
     private void UpdateWeaponsUI(Dictionary<UpgradeableWeapon, int> weaponLevels)
@@ -70,6 +78,23 @@ public class WeaponsBonusUI : MonoBehaviour
         }
     }
 
+    private void UpdateAbitiliesUI(Dictionary<UpgradeableAbility, int> abitiliesLevels)
+    {
+        int index = 0;
+        foreach (var abitilityEntry in abitiliesLevels)
+        {
+            if (index >= abilitiesIcons.Count) break;
+
+            GameObject abilityIcon = abilitiesIcons[index];
+            abilityIcon.SetActive(true);
+
+            Image abilityImage = abilityIcon.GetComponent<Image>();
+            if(abilityImage != null)
+                abilityImage.sprite = abitilityEntry.Key.abilityLevels[0].icon;
+
+            index++;
+        }
+    }
 
     private void UpdateLevelIndicators(Transform parent, int level, int maxLevel)
     {

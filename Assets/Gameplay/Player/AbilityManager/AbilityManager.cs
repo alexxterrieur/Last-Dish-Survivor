@@ -15,6 +15,11 @@ public class AbilityManager : MonoBehaviour
         {
             AddWeapon(weaponEntry.Key, weaponEntry.Value);
         }
+
+        foreach (var abilityEntry in PlayerInfos.Instance.abilityLevels)
+        {
+            EquipAbility(abilityEntry.Key, abilityEntry.Value);
+        }
     }
 
     private void Update()
@@ -55,11 +60,7 @@ public class AbilityManager : MonoBehaviour
 
     public void OnAbility1(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            UseAbility(0);
-            Debug.Log("ability 1 used");
-        }
+        if (context.performed) UseAbility(0);
     }
 
     public void OnAbility2(InputAction.CallbackContext context)
@@ -77,18 +78,28 @@ public class AbilityManager : MonoBehaviour
         if (context.performed) UseAbility(3);
     }
 
+
     private void UseAbility(int abilityIndex)
     {
         if (abilityIndex >= activeAbilities.Count) return;
 
         Ability ability = activeAbilities[abilityIndex];
 
-        if (!cooldownTimers.ContainsKey(ability) || cooldownTimers[ability] <= 0)
-        {
-            ability.Activate(gameObject);
-            cooldownTimers[ability] = ability.cooldown;
-        }
+        if (cooldownTimers.ContainsKey(ability) && cooldownTimers[ability] > 0) return;
+
+        ability.Activate(gameObject);
+
+        SetCooldown(ability, ability.cooldown);
     }
+
+    public void SetCooldown(Ability ability, float cooldownTime)
+    {
+        if (!cooldownTimers.ContainsKey(ability))
+            cooldownTimers[ability] = 0f;
+
+        cooldownTimers[ability] = cooldownTime;
+    }
+
 
     public void AddWeapon(UpgradeableWeapon upgradeableWeapon, int level)
     {
@@ -106,13 +117,18 @@ public class AbilityManager : MonoBehaviour
         cooldownTimers[currentWeapon] = 0f;
     }
 
-    public void AddActiveAbility(Ability ability)
+    public void EquipAbility(UpgradeableAbility upgradeableAbility, int level)
     {
-        if (!activeAbilities.Contains(ability))
+        Ability currentAbility = upgradeableAbility.GetAbilityAtLevel(level);
+        if (!activeAbilities.Contains(currentAbility))
         {
-            activeAbilities.Add(ability);
-            cooldownTimers[ability] = 0f;
-            Debug.Log($"Nouvelle capacité ajoutée : {ability.abilityName}");
+            activeAbilities.Add(currentAbility);
+            cooldownTimers[currentAbility] = 0f;
+            Debug.Log($"Capacité équipée : {currentAbility.abilityName} - Niveau {level}");
+        }
+        else
+        {
+            Debug.Log($"Capacité déjà équipée : {currentAbility.abilityName}");
         }
     }
 }

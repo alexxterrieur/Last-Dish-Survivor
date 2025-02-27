@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
 
     private bool isAttacking = false;
 
-    public LifeManager playerLifeManager;
+    //public LifeManager playerLifeManager;
 
     SpriteRenderer playerSprite;
 
@@ -100,7 +100,7 @@ public class EnemyAI : MonoBehaviour
     {
         while (isAttacking)
         {
-            playerLifeManager.TakeDamage(attackDamage);
+            targetLifeManager.TakeDamage(attackDamage);
             yield return new WaitForSeconds(attackInterval);
         }
     }

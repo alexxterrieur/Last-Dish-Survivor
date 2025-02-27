@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SmokeZoneAbility", menuName = "Scriptable Objects/Abilities/Smoke Zone")]
-public class SmokeZoneAbility : Weapon
+public class SmokeZoneAbility : Ability
 {
     public override void Activate(GameObject user)
     {

@@ -2048,6 +2048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponsParent: {fileID: 2031363335}
   bonusesParent: {fileID: 40099616}
+  abilitiesContainer: {fileID: 748232233}
 --- !u!1 &378924202
 GameObject:
   m_ObjectHideFlags: 0

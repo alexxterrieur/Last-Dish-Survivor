@@ -27,15 +27,29 @@ public class LifeManager : MonoBehaviour
         enemyInfo = GetComponent<EnemyInfo>();
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(.1f);
+
         if (gameObject.CompareTag("Player"))
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             healthBar.value = 1;
             targetHealth = 1;
+            healthText.text = currentHealth.ToString();
         }
     }
+
+    //private void Start()
+    //{
+    //    if (gameObject.CompareTag("Player"))
+    //    {
+    //        spriteRenderer = GetComponent<SpriteRenderer>();
+    //        healthBar.value = 1;
+    //        targetHealth = 1;
+
+    //    }
+    //}
 
     private void Update()
     {

@@ -10,6 +10,6 @@ public class CharacterClass : ScriptableObject
     public float speed;
     public float damageBonus;
 
-    public Ability[] activeAbilities;
+    public UpgradeableAbility[] upgradeableAbilities;
     public UpgradeableWeapon[] startWeapon;
 }
