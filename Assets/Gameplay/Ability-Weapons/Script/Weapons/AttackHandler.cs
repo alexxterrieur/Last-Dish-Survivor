@@ -30,7 +30,7 @@ public class AttackHandler : MonoBehaviour
             BombProjectile bombProjectile = projectile.GetComponent<BombProjectile>();
             if(bombProjectile != null)
             {
-                bombProjectile.Initialize(direction, projectileSpeed, damage, 2f);
+                bombProjectile.Initialize(direction, projectileSpeed, damage, 0.7f, bombProjectile.explosionRadius);
             }
 
             yield return new WaitForSeconds(timeBetweenProjectiles);

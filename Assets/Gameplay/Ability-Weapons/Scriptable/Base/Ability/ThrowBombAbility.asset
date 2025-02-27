@@ -17,6 +17,9 @@ MonoBehaviour:
   icon: {fileID: -9133574774732128784, guid: e2ce309af8e56834f813617f3fad03df, type: 3}
   description: Throw a bomb
   abilityPrefab: {fileID: 6410562247507953453, guid: 1efb7c822b705714b876a6b86075ef82, type: 3}
-  duration: 2
+  duration: 0.1
   damage: 40
-  bombSpeed: 8
+  associatedBonus: {fileID: 0}
+  numberOfBombs: 1
+  timeBetweenBombs: 0
+  projectileSpeed: 7

@@ -10,10 +10,12 @@ public class LevelUpWindow : MonoBehaviour
     public Button[] choiceButtons;
     public List<UpgradeableWeapon> allWeapons;
     public List<UpgradeableBonus> allBonuses;
+    CameraControler cameraControler;
 
     private void Start()
     {
         levelUpPanel.SetActive(false);
+        cameraControler = Camera.main.GetComponent<CameraControler>();
     }
 
     public void OpenLevelUpMenu()
