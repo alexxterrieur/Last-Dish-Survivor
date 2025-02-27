@@ -19,7 +19,7 @@ public class XPCapsuleBehavior : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, attractionSpeed * Time.deltaTime);
 
             float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
-            if (distanceToPlayer <= 0.5f)
+            if (distanceToPlayer <= 0.2f)
             {
                 playerTransform.gameObject.GetComponent<PlayerLevelManager>().AddXP(capsuleScriptable.xpValue);
                 Destroy(gameObject);

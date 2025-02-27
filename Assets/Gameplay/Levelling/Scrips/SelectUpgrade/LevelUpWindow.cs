@@ -31,7 +31,7 @@ public class LevelUpWindow : MonoBehaviour
             {
                 object choice = choices[i];
 
-                //Get button childs
+                // Récupération des composants UI du bouton
                 Transform buttonTransform = choiceButtons[i].transform;
                 Image iconImage = buttonTransform.GetChild(0).GetComponent<Image>();
                 TMP_Text nameText = buttonTransform.GetChild(1).GetComponent<TMP_Text>();
@@ -42,17 +42,9 @@ public class LevelUpWindow : MonoBehaviour
 
                 if (choice is UpgradeableWeapon weapon)
                 {
-                    int nextLevel;
-                    if (player.weaponLevels.ContainsKey(weapon))
-                    {
-                        nextLevel = player.weaponLevels[weapon] + 1; //Next level
-                    }
-                    else
-                    {
-                        nextLevel = 0; //New weapon
-                    }
+                    int nextLevel = player.weaponLevels.ContainsKey(weapon) ? player.weaponLevels[weapon] + 1 : 0;
 
-                    //Get next level infos
+                    // Récupération des infos du prochain niveau
                     Weapon weaponData = weapon.GetWeaponAtLevel(nextLevel);
                     nameText.text = weaponData.abilityName;
                     descriptionText.text = weaponData.description;
@@ -61,17 +53,9 @@ public class LevelUpWindow : MonoBehaviour
                 }
                 else if (choice is UpgradeableBonus bonus)
                 {
-                    int nextLevel;
-                    if (player.bonusLevels.ContainsKey(bonus))
-                    {
-                        nextLevel = player.bonusLevels[bonus] + 1; //Next level
-                    }
-                    else
-                    {
-                        nextLevel = 0; //New bonus
-                    }
+                    int nextLevel = player.bonusLevels.ContainsKey(bonus) ? player.bonusLevels[bonus] + 1 : 0;
 
-                    //Get next level infos
+                    // Récupération des infos du prochain niveau
                     Bonus bonusData = bonus.GetBonusAtLevel(nextLevel);
                     nameText.text = bonusData.bonusName;
                     descriptionText.text = bonusData.description;
@@ -79,7 +63,6 @@ public class LevelUpWindow : MonoBehaviour
                     levelText.text = player.bonusLevels.ContainsKey(bonus) ? "Lv. " + (nextLevel + 1) : "New !";
                 }
 
-                //Enable button and add event
                 choiceButtons[i].gameObject.SetActive(true);
                 choiceButtons[i].onClick.RemoveAllListeners();
                 choiceButtons[i].onClick.AddListener(() => SelectOption(choice));
@@ -96,19 +79,23 @@ public class LevelUpWindow : MonoBehaviour
         PlayerInfos player = PlayerInfos.Instance;
         List<object> possibleChoices = new List<object>();
 
-        List<UpgradeableWeapon> availableWeapons = allWeapons.Where(w => !player.weaponLevels.ContainsKey(w)).ToList();
-        List<UpgradeableBonus> availableBonuses = allBonuses.Where(b => !player.bonusLevels.ContainsKey(b)).ToList();
+        // Sélection des nouvelles armes/bonus disponibles
+        List<UpgradeableWeapon> availableWeapons = allWeapons
+            .Where(w => !player.weaponLevels.ContainsKey(w))
+            .ToList();
+        List<UpgradeableBonus> availableBonuses = allBonuses
+            .Where(b => !player.bonusLevels.ContainsKey(b))
+            .ToList();
 
+        // Sélection des upgrades possibles (hors niveau légendaire)
         List<object> upgradeOptions = new List<object>();
-
         foreach (var weapon in player.weaponLevels.Keys)
         {
-            if (player.weaponLevels[weapon] < weapon.weaponLevels.Count - 1)
+            if (player.weaponLevels[weapon] < weapon.weaponLevels.Count - 2) // Exclut le niveau légendaire
             {
                 upgradeOptions.Add(weapon);
             }
         }
-
         foreach (var bonus in player.bonusLevels.Keys)
         {
             if (player.bonusLevels[bonus] < bonus.bonusLevels.Count - 1)
@@ -144,7 +131,6 @@ public class LevelUpWindow : MonoBehaviour
 
         return possibleChoices;
     }
-
 
     public void SelectOption(object choice)
     {

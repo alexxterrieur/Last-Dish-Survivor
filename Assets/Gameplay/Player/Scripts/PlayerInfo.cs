@@ -140,6 +140,20 @@ public class PlayerInfos : MonoBehaviour
         UpdateUI();
     }
 
+    public void UpgradeWeapon(UpgradeableWeapon upgradeableWeapon)
+    {
+        if (!weaponLevels.ContainsKey(upgradeableWeapon)) return;
+
+        int currentLevel = weaponLevels[upgradeableWeapon];
+
+        if (currentLevel < upgradeableWeapon.MaxLevel) 
+        {
+            weaponLevels[upgradeableWeapon]++;
+            Debug.Log($"Arme améliorée : {upgradeableWeapon.weaponLevels[currentLevel + 1].abilityName}");
+        }
+    }
+
+
     public void AddAbility(UpgradeableAbility upgradeableAbility)
     {
         if (!abilityLevels.ContainsKey(upgradeableAbility))

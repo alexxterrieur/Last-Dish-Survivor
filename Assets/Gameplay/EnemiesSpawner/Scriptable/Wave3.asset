@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Wave3
   m_EditorClassIdentifier: 
   enemies:
-  - enemyPrefab: {fileID: 304136646601169121, guid: 528d13ffd1c2f244887d52861ef230ee, type: 3}
-    spawnChance: 0.6
-  - enemyPrefab: {fileID: 3742631566292671327, guid: 94af7f4ab4e3f5b448832edf68fb7eab, type: 3}
-    spawnChance: 0.4
   - enemyPrefab: {fileID: 8828258322859451952, guid: 10aeced008747c24686a252ea69d0a87, type: 3}
+    spawnChance: 0.6
+  - enemyPrefab: {fileID: 785225504891053019, guid: 8ec4ff75810836d42889ec0be69a8053, type: 3}
+    spawnChance: 0.4
+  - enemyPrefab: {fileID: 8073185688478746163, guid: f7720e4a7cf17cc4e85588417e545b92, type: 3}
     spawnChance: 0.7
   spawnRate: 0.1
   waveDuration: 30

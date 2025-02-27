@@ -29,7 +29,7 @@ public class LifeManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.2f);
 
         if (gameObject.CompareTag("Player"))
         {

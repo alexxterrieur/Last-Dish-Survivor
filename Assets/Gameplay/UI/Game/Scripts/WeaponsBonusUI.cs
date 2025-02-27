@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +7,6 @@ public class WeaponsBonusUI : MonoBehaviour
     public Transform weaponsParent;
     public Transform bonusesParent;
     public Transform abilitiesContainer;
-
 
     private List<GameObject> weaponIcons = new List<GameObject>();
     private List<GameObject> bonusIcons = new List<GameObject>();
@@ -48,13 +46,19 @@ public class WeaponsBonusUI : MonoBehaviour
                 weaponImage.sprite = weaponEntry.Key.weaponLevels[0].icon;
 
             int level = weaponEntry.Value + 1;
-            int maxLevel = weaponEntry.Key.weaponLevels.Count;
+            int maxLevel = weaponEntry.Key.weaponLevels.Count - 1;
 
-            UpdateLevelIndicators(weaponIcon.transform, level, maxLevel);
+            if (level >= weaponEntry.Key.weaponLevels.Count)
+            {
+                DisableAllLevelIndicators(weaponIcon.transform);
+            }
+            else
+            {
+                UpdateLevelIndicators(weaponIcon.transform, level, maxLevel);
+            }
             index++;
         }
     }
-
 
     private void UpdateBonusesUI(Dictionary<UpgradeableBonus, int> bonusLevels)
     {
@@ -89,7 +93,7 @@ public class WeaponsBonusUI : MonoBehaviour
             abilityIcon.SetActive(true);
 
             Image abilityImage = abilityIcon.GetComponent<Image>();
-            if(abilityImage != null)
+            if (abilityImage != null)
                 abilityImage.sprite = abitilityEntry.Key.abilityLevels[0].icon;
 
             index++;
@@ -103,7 +107,7 @@ public class WeaponsBonusUI : MonoBehaviour
             Transform levelIndicator = parent.Find($"Lvl{i + 1}");
             if (levelIndicator != null)
             {
-                bool shouldBeActive = (i < maxLevel); //enable scares according to max level (not all)
+                bool shouldBeActive = (i < maxLevel);
                 levelIndicator.gameObject.SetActive(shouldBeActive);
 
                 if (shouldBeActive)
@@ -118,4 +122,15 @@ public class WeaponsBonusUI : MonoBehaviour
         }
     }
 
+    private void DisableAllLevelIndicators(Transform parent)
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            Transform levelIndicator = parent.Find($"Lvl{i + 1}");
+            if (levelIndicator != null)
+            {
+                levelIndicator.gameObject.SetActive(false);
+            }
+        }
+    }
 }
