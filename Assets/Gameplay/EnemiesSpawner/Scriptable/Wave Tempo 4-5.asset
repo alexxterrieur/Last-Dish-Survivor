@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2fa84680741684b96e1dfdc9a485e7, type: 3}
+  m_Name: Wave Tempo 4-5
+  m_EditorClassIdentifier: 
+  enemies:
+  - enemyInfo: {fileID: 11400000, guid: 271850e5e9e75e447b0475f9bd4deb5d, type: 2}
+    spawnChance: 0.2
+  - enemyInfo: {fileID: 11400000, guid: 0222e5c68f988d947a49918555016de0, type: 2}
+    spawnChance: 0.2
+  - enemyInfo: {fileID: 11400000, guid: d7e04257f9a4c6d4db17d75c3fc0d925, type: 2}
+    spawnChance: 0.3
+  - enemyInfo: {fileID: 11400000, guid: 06c3d80179c8948498457b0f5bc4aac0, type: 2}
+    spawnChance: 0.3
+  - enemyInfo: {fileID: 11400000, guid: f717f5f53a7dc6e4e9adc1928403b9fa, type: 2}
+    spawnChance: 0.3
+  - enemyInfo: {fileID: 11400000, guid: d2501297f5183354780c9ee6e63d8217, type: 2}
+    spawnChance: 0.3
+  - enemyInfo: {fileID: 11400000, guid: 28c486fe085323643bf9f93c3a3d0825, type: 2}
+    spawnChance: 0.3
+  spawnRate: 1.7
+  waveDuration: 20

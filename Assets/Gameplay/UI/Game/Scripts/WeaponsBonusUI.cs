@@ -12,6 +12,20 @@ public class WeaponsBonusUI : MonoBehaviour
     private List<GameObject> bonusIcons = new List<GameObject>();
     private List<GameObject> abilitiesIcons = new List<GameObject>();
 
+    public static WeaponsBonusUI Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         foreach (Transform child in weaponsParent)
@@ -42,8 +56,14 @@ public class WeaponsBonusUI : MonoBehaviour
             weaponIcon.SetActive(true);
 
             Image weaponImage = weaponIcon.GetComponent<Image>();
+            var visible = weaponImage.color;
+            visible.a = 255;
+
             if (weaponImage != null)
+            {
                 weaponImage.sprite = weaponEntry.Key.weaponLevels[0].icon;
+                weaponImage.color = visible;
+            }
 
             int level = weaponEntry.Value + 1;
             int maxLevel = weaponEntry.Key.weaponLevels.Count - 1;
@@ -71,8 +91,14 @@ public class WeaponsBonusUI : MonoBehaviour
             bonusIcon.SetActive(true);
 
             Image bonusImage = bonusIcon.GetComponent<Image>();
+            var visible = bonusImage.color;
+            visible.a = 255;
+
             if (bonusImage != null)
+            {
                 bonusImage.sprite = bonusEntry.Key.bonusLevels[0].icon;
+                bonusImage.color = visible;
+            }
 
             int level = bonusEntry.Value + 1;
             int maxLevel = bonusEntry.Key.bonusLevels.Count;

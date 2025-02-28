@@ -17,7 +17,7 @@ public class PlayerLevelManager : MonoBehaviour
     void Start()
     {
         currentLevel = 0;
-        xpNeededForNextLevel = 15;
+        xpNeededForNextLevel = 100;
         xpBar.value = 0;
         targetXP = 0;
 
@@ -44,7 +44,7 @@ public class PlayerLevelManager : MonoBehaviour
         currentLevel++;
         levelText.text = (currentLevel + 1).ToString();
         currentXP = 0;
-        xpNeededForNextLevel *= 1.4f;
+        xpNeededForNextLevel *= 1.5f;
         levelUpManager.OpenLevelUpMenu();
 
         xpBar.value = 0;

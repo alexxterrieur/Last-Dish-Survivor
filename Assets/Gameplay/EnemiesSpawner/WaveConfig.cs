@@ -6,7 +6,7 @@ public class WaveConfig : ScriptableObject
     [System.Serializable]
     public class EnemySpawnInfo
     {
-        public GameObject enemyPrefab;
+        public EnemiesInfos enemyInfo;
         [Range(0, 1)] public float spawnChance;
     }
 

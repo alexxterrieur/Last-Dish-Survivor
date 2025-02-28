@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Decoy
   cooldown: 3
-  icon: {fileID: 6263090617080532243, guid: a9867a922278f2c498a03cb999006990, type: 3}
+  icon: {fileID: -8212467883155154101, guid: 430dbeb2d80248641b150ce079f32652, type: 3}
   description: Throw a decoy lvl 2
   abilityPrefab: {fileID: 6731667441329957959, guid: 73ba15a80b45e1b47a212ee7d74405e3, type: 3}
   duration: 6

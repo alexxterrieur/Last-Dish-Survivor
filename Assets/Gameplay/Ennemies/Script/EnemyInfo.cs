@@ -6,6 +6,7 @@ public class EnemyInfo : MonoBehaviour
     [SerializeField] private EnemiesInfos enemiesScriptable;
     LifeManager lifeManager;
 
+    private SpriteRenderer spriteRenderer;
     private string enemyName;
     private float maxLife;
     private float attackRange;
@@ -15,10 +16,12 @@ public class EnemyInfo : MonoBehaviour
 
     private void Awake()
     {
-        if (enemiesScriptable != null)
-        {
-            InitializeStats();
-        }
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        //if (enemiesScriptable != null)
+        //{
+        //    InitializeStats();
+        //}
 
         lifeManager = GetComponent<LifeManager>();
         if (lifeManager != null)
@@ -28,15 +31,25 @@ public class EnemyInfo : MonoBehaviour
     }
 
 
-    private void InitializeStats()
+    public void ApplyEnemyInfo(EnemiesInfos enemiesInfos)
     {
-        enemyName = enemiesScriptable.enemyName;
-        maxLife = enemiesScriptable.maxLife;
-        attackRange = enemiesScriptable.attackRange;
-        attackInterval = enemiesScriptable.attackInterval;
-        attackDamage = enemiesScriptable.attackDamage;
-        speed = enemiesScriptable.speed;
+        if (enemiesInfos != null)
+        {
+            enemyName = enemiesInfos.enemyName;
+            maxLife = enemiesInfos.maxLife;
+            spriteRenderer.sprite = enemiesInfos.sprite;
+            attackRange = enemiesInfos.attackRange;
+            attackInterval = enemiesInfos.attackInterval;
+            attackDamage = enemiesInfos.attackDamage;
+            speed = enemiesInfos.speed;
+
+            if (lifeManager != null)
+            {
+                lifeManager.Initialize(maxLife);
+            }
+        }
     }
+
 
     public string GetEnemyName() => enemyName;
     public float GetMaxLife() => maxLife;

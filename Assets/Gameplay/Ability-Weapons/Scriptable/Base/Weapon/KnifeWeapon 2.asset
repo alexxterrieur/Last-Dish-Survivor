@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Knife
   cooldown: 3
-  icon: {fileID: -4809366312265499295, guid: 2d0879d957a5b614eb27ac9e9a917b70, type: 3}
+  icon: {fileID: 2930985955905907476, guid: ff44ccbb2ab5fe047bc3da3b1928701b, type: 3}
   description: Blablabla knife weapon blabla lvl 3
   abilityPrefab: {fileID: 1612057664200180681, guid: a85156f5d255ea647933b788a6abdc92, type: 3}
   duration: 10
   damage: 7
-  needAttackHandler: 1
   numberOfProjectiles: 3
   timeBetweenProjectiles: 0.5
   projectileSpeed: 13

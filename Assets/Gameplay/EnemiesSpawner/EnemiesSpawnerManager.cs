@@ -7,6 +7,7 @@ public class EnemiesSpawnerManager : MonoBehaviour
     public List<WaveConfig> waves;
     private int currentWaveIndex = 0;
     private bool isWaveActive = false;
+    [SerializeField] private GameObject enemyPrefab;
 
     void Start()
     {
@@ -64,14 +65,25 @@ public class EnemiesSpawnerManager : MonoBehaviour
         foreach (var enemy in wave.enemies)
         {
             cumulativeChance += enemy.spawnChance;
+
             if (randomValue <= cumulativeChance)
             {
+                EnemiesInfos selectedEnemyInfo = enemy.enemyInfo;
                 Vector2 spawnPosition = GetRandomSpawnPosition();
-                Instantiate(enemy.enemyPrefab, spawnPosition, Quaternion.identity);
+
+                GameObject enemyInstance = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+
+                EnemyInfo enemyInfoScript = enemyInstance.GetComponent<EnemyInfo>();
+                if (enemyInfoScript != null)
+                {
+                    enemyInfoScript.ApplyEnemyInfo(selectedEnemyInfo);
+                }
+
                 break;
             }
         }
     }
+
 
     Vector2 GetRandomSpawnPosition()
     {

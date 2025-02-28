@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
 
     private bool isAttacking = false;
 
-    //public LifeManager playerLifeManager;
+    private float lastX;
 
     SpriteRenderer playerSprite;
 
@@ -28,6 +28,8 @@ public class EnemyAI : MonoBehaviour
         enemyInfo = GetComponent<EnemyInfo>();
 
         InitializeStats();
+
+        lastX = transform.position.x;
     }
 
     void Update()
@@ -38,6 +40,12 @@ public class EnemyAI : MonoBehaviour
         }
 
         transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, speed * Time.deltaTime);
+
+        if (transform.position.x != lastX)
+        {
+            FlipSprite();
+            lastX = transform.position.x;
+        }
     }
 
     public void SetTarget(GameObject newTarget)
@@ -66,7 +74,6 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-
     private void InitializeStats()
     {
         speed = enemyInfo.GetSpeed();
@@ -74,13 +81,25 @@ public class EnemyAI : MonoBehaviour
         attackDamage = enemyInfo.GetAttackDamage();
     }
 
+    private void FlipSprite()
+    {
+        if (transform.position.x > lastX)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (transform.position.x < lastX)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
+
+
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !isAttacking)
         {
             isAttacking = true;
-            //playerSprite = collision.gameObject.GetComponent<SpriteRenderer>();
-            //playerSprite.color = Color.red;
 
             StartCoroutine(AttackPlayer());
         }
@@ -91,7 +110,6 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isAttacking = false;
-            //playerSprite.color = Color.white;
             StopCoroutine(AttackPlayer());
         }
     }

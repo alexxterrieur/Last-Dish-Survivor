@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002f164f4cf03c24498c624a6cf67d4e, type: 3}
   m_Name: PlayerClass1
   m_EditorClassIdentifier: 
-  playerSprite: {fileID: -4549871927518758641, guid: 3e670be306dd3794e9c2aea3cfebd16f, type: 3}
+  playerSprite: {fileID: 2798218393609543740, guid: 6d6eb22789da8534b82370ae71ab2594, type: 3}
   className: TestClass
   maxHealth: 150
   speed: 7

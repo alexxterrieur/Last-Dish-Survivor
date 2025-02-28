@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Boomerang
   cooldown: 3
-  icon: {fileID: 2222896094826061351, guid: 5470f635c4b53f147adfb385274fc1cc, type: 3}
+  icon: {fileID: 5891711756358988448, guid: 633fe0c64efc1fc4c84b6caf047ccd58, type: 3}
   description: Blablabla boomerang blabla lvl3
   abilityPrefab: {fileID: 4933608625240276167, guid: 9d171e511dcd7ac44846d9821a975928, type: 3}
   duration: 10
   damage: 15
-  needAttackHandler: 0
   maxDistance: 15
   timeBeforeReturn: 2
   speed: 10
