@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 185695707682366995, guid: c648d7db3ad04cb47b016f6238912f7d, type: 3}
   enemyName: Ravioli
-  maxLife: 60
+  maxLife: 50
   attackRange: 2
-  attackInterval: 3
-  attackDamage: 5
-  speed: 2
-  dropItems: []
+  attackInterval: 2.7
+  attackDamage: 8
+  speed: 3.5
+  dropItems:
+  - itemPrefab: {fileID: 504400690112065596, guid: 5179fae22e420874a9fdf9b6079bc19d, type: 3}
+    dropChance: 0.5

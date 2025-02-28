@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: -6248741079362886434, guid: bca122c4e3c813e46a0025d65389e86d, type: 3}
   enemyName: Racoon Boss
-  maxLife: 60
+  maxLife: 500
   attackRange: 2
   attackInterval: 3
-  attackDamage: 5
-  speed: 2
+  attackDamage: 50
+  speed: 1.7
   dropItems:
   - itemPrefab: {fileID: 5698992535622169429, guid: 34f3d7306254c6640bb240a911db9400, type: 3}
     dropChance: 1

@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 8056819080843617810, guid: e881bcf6dbcec4a4783f0c460d3ab937, type: 3}
   enemyName: Sushi 2
-  maxLife: 60
+  maxLife: 50
   attackRange: 2
-  attackInterval: 3
-  attackDamage: 5
-  speed: 2
-  dropItems: []
+  attackInterval: 2.7
+  attackDamage: 8
+  speed: 3.5
+  dropItems:
+  - itemPrefab: {fileID: 504400690112065596, guid: 5179fae22e420874a9fdf9b6079bc19d, type: 3}
+    dropChance: 0.5

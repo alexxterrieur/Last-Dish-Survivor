@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 4346599709072185998, guid: f752952122933be4a963314287063864, type: 3}
   enemyName: Fried Egg
-  maxLife: 60
+  maxLife: 35
   attackRange: 2
   attackInterval: 3
   attackDamage: 5
-  speed: 2
-  dropItems: []
+  speed: 4
+  dropItems:
+  - itemPrefab: {fileID: 504400690112065596, guid: 5179fae22e420874a9fdf9b6079bc19d, type: 3}
+    dropChance: 0.3

@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 7806976050856398930, guid: 6606927a1b052e849a066798b0fb55b8, type: 3}
   enemyName: Cheesecake 2
-  maxLife: 20
+  maxLife: 80
   attackRange: 2
-  attackInterval: 3
-  attackDamage: 2
-  speed: 3.5
-  dropItems: []
+  attackInterval: 2
+  attackDamage: 20
+  speed: 2
+  dropItems:
+  - itemPrefab: {fileID: 5698992535622169429, guid: 34f3d7306254c6640bb240a911db9400, type: 3}
+    dropChance: 0.7
+  - itemPrefab: {fileID: 5698992535622169429, guid: 2fe0d1bb854ed0947bb283d4030acc08, type: 3}
+    dropChance: 0.4

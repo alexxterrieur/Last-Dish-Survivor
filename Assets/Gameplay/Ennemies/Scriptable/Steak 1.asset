@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: -39766205640839075, guid: 277f132eb50d2f548abd95c1b8e5bd17, type: 3}
   enemyName: Steak 1
-  maxLife: 60
+  maxLife: 70
   attackRange: 2
-  attackInterval: 3
-  attackDamage: 5
-  speed: 2
-  dropItems: []
+  attackInterval: 2.5
+  attackDamage: 10
+  speed: 2.5
+  dropItems:
+  - itemPrefab: {fileID: 1570744041671280148, guid: 7bd4800b14b5bd944be329e4b97a9c04, type: 3}
+    dropChance: 0.6
+  - itemPrefab: {fileID: 5698992535622169429, guid: 34f3d7306254c6640bb240a911db9400, type: 3}
+    dropChance: 0.6

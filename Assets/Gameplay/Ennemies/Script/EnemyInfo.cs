@@ -35,6 +35,8 @@ public class EnemyInfo : MonoBehaviour
     {
         if (enemiesInfos != null)
         {
+            enemiesScriptable = enemiesInfos;
+
             enemyName = enemiesInfos.enemyName;
             maxLife = enemiesInfos.maxLife;
             spriteRenderer.sprite = enemiesInfos.sprite;

@@ -30,10 +30,10 @@ public class LifeManager : MonoBehaviour
     private IEnumerator Start()
     {
         yield return new WaitForSeconds(.2f);
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (gameObject.CompareTag("Player"))
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
             healthBar.value = 1;
             targetHealth = 1;
             healthText.text = currentHealth.ToString();
@@ -112,19 +112,30 @@ public class LifeManager : MonoBehaviour
     private IEnumerator DamageOverTimeCoroutine(float damagePerTick, float tickInterval, float duration)
     {
         float elapsedTime = 0f;
+        bool isTakingDoT = true;
 
-        while (elapsedTime < duration)
+        while (elapsedTime < duration && isTakingDoT)
         {
+            if (currentHealth <= 0)
+            {
+                isTakingDoT = false;
+                break;
+            }
+
             TakeDamage(damagePerTick);
 
-            spriteRenderer.color = Color.yellow;
-            yield return new WaitForSeconds(0.3f);
-            spriteRenderer.color = Color.white;
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = Color.yellow;
+                yield return new WaitForSeconds(0.3f);
+                spriteRenderer.color = Color.white;
+            }
 
-            yield return new WaitForSeconds(tickInterval);
             elapsedTime += tickInterval;
+            yield return new WaitForSeconds(tickInterval);
         }
     }
+
 
 
     private IEnumerator SpriteRed()

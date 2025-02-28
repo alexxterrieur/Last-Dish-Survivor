@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: -8499652484008823554, guid: fd4fc1c1b06e0d54bbaf62f17555da18, type: 3}
   enemyName: Pizza 2
-  maxLife: 60
+  maxLife: 65
   attackRange: 2
-  attackInterval: 3
-  attackDamage: 5
-  speed: 2
-  dropItems: []
+  attackInterval: 2.5
+  attackDamage: 10
+  speed: 3.2
+  dropItems:
+  - itemPrefab: {fileID: 1570744041671280148, guid: 7bd4800b14b5bd944be329e4b97a9c04, type: 3}
+    dropChance: 0.7
+  - itemPrefab: {fileID: 5698992535622169429, guid: 34f3d7306254c6640bb240a911db9400, type: 3}
+    dropChance: 0.3

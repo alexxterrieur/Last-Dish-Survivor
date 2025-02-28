@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2371906309192290948, guid: 51bdd32eb731d8549a7275baa8e1c869, type: 3}
   enemyName: Bacon 2
-  maxLife: 60
+  maxLife: 30
   attackRange: 2
   attackInterval: 3
   attackDamage: 5
-  speed: 2
-  dropItems: []
+  speed: 4
+  dropItems:
+  - itemPrefab: {fileID: 504400690112065596, guid: 5179fae22e420874a9fdf9b6079bc19d, type: 3}
+    dropChance: 0.3

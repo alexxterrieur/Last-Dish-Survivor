@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b27cdd326284947b28c04da4784488, type: 3}
   m_Name: XPCapsule 3
   m_EditorClassIdentifier: 
-  sprite: {fileID: 1614635610339847191, guid: dceaa5b0dd65b7c438a4abc9aa986590, type: 3}
-  xpValue: 100
+  sprite: {fileID: -8019709918825566762, guid: b7c0a14e5ce93614186035069249141c, type: 3}
+  xpValue: 60

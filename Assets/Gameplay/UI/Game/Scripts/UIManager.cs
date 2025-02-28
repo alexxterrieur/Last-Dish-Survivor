@@ -1,25 +1,3 @@
-//using TMPro;
-//using UnityEngine;
-
-//public class UIManager : MonoBehaviour
-//{
-//    private int enemiesKilled;
-//    [SerializeField] TMP_Text enemiesKilledCount;
-//    [SerializeField] TMP_Text abilitiesInput;
-
-//    private void Start()
-//    {
-//        enemiesKilledCount.text = " : 0";
-//        LifeManager.OnDeath += UpdateEnemiesKilled;
-//    }
-
-//    public void UpdateEnemiesKilled()
-//    {
-//        enemiesKilled++;
-//        enemiesKilledCount.text = " : " + enemiesKilled.ToString();
-//    }
-//}
-
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,6 +7,8 @@ public class UIManager : MonoBehaviour
     private int enemiesKilled;
     [SerializeField] TMP_Text enemiesKilledCount;
     [SerializeField] TMP_Text[] abilitiesInput;
+    [SerializeField] TMP_Text chrono;
+    private float elapsedTime = 0f;
 
     [SerializeField] private InputActionAsset inputActions;
 
@@ -39,6 +19,16 @@ public class UIManager : MonoBehaviour
 
         BindAbilityInputs();
     }
+
+    private void Update()
+    {
+        elapsedTime += Time.deltaTime;
+        int minutes = Mathf.FloorToInt(elapsedTime / 60);
+        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+
+        chrono.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
 
     private void UpdateEnemiesKilled()
     {

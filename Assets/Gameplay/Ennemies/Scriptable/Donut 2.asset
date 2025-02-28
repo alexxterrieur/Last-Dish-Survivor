@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 7144861399165947838, guid: 2e2d00a477641e5459ab1c2f342b8608, type: 3}
   enemyName: Donut 2
-  maxLife: 40
+  maxLife: 80
   attackRange: 2
   attackInterval: 2
-  attackDamage: 3
+  attackDamage: 20
   speed: 2
-  dropItems: []
+  dropItems:
+  - itemPrefab: {fileID: 5698992535622169429, guid: 34f3d7306254c6640bb240a911db9400, type: 3}
+    dropChance: 0.7
+  - itemPrefab: {fileID: 5698992535622169429, guid: 2fe0d1bb854ed0947bb283d4030acc08, type: 3}
+    dropChance: 0.4
