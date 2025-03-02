@@ -171,11 +171,15 @@ public class LifeManager : MonoBehaviour
         {
             foreach (var dropItem in dropItems)
             {
-                if (UnityEngine.Random.value <= dropItem.dropChance)
+                if (dropItem.isChest)
+                {
+                    Instantiate(dropItem.itemPrefab, transform.position, Quaternion.identity);
+                }
+                else if (UnityEngine.Random.value <= dropItem.dropChance)
                 {
                     Instantiate(dropItem.itemPrefab, transform.position, Quaternion.identity);
                     break;
-                }
+                }                
             }
         }
     }

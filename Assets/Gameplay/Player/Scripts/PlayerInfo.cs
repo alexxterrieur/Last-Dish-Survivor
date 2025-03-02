@@ -243,5 +243,6 @@ public class PlayerInfos : MonoBehaviour
 public class DropItem
 {
     public GameObject itemPrefab;
+    public bool isChest;
     [Range(0f, 1f)] public float dropChance;
 }

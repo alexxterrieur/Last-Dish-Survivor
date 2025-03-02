@@ -21,4 +21,5 @@ MonoBehaviour:
   speed: 4
   dropItems:
   - itemPrefab: {fileID: 504400690112065596, guid: 5179fae22e420874a9fdf9b6079bc19d, type: 3}
+    isChest: 0
     dropChance: 0.3
