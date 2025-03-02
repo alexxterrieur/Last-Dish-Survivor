@@ -26,6 +26,7 @@ public class AbilityManager : MonoBehaviour
     {
         HandleWeaponAbilities();
         UpdateCooldowns();
+        WeaponsBonusUI.Instance.UpdateCooldownUI(activeAbilities, cooldownTimers);
     }
 
     private void HandleWeaponAbilities()

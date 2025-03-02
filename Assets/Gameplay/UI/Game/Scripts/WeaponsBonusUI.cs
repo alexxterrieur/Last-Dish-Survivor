@@ -7,10 +7,13 @@ public class WeaponsBonusUI : MonoBehaviour
     public Transform weaponsParent;
     public Transform bonusesParent;
     public Transform abilitiesContainer;
+    public Transform cooldownsParent;
 
     private List<GameObject> weaponIcons = new List<GameObject>();
     private List<GameObject> bonusIcons = new List<GameObject>();
     private List<GameObject> abilitiesIcons = new List<GameObject>();
+    private List<Image> abilityCooldownIcons = new List<Image>();
+
 
     public static WeaponsBonusUI Instance { get; private set; }
 
@@ -36,6 +39,10 @@ public class WeaponsBonusUI : MonoBehaviour
 
         foreach (Transform child in abilitiesContainer)
             abilitiesIcons.Add(child.gameObject);
+
+        foreach (Transform child in cooldownsParent)
+            abilityCooldownIcons.Add(child.GetComponent<Image>());
+
     }
 
     public void UpdateUI(Dictionary<UpgradeableWeapon, int> weaponLevels, Dictionary<UpgradeableBonus, int> bonusLevels, Dictionary<UpgradeableAbility, int> abilityLevels)
@@ -125,6 +132,24 @@ public class WeaponsBonusUI : MonoBehaviour
             index++;
         }
     }
+
+    public void UpdateCooldownUI(List<Ability> abilities, Dictionary<Ability, float> cooldownTimers)
+    {
+        for (int i = 0; i < abilities.Count; i++)
+        {
+            Ability ability = abilities[i];
+
+            if (cooldownTimers.ContainsKey(ability))
+            {
+                float cooldown = cooldownTimers[ability];
+                float cooldownProgress = cooldown / ability.cooldown;
+
+                abilityCooldownIcons[i].fillAmount = cooldownProgress;
+            }
+        }
+    }
+
+
 
     private void UpdateLevelIndicators(Transform parent, int level, int maxLevel)
     {
