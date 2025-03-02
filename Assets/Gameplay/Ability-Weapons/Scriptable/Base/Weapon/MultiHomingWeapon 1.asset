@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Multi Homing Weapon
   cooldown: 2
-  icon: {fileID: -4972407664030297635, guid: b2250b8a188b82942ba5ac5b519bae3c, type: 3}
+  icon: {fileID: 21300000, guid: 8f8965c39d5458a4f900fbb15c927803, type: 3}
   description: Blablabla multi homing weapon blabla lvl 2
   abilityPrefab: {fileID: 4760189001365621660, guid: 514dfc4823de1f342969ffda7702c9f7, type: 3}
   duration: 10

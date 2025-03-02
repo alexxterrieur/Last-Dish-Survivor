@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Dash
   cooldown: 5
-  icon: {fileID: -7848039375673857549, guid: e98228a9339b50247af976e210cbe860, type: 3}
+  icon: {fileID: 21300000, guid: e98228a9339b50247af976e210cbe860, type: 3}
   description: Dash 3 times
   abilityPrefab: {fileID: 0}
   duration: 0

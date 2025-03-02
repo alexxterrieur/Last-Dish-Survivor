@@ -18,7 +18,6 @@ public class BombProjectile : MonoBehaviour
     public void Initialize(Vector2 direction, float speed, float damage, float explosionDelay, float bombSize)
     {
         bombCollider = GetComponent<CircleCollider2D>();
-        //bombCollider.radius = explosionRadius;
         rb = GetComponent<Rigidbody2D>();
         cameraController = Camera.main.GetComponent<CameraControler>();
 

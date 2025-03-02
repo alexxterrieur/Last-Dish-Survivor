@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Knife
   cooldown: 3
-  icon: {fileID: 2930985955905907476, guid: ff44ccbb2ab5fe047bc3da3b1928701b, type: 3}
+  icon: {fileID: 21300000, guid: ff44ccbb2ab5fe047bc3da3b1928701b, type: 3}
   description: Blablabla knife weapon blabla lvl 3
   abilityPrefab: {fileID: 1612057664200180681, guid: a85156f5d255ea647933b788a6abdc92, type: 3}
   duration: 10

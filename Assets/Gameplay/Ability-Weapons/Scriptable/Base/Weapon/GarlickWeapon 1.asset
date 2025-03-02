@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Garlick
   cooldown: 2
-  icon: {fileID: 3300758799859368773, guid: 325a5295d1a38a143afdc1fa1d7042b3, type: 3}
+  icon: {fileID: 21300000, guid: 325a5295d1a38a143afdc1fa1d7042b3, type: 3}
   description: Blablabla garlick blabla lvl 2
   abilityPrefab: {fileID: 4803187480762533967, guid: 4402fe1dcbf9dd748a41a366b96e10fc, type: 3}
   duration: 0

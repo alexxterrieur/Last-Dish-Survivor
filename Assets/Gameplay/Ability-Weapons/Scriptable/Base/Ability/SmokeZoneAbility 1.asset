@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Smoke Zone
   cooldown: 3
-  icon: {fileID: -3083362576478540880, guid: 48d97f4eb52b9a64e922b404ea41e06a, type: 3}
+  icon: {fileID: 21300000, guid: 48d97f4eb52b9a64e922b404ea41e06a, type: 3}
   description: Throw Smoke lvl 2
   abilityPrefab: {fileID: 8345694297399042494, guid: da2ffd386846d7d4482fa89e1ada44c4, type: 3}
   duration: 3

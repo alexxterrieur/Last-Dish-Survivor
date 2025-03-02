@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IncreaseMaxHealthBonus 2
   m_EditorClassIdentifier: 
   bonusName: Increase Max Health
-  icon: {fileID: -7409356012200433540, guid: d50c316e2f6e963488519fae6cd32aad, type: 3}
+  icon: {fileID: 21300000, guid: d50c316e2f6e963488519fae6cd32aad, type: 3}
   description: Blablabla increase max health blabla lvl 3
   type: 1
   value: 20

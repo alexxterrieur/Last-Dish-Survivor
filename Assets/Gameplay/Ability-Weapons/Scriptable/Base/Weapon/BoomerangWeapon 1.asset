@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Boomerang
   cooldown: 3
-  icon: {fileID: 5891711756358988448, guid: 633fe0c64efc1fc4c84b6caf047ccd58, type: 3}
+  icon: {fileID: 21300000, guid: 633fe0c64efc1fc4c84b6caf047ccd58, type: 3}
   description: Blablabla boomerang blabla lvl2
   abilityPrefab: {fileID: 4933608625240276167, guid: 9d171e511dcd7ac44846d9821a975928, type: 3}
   duration: 10
