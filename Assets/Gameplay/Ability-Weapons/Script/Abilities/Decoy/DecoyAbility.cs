@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DecoyAbility", menuName = "Scriptable Objects/Ability/Decoy")]
+[CreateAssetMenu(fileName = "DecoyAbility", menuName = "Scriptable Objects/Ability/Attack/Decoy")]
 public class DecoyAbility : Ability
 {
     [SerializeField] private float decoySpeed = 3f;

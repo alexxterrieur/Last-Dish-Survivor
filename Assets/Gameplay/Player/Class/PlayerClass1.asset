@@ -18,7 +18,7 @@ MonoBehaviour:
   speed: 7
   damageBonus: 2
   upgradeableAbilities:
-  - {fileID: 11400000, guid: df363efa03cd20c4cae53427f4a5fc2a, type: 2}
+  - {fileID: 11400000, guid: 174b09e7eb654ea42a3142a5a145ebba, type: 2}
   - {fileID: 11400000, guid: 32eab3a5555fd3547ba48ea2f0960cc2, type: 2}
   - {fileID: 11400000, guid: 1be81d9eb25a62e48889ecb6a3878068, type: 2}
   - {fileID: 11400000, guid: dae684c1e2fff984eae16695221a5a80, type: 2}

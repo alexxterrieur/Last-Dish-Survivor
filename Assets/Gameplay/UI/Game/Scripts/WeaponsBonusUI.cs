@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -149,7 +150,69 @@ public class WeaponsBonusUI : MonoBehaviour
         }
     }
 
+    /////////////////////////////////////////////////
+    //public void StartVisualCooldown(Ability ability, float duration, Color color)
+    //{
+    //    int index = FindAbilityIndex(ability);
+    //    if (index == -1) return;
 
+    //    StartCoroutine(VisualCooldownCoroutine(index, duration, color));
+    //}
+
+    private int FindAbilityIndex(Ability ability)
+    {
+        for (int i = 0; i < abilitiesIcons.Count; i++)
+        {
+            if (abilitiesIcons[i].GetComponent<Image>().sprite == ability.icon)
+            {
+                return i;
+            }
+        }
+        return -1; // Ability non trouvée
+    }
+
+    //private IEnumerator VisualCooldownCoroutine(int index, float duration, Color color)
+    //{
+    //    float timeElapsed = 0f;
+    //    Image cooldownIcon = abilityCooldownIcons[index];
+    //    cooldownIcon.color = color;
+
+    //    while (timeElapsed < duration)
+    //    {
+    //        cooldownIcon.fillAmount = 1 - (timeElapsed / duration);
+    //        timeElapsed += Time.deltaTime;
+    //        yield return null;
+    //    }
+
+    //    cooldownIcon.fillAmount = 0;
+    //}
+    /////////////////////////////////////////////////
+
+    public void StartAbilityCooldownVisual(Ability ability, float duration, Color color)
+    {
+        int index = FindAbilityIndex(ability);
+        if (index >= 0 && index < abilityCooldownIcons.Count)
+        {
+            StartCoroutine(AbilityCooldownCoroutine(index, duration, color));
+        }
+    }
+
+    private IEnumerator AbilityCooldownCoroutine(int index, float duration, Color color)
+    {
+        float elapsedTime = 0f;
+        abilityCooldownIcons[index].color = color;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            abilityCooldownIcons[index].fillAmount = 1 - (elapsedTime / duration);
+            yield return null;
+        }
+
+        abilityCooldownIcons[index].fillAmount = 0;
+    }
+
+    /////////////////////////////////////////////////
 
     private void UpdateLevelIndicators(Transform parent, int level, int maxLevel)
     {

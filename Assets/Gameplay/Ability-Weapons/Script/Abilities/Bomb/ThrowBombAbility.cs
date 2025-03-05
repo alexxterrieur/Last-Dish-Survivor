@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewThrowBombAbility", menuName = "Scriptable Objects/Abilities/Throw Bomb")]
+[CreateAssetMenu(fileName = "NewThrowBombAbility", menuName = "Scriptable Objects/Ability/Attack/Throw Bomb")]
 public class ThrowBombAbility : Ability
 {
     public int numberOfBombs = 1;

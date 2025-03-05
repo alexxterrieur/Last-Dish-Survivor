@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PoisonZoneAbility", menuName = "Scriptable Objects/Abilities/Poison Zone")]
+[CreateAssetMenu(fileName = "PoisonZoneAbility", menuName = "Scriptable Objects/Ability/Attack/Poison Zone")]
 public class PoisonZoneAbility : Ability
 {
     public float effectDuration;

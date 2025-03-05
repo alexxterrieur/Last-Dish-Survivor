@@ -5,16 +5,18 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Vector2 move;
-    [SerializeField] private float speed;
+    public float speed;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private bool isDashing = false;
     public float piercingDamage;
+    public AbilityManager abilityManager;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        abilityManager = GetComponent<AbilityManager>();
         GetStats();
     }
 
@@ -48,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         move = new Vector2(input.x, input.y) * speed;
     }
 
+    //Dash
     public void PerformDash(float dashDistance, float dashSpeed)
     {
         if (!isDashing)
@@ -56,6 +59,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private IEnumerator DashCoroutine(float dashDistance, float dashSpeed)
+    {
+        isDashing = true;
+        Vector2 dashDirection = move.normalized;
+        Vector2 startPosition = transform.position;
+        Vector2 targetPosition = startPosition + dashDirection * dashDistance;
+
+        float startTime = Time.time;
+        float duration = dashDistance / dashSpeed;
+
+        while (Time.time < startTime + duration)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        isDashing = false;
+    }
+
+    //Piercing Dash
     public void PerformPiercingDash(float dashDistance, float dashSpeed, float damage)
     {
         if (!isDashing)
@@ -64,44 +87,50 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator DashCoroutine(float dashDistance, float dashSpeed)
-    {
-        isDashing = true;
-        Vector2 dashDirection = move.normalized;
-        float startTime = Time.time;
-
-        while (Time.time < startTime + (dashDistance / dashSpeed))
-        {
-            rb.linearVelocity = dashDirection * dashSpeed;
-            yield return null;
-        }
-
-        rb.linearVelocity = Vector2.zero;
-        isDashing = false;
-    }
-
     private IEnumerator PiercingDashCoroutine(float dashDistance, float dashSpeed, float damage)
     {
         isDashing = true;
         Vector2 dashDirection = move.normalized;
-        float startTime = Time.time;
+        Vector2 startPosition = transform.position;
+        Vector2 targetPosition = startPosition + dashDirection * dashDistance;
 
-        // Désactiver les collisions du joueur pour l'invincibilité temporaire
+        piercingDamage = damage;
         Collider2D playerCollider = GetComponent<Collider2D>();
-        playerCollider.enabled = false;
+        playerCollider.isTrigger = true;
 
-        while (Time.time < startTime + (dashDistance / dashSpeed))
+        float startTime = Time.time;
+        float duration = dashDistance / dashSpeed;
+
+        while (Time.time < startTime + duration)
         {
-            rb.linearVelocity = dashDirection * dashSpeed;
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
             yield return null;
         }
 
-        rb.linearVelocity = Vector2.zero;
-
-        // Réactiver les collisions
-        playerCollider.enabled = true;
+        playerCollider.isTrigger = false;
         isDashing = false;
     }
+
+    //speedBonus
+    public void PerformSpeedAbilityOverTime(Ability ability, float newSpeed, float duration)
+    {
+        StartCoroutine(SpeedOverTimeAbility(ability, newSpeed, duration));
+    }
+
+    private IEnumerator SpeedOverTimeAbility(Ability ability, float newSpeed, float duration)
+    {
+        float initialSpeed = speed;
+        speed = newSpeed;
+
+        WeaponsBonusUI.Instance.StartAbilityCooldownVisual(ability, duration, Color.red);
+
+        yield return new WaitForSeconds(duration);
+
+        speed = initialSpeed;
+
+        abilityManager.StartCooldown(ability);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

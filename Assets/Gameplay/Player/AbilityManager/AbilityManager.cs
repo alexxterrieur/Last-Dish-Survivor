@@ -93,6 +93,17 @@ public class AbilityManager : MonoBehaviour
         SetCooldown(ability, ability.cooldown);
     }
 
+    public void StartCooldown(Ability ability)
+    {
+        if (!cooldownTimers.ContainsKey(ability))
+            cooldownTimers[ability] = 0f;
+
+        cooldownTimers[ability] = ability.cooldown;
+
+        WeaponsBonusUI.Instance.StartAbilityCooldownVisual(ability, ability.cooldown, Color.white);
+    }
+
+
     public void SetCooldown(Ability ability, float cooldownTime)
     {
         if (!cooldownTimers.ContainsKey(ability))

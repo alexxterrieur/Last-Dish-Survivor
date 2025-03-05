@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewUpgradeableWeapon", menuName = "Scriptable Objects/Weapons/Upgradeable Weapon")]
+[CreateAssetMenu(fileName = "NewUpgradeableWeapon", menuName = "Scriptable Objects/Upgradeable/Upgradeable Weapon")]
 public class UpgradeableWeapon : ScriptableObject
 {
     public List<Weapon> weaponLevels = new List<Weapon>();

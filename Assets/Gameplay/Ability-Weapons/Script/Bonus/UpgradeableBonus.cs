@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewUpgradeableBonus", menuName = "Scriptable Objects/UpgradeableBonus")]
+[CreateAssetMenu(fileName = "NewUpgradeableBonus", menuName = "Scriptable Objects/Upgradeable/Upgradeable Bonus")]
 public class UpgradeableBonus : ScriptableObject
 {
     public List<Bonus> bonusLevels;

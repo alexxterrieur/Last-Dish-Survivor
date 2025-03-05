@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PiercingDashAbility", menuName = "Scriptable Objects/Ability/PiercingDash")]
+[CreateAssetMenu(fileName = "PiercingDashAbility", menuName = "Scriptable Objects/Ability/Rotation/PiercingDash")]
 public class PiercingDashAbility : Ability
 {
     [SerializeField] private float dashDistance;

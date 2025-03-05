@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewUpgradeableAbility", menuName = "Scriptable Objects/Upgradeable Ability")]
+[CreateAssetMenu(fileName = "NewUpgradeableAbility", menuName = "Scriptable Objects/Upgradeable/Upgradeable Ability")]
 public class UpgradeableAbility : ScriptableObject
 {
     public List<Ability> abilityLevels;
