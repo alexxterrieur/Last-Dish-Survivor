@@ -11,6 +11,7 @@ public class Ability : ScriptableObject
     public float duration;
     public float damage;
 
+    public bool waitBeforeCooldown;
     protected GameObject lastInstance;
 
     public virtual void Activate(GameObject user)

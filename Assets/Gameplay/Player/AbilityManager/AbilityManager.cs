@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -90,26 +91,38 @@ public class AbilityManager : MonoBehaviour
 
         ability.Activate(gameObject);
 
-        SetCooldown(ability, ability.cooldown);
+        if(!ability.waitBeforeCooldown)
+            SetCooldown(ability, ability.cooldown);
     }
 
-    public void StartCooldown(Ability ability)
+    public void SetCooldown(Ability ability, float cooldownTime, float delayBeforeCooldown = 0f)
     {
         if (!cooldownTimers.ContainsKey(ability))
             cooldownTimers[ability] = 0f;
 
-        cooldownTimers[ability] = ability.cooldown;
-
-        WeaponsBonusUI.Instance.StartAbilityCooldownVisual(ability, ability.cooldown, Color.white);
+        if (delayBeforeCooldown > 0)
+        {
+            //Wait before starting cooldown
+            StartCoroutine(DelayedCooldown(ability, cooldownTime, delayBeforeCooldown));
+        }
+        else
+        {
+            //Classic cooldown
+            cooldownTimers[ability] = cooldownTime;
+            WeaponsBonusUI.Instance.StartAbilityCooldownVisual(ability, cooldownTime, Color.white);
+        }
     }
 
-
-    public void SetCooldown(Ability ability, float cooldownTime)
+    private IEnumerator DelayedCooldown(Ability ability, float cooldownTime, float delay)
     {
-        if (!cooldownTimers.ContainsKey(ability))
-            cooldownTimers[ability] = 0f;
+        //Red cooldown for ability duration
+        WeaponsBonusUI.Instance.StartAbilityCooldownVisual(ability, delay, Color.red);
 
+        yield return new WaitForSeconds(delay);
+
+        //Start real cooldown after ability duration
         cooldownTimers[ability] = cooldownTime;
+        WeaponsBonusUI.Instance.StartAbilityCooldownVisual(ability, cooldownTime, Color.white);
     }
 
 

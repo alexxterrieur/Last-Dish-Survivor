@@ -128,8 +128,10 @@ public class PlayerMovement : MonoBehaviour
 
         speed = initialSpeed;
 
-        abilityManager.StartCooldown(ability);
+        abilityManager.SetCooldown(ability, ability.cooldown);
     }
+
+
 
 
     private void OnTriggerEnter2D(Collider2D collision)
