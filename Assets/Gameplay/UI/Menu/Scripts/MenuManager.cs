@@ -24,11 +24,6 @@ public class MenuManager : MonoBehaviour
             panel.SetActive(false);
         }
         panelToEnable.SetActive(true);
-        
-        //foreach(GameObject panel in panelsToDisable)
-        //{
-        //    panel.SetActive(false);
-        //}
     }
 
     public void CloseButton()

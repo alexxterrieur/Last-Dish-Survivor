@@ -11,7 +11,7 @@ public class PiercingDashAbility : Ability
         PlayerMovement playerMovement = user.GetComponent<PlayerMovement>();
         if (playerMovement != null)
         {
-            playerMovement.PerformPiercingDash(dashDistance, dashSpeed, damage);
+            playerMovement.PerformPiercingDash(dashDistance, dashSpeed, damage + damageBonus);
         }
     }
 }

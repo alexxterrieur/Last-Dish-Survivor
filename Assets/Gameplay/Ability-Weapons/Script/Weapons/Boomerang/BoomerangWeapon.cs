@@ -16,7 +16,7 @@ public class BoomerangWeapon : Weapon
         BoomerangProjectile boomerangProjectile = lastInstance.GetComponent<BoomerangProjectile>();
         if (boomerangProjectile != null)
         {
-            boomerangProjectile.Initialize(user.transform, maxDistance, timeBeforeReturn, speed, damage);
+            boomerangProjectile.Initialize(user.transform, maxDistance, timeBeforeReturn, speed, damage + damageBonus);
         }
     }
 }

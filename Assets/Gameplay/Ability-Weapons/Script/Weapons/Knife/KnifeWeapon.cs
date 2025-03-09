@@ -12,7 +12,7 @@ public class KnifeWeapon : Weapon
         AttackHandler attackHandler = user.GetComponent<AttackHandler>();
         if (attackHandler != null)
         {
-            attackHandler.StartAttack(user, abilityPrefab, numberOfProjectiles, timeBetweenProjectiles, cooldown, projectileSpeed, damage);
+            attackHandler.StartAttack(user, abilityPrefab, numberOfProjectiles, timeBetweenProjectiles, cooldown, projectileSpeed, damage + damageBonus);
         }
     }
 }

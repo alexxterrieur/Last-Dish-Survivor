@@ -9,11 +9,14 @@ public class LifeManager : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
+    public float reduceDamageValue;
+    public int respawnCount;
 
     private EnemyInfo enemyInfo;
     public static Action OnDeath;
 
     [Header("Health Bar UI")]
+    private int healthToPrint;
     [SerializeField] private Slider healthBar;
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private float fillSpeed;
@@ -22,9 +25,16 @@ public class LifeManager : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Coroutine damageCoroutine;
 
+    //gameOver Player
+    [SerializeField] private GameObject gameOverMenu;
+    [SerializeField] private GameObject respawnButton;
+
     private void Awake()
     {
-        enemyInfo = GetComponent<EnemyInfo>();
+        if (gameObject.CompareTag("Enemy"))
+        {
+            enemyInfo = GetComponent<EnemyInfo>();
+        }
     }
 
     private IEnumerator Start()
@@ -39,17 +49,6 @@ public class LifeManager : MonoBehaviour
             healthText.text = currentHealth.ToString();
         }
     }
-
-    //private void Start()
-    //{
-    //    if (gameObject.CompareTag("Player"))
-    //    {
-    //        spriteRenderer = GetComponent<SpriteRenderer>();
-    //        healthBar.value = 1;
-    //        targetHealth = 1;
-
-    //    }
-    //}
 
     private void Update()
     {
@@ -73,13 +72,14 @@ public class LifeManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        currentHealth -= damage * (1 - (reduceDamageValue / 100f));
 
         if (gameObject.CompareTag("Player"))
         {
             spriteRenderer.color = Color.red;
             targetHealth = currentHealth / maxHealth;
-            healthText.text = currentHealth.ToString();
+            healthToPrint = (int)currentHealth;
+            healthText.text = healthToPrint.ToString();
 
             if (damageCoroutine != null)
                 StopCoroutine(damageCoroutine);
@@ -93,6 +93,7 @@ public class LifeManager : MonoBehaviour
         }
     }
 
+    //--------------------------Damage Over Time (player ability)--------------------------------//
     public enum TargetType
     {
         Player,
@@ -136,8 +137,6 @@ public class LifeManager : MonoBehaviour
         }
     }
 
-
-
     private IEnumerator SpriteRed()
     {
         spriteRenderer.color = Color.red;
@@ -145,11 +144,54 @@ public class LifeManager : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
+    //-------------------------------------------------------------------------------------------//
+
+    public void Heal(float healthAmount)
+    {
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += healthAmount;
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+
+            targetHealth = currentHealth / maxHealth;
+            healthToPrint = (int)currentHealth;
+            healthText.text = healthToPrint.ToString();
+        }
+    }
+
+    public void HealthOverTime(float healthAmount, float tickInterval)
+    {
+        StartCoroutine(HealthOverTimeCoroutine(healthAmount, tickInterval));
+    }
+
+    private IEnumerator HealthOverTimeCoroutine(float healthAmount, float tickInterval)
+    {
+        while (true)
+        {
+            Heal(healthAmount);
+            yield return new WaitForSeconds(tickInterval);
+        }
+    }
+
     private void Death()
     {
         if (gameObject.CompareTag("Player"))
         {
-            Debug.Log("death " + gameObject.name);
+            Time.timeScale = 0f;
+
+            gameOverMenu.SetActive(true);
+            if(respawnCount > 0)
+            {
+                respawnButton.SetActive(true);
+            }
+            else
+            {
+                respawnButton.SetActive(false);
+            }
+
         }
         else
         {
@@ -161,6 +203,15 @@ public class LifeManager : MonoBehaviour
             OnDeath?.Invoke();
             Destroy(gameObject);
         }
+    }
+
+    public void Respawn()
+    {
+        respawnCount--;
+
+        currentHealth = maxHealth;
+        Time.timeScale = 1f;
+        gameOverMenu.SetActive(false);
     }
 
     private void TryDropItem()

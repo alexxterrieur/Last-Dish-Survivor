@@ -13,7 +13,7 @@ public class PoisonZoneAbility : Ability
             PoisonZone abilityScript = poisonZone.GetComponent<PoisonZone>();
             
             abilityScript.effectDuration = effectDuration;
-            abilityScript.damagePerTick = damage;
+            abilityScript.damagePerTick = damage + damageBonus;
 
             Destroy(poisonZone, duration);
         }

@@ -4,5 +4,5 @@ using UnityEngine;
 public class XpCapsule : ScriptableObject
 {
     public Sprite sprite;
-    public int xpValue;
+    public float xpValue;
 }

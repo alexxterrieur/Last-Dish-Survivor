@@ -13,7 +13,7 @@ public class GarlickWeapon : Weapon
             garlickInstance.transform.SetParent(user.transform);
 
             GarlickAura garlickAura = garlickInstance.GetComponent<GarlickAura>();
-            garlickAura.damage = damage;
+            garlickAura.damage = damage + damageBonus;
             garlickAura.cooldown = cooldown;
         }
     }

@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public float piercingDamage;
     public AbilityManager abilityManager;
 
+    private Vector3 lastImagePos;
+    [SerializeField] private float distanceBetweenImages;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -72,6 +75,18 @@ public class PlayerMovement : MonoBehaviour
         while (Time.time < startTime + duration)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
+
+            Debug.Log("dash");
+
+            float distance = Vector3.Distance(transform.position, lastImagePos);
+            if(Mathf.Abs(distance) > distanceBetweenImages)
+            {
+                Debug.Log("need Image");
+                PlayerAfterImagePool.Instance.GetFromPool();
+                lastImagePos = transform.position;
+            }
+
+
             yield return null;
         }
 
@@ -104,6 +119,15 @@ public class PlayerMovement : MonoBehaviour
         while (Time.time < startTime + duration)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
+
+
+            float distance = Vector3.Distance(transform.position, lastImagePos);
+            if (Mathf.Abs(distance) > distanceBetweenImages)
+            {
+                PlayerAfterImagePool.Instance.GetFromPool();
+                lastImagePos = transform.position;
+            }
+
             yield return null;
         }
 

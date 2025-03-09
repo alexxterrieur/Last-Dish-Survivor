@@ -12,7 +12,7 @@ public class ThrowBombAbility : Ability
         AttackHandler attackHandler = user.GetComponent<AttackHandler>();
         if (attackHandler != null)
         {
-            attackHandler.StartAttack(user, abilityPrefab, numberOfBombs, timeBetweenBombs, 0f, projectileSpeed, damage);
+            attackHandler.StartAttack(user, abilityPrefab, numberOfBombs, timeBetweenBombs, 0f, projectileSpeed, damage + damageBonus);
 
             AbilityManager abilityManager = user.GetComponent<AbilityManager>();
             if (abilityManager != null)

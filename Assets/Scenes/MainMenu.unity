@@ -211,7 +211,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SampleScene
+          m_StringArgument: GameScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &57461853
@@ -2312,9 +2312,9 @@ MonoBehaviour:
   - {fileID: 1164355382}
   - {fileID: 383202453}
   - {fileID: 1969794563}
-  playerSelectionPanel: {fileID: 0}
-  StorePanel: {fileID: 0}
-  settingsnPanel: {fileID: 0}
+  playerSelectionPanel: {fileID: 1164355382}
+  StorePanel: {fileID: 1969794563}
+  settingsnPanel: {fileID: 383202453}
   GameModeSelectionPanel: {fileID: 0}
   levelSelectionPanel: {fileID: 0}
 --- !u!4 &1163830211

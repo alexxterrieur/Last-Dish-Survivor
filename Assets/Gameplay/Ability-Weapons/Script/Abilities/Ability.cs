@@ -10,6 +10,7 @@ public class Ability : ScriptableObject
     public GameObject abilityPrefab;
     public float duration;
     public float damage;
+    public float damageBonus;
 
     public bool waitBeforeCooldown;
     protected GameObject lastInstance;
@@ -18,6 +19,8 @@ public class Ability : ScriptableObject
     {
         if (abilityPrefab)
         {
+            damageBonus = PlayerInfos.Instance.GetDamageBonus();
+
             lastInstance = Instantiate(abilityPrefab, user.transform.position, Quaternion.identity);
             Destroy(lastInstance, duration);
         }

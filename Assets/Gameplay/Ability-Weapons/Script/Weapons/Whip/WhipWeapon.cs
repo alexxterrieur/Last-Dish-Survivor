@@ -14,7 +14,7 @@ public class WhipWeapon : Weapon
             whipInstance.transform.SetParent(user.transform);
 
             WhipBehavior whipBehavior = whipInstance.GetComponent<WhipBehavior>();
-            whipBehavior.damage = damage;
+            whipBehavior.damage = damage + damageBonus;
             whipBehavior.cooldown = cooldown;
             whipBehavior.colliderCooldown = delayBetweenCollider;
 

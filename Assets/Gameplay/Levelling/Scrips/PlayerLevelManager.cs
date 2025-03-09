@@ -29,9 +29,10 @@ public class PlayerLevelManager : MonoBehaviour
         xpBar.value = Mathf.Lerp(xpBar.value, targetXP, fillSpeed * Time.deltaTime);
     }
 
-    public void AddXP(int xpValue)
+    public void AddXP(float xpValue)
     {
-        currentXP += xpValue;
+        currentXP += xpValue * (1 + PlayerInfos.Instance.xpBonus / 100f);
+
         if (currentXP >= xpNeededForNextLevel)
         {
             LevelUp();

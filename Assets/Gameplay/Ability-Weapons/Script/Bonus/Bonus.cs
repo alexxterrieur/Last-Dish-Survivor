@@ -8,13 +8,16 @@ public class Bonus : ScriptableObject
     public string description;
     public BonusType type;
     public float value;
-
+    public float repetitionInterval;
     public void ApplyEffect(PlayerInfos player)
     {
         switch (type)
         {
             case BonusType.IncreaseHealth:
-                player.IncreaseCurrentHealth(value);
+                player.Heal(value);
+                break;
+            case BonusType.IncreaseHealthOverTime:
+                player.IncreaseHealthOverTime(value, repetitionInterval);
                 break;
             case BonusType.IncreaseMaxHealth:
                 player.IncreaseMaxHealth(value);
@@ -24,6 +27,12 @@ public class Bonus : ScriptableObject
                 break;
             case BonusType.IncreaseSpeed:
                 player.IncreaseSpeed(value);
+                break;
+            case BonusType.ReduceDamageReceived:
+                player.ReduceDamageReceived(value);
+                break;
+            case BonusType.Revive:
+                player.ReviveBonus();
                 break;
             default:
                 Debug.LogWarning("unknown item");
@@ -35,7 +44,10 @@ public class Bonus : ScriptableObject
 public enum BonusType
 {
     IncreaseHealth,
+    IncreaseHealthOverTime,
     IncreaseMaxHealth,
     IncreaseDamage,
-    IncreaseSpeed
+    IncreaseSpeed,
+    ReduceDamageReceived,
+    Revive
 }

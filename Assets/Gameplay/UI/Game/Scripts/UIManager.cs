@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -66,5 +67,10 @@ public class UIManager : MonoBehaviour
             string ability4Input = ability4Action.bindings[0].ToDisplayString();
             abilitiesInput[3].text += ability4Input;
         }
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

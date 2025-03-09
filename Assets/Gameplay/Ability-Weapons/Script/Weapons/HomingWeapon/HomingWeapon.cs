@@ -22,7 +22,7 @@ public class HomingWeapon : Weapon
         if (homingProjectile != null)
         {
             homingProjectile.SetTarget(target, projectileSpeed);
-            homingProjectile.damage = damage;
+            homingProjectile.damage = damage + damageBonus;
         }
     }
 

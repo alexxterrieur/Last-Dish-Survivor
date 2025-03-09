@@ -11,7 +11,7 @@ public class PlayerInfos : MonoBehaviour
 
     private float maxHealth;
     private float speed;
-    private float damageBonus;
+    [SerializeField] private float damageBonus;
 
     public int maxWeapons = 4;
     public int maxBonuses = 4;
@@ -27,6 +27,7 @@ public class PlayerInfos : MonoBehaviour
     [SerializeField] private WeaponsBonusUI weaponsBonusUI;
 
     PlayerMovement playerMovement;
+    public float xpBonus;
 
     public enum PlayerDirection { Right, Left, Up, Down }
     public PlayerDirection currentDirection = PlayerDirection.Right;
@@ -219,14 +220,22 @@ public class PlayerInfos : MonoBehaviour
         weaponsBonusUI?.UpdateUI(weaponLevels, bonusLevels, abilityLevels);
     }
 
+
+    //Bonus Methods
     public void IncreaseMaxHealth(float amount) => lifeManager.maxHealth += amount;
-    public void IncreaseCurrentHealth(float amount)
+    public void Heal(float amount) => lifeManager.Heal(amount);
+    public void IncreaseHealthOverTime(float amount, float interval)
     {
-        lifeManager.currentHealth += amount;
-        if (lifeManager.currentHealth > lifeManager.maxHealth)
-        {
-            lifeManager.currentHealth = lifeManager.maxHealth;
-        }
+        lifeManager.HealthOverTime(amount, interval);
+    }
+    public void ReduceDamageReceived(float amount)
+    {
+        lifeManager.reduceDamageValue += amount;
+    }
+
+    public void ReviveBonus()
+    {
+        lifeManager.respawnCount++;
     }
 
     public void IncreaseDamageBonus(float amount) => damageBonus += amount;

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea9c79e82f333044b0e988bca994554, type: 3}
+  m_Name: UpgradeableBonusReduceDamageReceived
+  m_EditorClassIdentifier: 
+  bonusLevels:
+  - {fileID: 11400000, guid: fcd0fce5d3cee2d469e769720262134d, type: 2}
+  - {fileID: 11400000, guid: 8f270375c937416488adb81155d1059f, type: 2}
+  - {fileID: 11400000, guid: 413fb28cd6506054f81a67615bedb5ee, type: 2}
