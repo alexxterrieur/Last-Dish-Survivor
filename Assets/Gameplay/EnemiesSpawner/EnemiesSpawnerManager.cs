@@ -9,6 +9,9 @@ public class EnemiesSpawnerManager : MonoBehaviour
     private bool isWaveActive = false;
     [SerializeField] private GameObject enemyPrefab;
 
+    [SerializeField] private GameObject gameOverMenu;
+    [SerializeField] private GameObject reeviveButton;
+
     void Start()
     {
         if (waves.Count > 0)
@@ -45,7 +48,9 @@ public class EnemiesSpawnerManager : MonoBehaviour
 
             if (currentWaveIndex >= waves.Count)
             {
-                Debug.Log("Fin de la partie");
+                Time.timeScale = 0f;
+                gameOverMenu.SetActive(true);
+                reeviveButton.SetActive(false);
             }
         }
     }
