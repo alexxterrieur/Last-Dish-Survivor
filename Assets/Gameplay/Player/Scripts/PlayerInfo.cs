@@ -233,9 +233,14 @@ public class PlayerInfos : MonoBehaviour
         lifeManager.reduceDamageValue += amount;
     }
 
-    public void ReviveBonus()
+    public void ReviveBonus(int amount)
     {
-        lifeManager.respawnCount++;
+        lifeManager.AddRespawn(amount);
+    }
+
+    public void XPBonus(float value)
+    {
+        xpBonus += value; //%
     }
 
     public void IncreaseDamageBonus(float amount) => damageBonus += amount;

@@ -32,7 +32,10 @@ public class Bonus : ScriptableObject
                 player.ReduceDamageReceived(value);
                 break;
             case BonusType.Revive:
-                player.ReviveBonus();
+                player.ReviveBonus((int)value);
+                break;
+            case BonusType.XPBonus:
+                player.XPBonus(value);
                 break;
             default:
                 Debug.LogWarning("unknown item");
@@ -49,5 +52,6 @@ public enum BonusType
     IncreaseDamage,
     IncreaseSpeed,
     ReduceDamageReceived,
-    Revive
+    Revive,
+    XPBonus
 }

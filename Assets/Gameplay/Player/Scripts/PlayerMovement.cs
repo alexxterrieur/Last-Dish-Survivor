@@ -76,12 +76,9 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
 
-            Debug.Log("dash");
-
             float distance = Vector3.Distance(transform.position, lastImagePos);
             if(Mathf.Abs(distance) > distanceBetweenImages)
             {
-                Debug.Log("need Image");
                 PlayerAfterImagePool.Instance.GetFromPool();
                 lastImagePos = transform.position;
             }
@@ -148,8 +145,19 @@ public class PlayerMovement : MonoBehaviour
 
         WeaponsBonusUI.Instance.StartAbilityCooldownVisual(ability, duration, Color.red);
 
-        yield return new WaitForSeconds(duration);
+        float startTime = Time.time;
+        while(Time.time < startTime + duration)
+        {
+            float distance = Vector3.Distance(transform.position, lastImagePos);
+            if (Mathf.Abs(distance) > distanceBetweenImages)
+            {
+                PlayerAfterImagePool.Instance.GetFromPool();
+                lastImagePos = transform.position;
+            }
 
+            yield return null;
+        }
+        
         speed = initialSpeed;
 
         abilityManager.SetCooldown(ability, ability.cooldown);

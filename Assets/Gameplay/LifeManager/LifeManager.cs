@@ -205,11 +205,20 @@ public class LifeManager : MonoBehaviour
         }
     }
 
+    public void AddRespawn(int value)
+    {
+        respawnCount += value;
+    }
+
     public void Respawn()
     {
         respawnCount--;
 
         currentHealth = maxHealth;
+        targetHealth = currentHealth / maxHealth;
+        healthToPrint = (int)currentHealth;
+        healthText.text = healthToPrint.ToString();
+        
         Time.timeScale = 1f;
         gameOverMenu.SetActive(false);
     }

@@ -7321,6 +7321,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 66b4ae582d9c3974c8c7a64cff8e9f74, type: 2}
   - {fileID: 11400000, guid: 6f127952ef347e340b4559bdb7fbacb1, type: 2}
   enemyPrefab: {fileID: 8073185688478746163, guid: 11e36676c5d8d5640a631ad2679e2d9e, type: 3}
+  gameOverMenu: {fileID: 224479397}
+  reeviveButton: {fileID: 191231076}
 --- !u!4 &1158699592
 Transform:
   m_ObjectHideFlags: 0
