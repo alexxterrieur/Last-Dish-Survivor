@@ -17,3 +17,4 @@ MonoBehaviour:
   description: Blablabla increase health blabla lvl 2
   type: 0
   value: 20
+  repetitionInterval: 0

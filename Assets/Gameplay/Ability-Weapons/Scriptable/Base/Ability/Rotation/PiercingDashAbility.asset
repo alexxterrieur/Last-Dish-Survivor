@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: PiercingDashAbility
   m_EditorClassIdentifier: 
   abilityName: Piercing Dash
-  cooldown: 8
+  cooldown: 9
   icon: {fileID: 21300000, guid: b31d2cb9d99da90429fe33eabb9409bd, type: 3}
   description: Dash and damages enemies on your road
   abilityPrefab: {fileID: 0}
   duration: 0
   damage: 20
+  damageBonus: 0
   waitBeforeCooldown: 0
   dashDistance: 8
   dashSpeed: 40

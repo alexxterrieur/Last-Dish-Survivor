@@ -17,6 +17,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 430dbeb2d80248641b150ce079f32652, type: 3}
   description: Throw a decoy lvl 2
   abilityPrefab: {fileID: 6731667441329957959, guid: 73ba15a80b45e1b47a212ee7d74405e3, type: 3}
-  duration: 6
+  duration: 7
   damage: 0
+  damageBonus: 0
+  waitBeforeCooldown: 0
   decoySpeed: 3

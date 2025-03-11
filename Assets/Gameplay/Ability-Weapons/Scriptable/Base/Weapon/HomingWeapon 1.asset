@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: HomingWeapon 1
   m_EditorClassIdentifier: 
   abilityName: Homing Weapon
-  cooldown: 2
+  cooldown: 3
   icon: {fileID: 21300000, guid: b2250b8a188b82942ba5ac5b519bae3c, type: 3}
   description: Blablabla homing weapon blabla lvl 2
   abilityPrefab: {fileID: 4760189001365621660, guid: 514dfc4823de1f342969ffda7702c9f7, type: 3}
   duration: 10
-  damage: 20
+  damage: 30
+  damageBonus: 2
+  waitBeforeCooldown: 0
   projectileSpeed: 12

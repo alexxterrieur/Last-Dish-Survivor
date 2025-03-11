@@ -18,7 +18,9 @@ MonoBehaviour:
   description: Blablabla boomerang blabla lvl2
   abilityPrefab: {fileID: 4933608625240276167, guid: 9d171e511dcd7ac44846d9821a975928, type: 3}
   duration: 10
-  damage: 15
-  maxDistance: 15
+  damage: 20
+  damageBonus: 0
+  waitBeforeCooldown: 0
+  maxDistance: 20
   timeBeforeReturn: 2
-  speed: 10
+  speed: 15

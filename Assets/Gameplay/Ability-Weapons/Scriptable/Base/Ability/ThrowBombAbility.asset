@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: ThrowBombAbility
   m_EditorClassIdentifier: 
   abilityName: Throw Bomb
-  cooldown: 2
+  cooldown: 6
   icon: {fileID: 21300000, guid: 499242167581d23469a18af7131208f8, type: 3}
   description: Throw a bomb
   abilityPrefab: {fileID: 6410562247507953453, guid: 1efb7c822b705714b876a6b86075ef82, type: 3}
   duration: 0.1
   damage: 40
+  damageBonus: 0
+  waitBeforeCooldown: 0
   numberOfBombs: 1
   timeBetweenBombs: 0.1
   projectileSpeed: 7

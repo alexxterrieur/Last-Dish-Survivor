@@ -16,5 +16,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: c519ba6b0c0e54b44aa3a2a7fab22d93, type: 3}
   description: Blablabla Increase speed blabla
   type: 4
-  value: 2
+  value: 4
   repetitionInterval: 0
