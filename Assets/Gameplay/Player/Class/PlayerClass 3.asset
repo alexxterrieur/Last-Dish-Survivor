@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002f164f4cf03c24498c624a6cf67d4e, type: 3}
+  m_Name: PlayerClass 3
+  m_EditorClassIdentifier: 
+  playerSprite: {fileID: 3906308657588672545, guid: 9055c9ebb346a004a8072cf802a50e47, type: 3}
+  className: Francis
+  classDescription: bzzzzzzzzzzzzzz bzz bzzzz
+  maxHealth: 200
+  speed: 5
+  damageBonus: 7
+  upgradeableAbilities:
+  - {fileID: 11400000, guid: df363efa03cd20c4cae53427f4a5fc2a, type: 2}
+  - {fileID: 11400000, guid: 32eab3a5555fd3547ba48ea2f0960cc2, type: 2}
+  - {fileID: 11400000, guid: 1be81d9eb25a62e48889ecb6a3878068, type: 2}
+  - {fileID: 11400000, guid: dae684c1e2fff984eae16695221a5a80, type: 2}
+  startWeapon:
+  - {fileID: 11400000, guid: 9c9bd174c77d6114a8fd109a54f971ed, type: 2}

@@ -6,6 +6,8 @@ public class UpgradeableAbility : ScriptableObject
 {
     public List<Ability> abilityLevels;
 
+    public string abilityDescription;
+
     public Ability GetAbilityAtLevel(int level)
     {
         if (level < 0 || level >= abilityLevels.Count)
