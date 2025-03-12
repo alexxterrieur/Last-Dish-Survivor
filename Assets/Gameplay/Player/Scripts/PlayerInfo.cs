@@ -147,7 +147,7 @@ public class PlayerInfos : MonoBehaviour
 
         int currentLevel = weaponLevels[upgradeableWeapon];
 
-        if (currentLevel < upgradeableWeapon.MaxLevel) 
+        if (currentLevel < upgradeableWeapon.MaxLevel)
         {
             weaponLevels[upgradeableWeapon]++;
             Debug.Log($"Arme améliorée : {upgradeableWeapon.weaponLevels[currentLevel + 1].abilityName}");
@@ -187,7 +187,7 @@ public class PlayerInfos : MonoBehaviour
         foreach (var ability in characterClass.upgradeableAbilities)
         {
             int savedLevel = PlayerPrefs.GetInt(ability.name, 0);
-            abilityLevels[ability] = savedLevel;
+            abilityLevels[ability] = 0;
         }
     }
 

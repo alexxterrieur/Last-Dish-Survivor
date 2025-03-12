@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public GameObject[] mainMenuPanel;
-    public GameObject playerSelectionPanel;
-    public GameObject StorePanel;
-    public GameObject settingsnPanel;
-
-    public GameObject GameModeSelectionPanel;
-    public GameObject levelSelectionPanel;
 
     public void ChangeScene(string sceneToLoad)
     {

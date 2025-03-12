@@ -3,12 +3,16 @@ using UnityEngine;
 public class InitializeCharacterClass : MonoBehaviour
 {
     [SerializeField] private CharacterClass[] characterClasses;
+
+    [SerializeField] private UpgradeableAbility[] movementAbilities;
+    [SerializeField] private UpgradeableAbility[] attackAbilities;
+
     public CharacterClass selectedClass;
     private int selectedClassInt;
 
     private void Awake()
     {
-        selectedClassInt = PlayerPrefs.GetInt("SelectedCharacter", 0);
+        selectedClassInt = PlayerPrefs.GetInt("SelectedCharacter");
         selectedClass = characterClasses[selectedClassInt];
 
         PlayerInfos.Instance.characterClass = selectedClass;
@@ -17,18 +21,18 @@ public class InitializeCharacterClass : MonoBehaviour
 
     private void EquipSelectedAbilities()
     {
-        int movementIndex = PlayerPrefs.GetInt("MovementAbility", -1);
+        int movementIndex = PlayerPrefs.GetInt("MovementAbility");
         if (movementIndex >= 0 && movementIndex < selectedClass.upgradeableAbilities.Length)
         {
-            PlayerInfos.Instance.AddAbility(selectedClass.upgradeableAbilities[movementIndex]);
+            selectedClass.upgradeableAbilities[0] = movementAbilities[movementIndex];
         }
 
         for (int i = 0; i < 3; i++)
         {
-            int abilityIndex = PlayerPrefs.GetInt($"Ability_{i + 1}", -1);
+            int abilityIndex = PlayerPrefs.GetInt($"Ability_{i}");
             if (abilityIndex >= 0 && abilityIndex < selectedClass.upgradeableAbilities.Length)
             {
-                PlayerInfos.Instance.AddAbility(selectedClass.upgradeableAbilities[abilityIndex]);
+                selectedClass.upgradeableAbilities[i + 1] = attackAbilities[abilityIndex];
             }
         }
     }

@@ -6,6 +6,7 @@ public class UpgradeableAbility : ScriptableObject
 {
     public List<Ability> abilityLevels;
 
+    public int abilityIndex;
     public string abilityDescription;
 
     public Ability GetAbilityAtLevel(int level)

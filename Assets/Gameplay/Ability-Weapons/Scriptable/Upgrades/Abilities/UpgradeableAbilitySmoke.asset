@@ -15,3 +15,5 @@ MonoBehaviour:
   abilityLevels:
   - {fileID: 11400000, guid: 8ed87e282fa95a847a05f961dba25c6c, type: 2}
   - {fileID: 11400000, guid: cf863d7ca322bff478ed190c616c7ecf, type: 2}
+  abilityIndex: 3
+  abilityDescription: 

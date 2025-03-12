@@ -224,6 +224,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1163830213}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectAbilityMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SaveSelectedMovementAbility
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
       value: 1
       objectReference: {fileID: 0}
@@ -364,11 +372,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1163830210}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
+        m_MethodName: OpenPanel
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1423306442}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: GameScene
@@ -435,7 +443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &72306378
 RectTransform:
   m_ObjectHideFlags: 0
@@ -500,6 +508,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1163830213}
+        m_TargetAssemblyTypeName: SelectedAbilitiesManager, Assembly-CSharp
+        m_MethodName: SaveSelectedAbilities
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1163830210}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: ChangeScene
@@ -1058,9 +1078,9 @@ RectTransform:
   m_Father: {fileID: 1387132419}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &334978645
 MonoBehaviour:
@@ -1210,6 +1230,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1163830213}
@@ -1218,13 +1242,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1163830213}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SaveSelectedAbility3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 11400000, guid: 32eab3a5555fd3547ba48ea2f0960cc2, type: 2}
+      objectReference: {fileID: 11400000, guid: 1be81d9eb25a62e48889ecb6a3878068, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1444,6 +1472,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1163830213}
@@ -1451,6 +1483,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1163830213}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SaveSelectedAbility2
+      objectReference: {fileID: 0}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
       value: 1
@@ -1890,8 +1926,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1163830213}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectAbilityMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SaveSelectedMovementAbility
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -2488,8 +2532,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2065121695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.45645648}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3577,6 +3621,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1163830213}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectAbilityMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SaveSelectedMovementAbility
       objectReference: {fileID: 0}
@@ -4033,11 +4081,6 @@ MonoBehaviour:
   - {fileID: 1164355382}
   - {fileID: 383202453}
   - {fileID: 1969794563}
-  playerSelectionPanel: {fileID: 1164355382}
-  StorePanel: {fileID: 1969794563}
-  settingsnPanel: {fileID: 383202453}
-  GameModeSelectionPanel: {fileID: 0}
-  levelSelectionPanel: {fileID: 0}
 --- !u!4 &1163830211
 Transform:
   m_ObjectHideFlags: 0
@@ -4086,13 +4129,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedAbilityMovement: {fileID: 0}
-  selectedAbilities: []
+  selectedAbilities:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   movementabilityIcon: {fileID: 2036255365}
   abilitiesIcon:
   - {fileID: 1719459137}
   - {fileID: 1564705296}
   - {fileID: 1357899000}
-  confirmButton: {fileID: 0}
+  confirmButton: {fileID: 72306377}
 --- !u!1 &1164355382
 GameObject:
   m_ObjectHideFlags: 0
@@ -4376,7 +4422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1211688886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5633,7 +5679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1423306443
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5931,6 +5977,10 @@ PrefabInstance:
     - target: {fileID: 8293403506158055584, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7766,9 +7816,9 @@ RectTransform:
   m_Father: {fileID: 436677397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2021598534
 MonoBehaviour:
@@ -7979,13 +8029,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036255363}
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1149233216}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -256.00003, y: 0}
@@ -8475,8 +8525,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1195686853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.27730364}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8710,6 +8760,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1163830213}
@@ -8717,6 +8771,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1163830213}
+    - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SaveSelectedAbility1
+      objectReference: {fileID: 0}
     - target: {fileID: 8427845138170053646, guid: 19807e89d6872c2479d7cd4f73c0145a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
