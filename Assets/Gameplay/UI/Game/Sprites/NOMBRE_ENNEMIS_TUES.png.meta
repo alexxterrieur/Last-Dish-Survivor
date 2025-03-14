@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NOMBRE_ENNEMIS_TUES_0: 7520972140553857762
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

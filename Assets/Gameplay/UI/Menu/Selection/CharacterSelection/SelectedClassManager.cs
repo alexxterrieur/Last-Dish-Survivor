@@ -22,6 +22,7 @@ public class SelectedClassManager : MonoBehaviour
     {
         UpdateInfos();
         PlayerPrefs.SetInt("SelectedCharacter", 0);
+        PlayerPrefs.Save();
     }
 
     public void SelectClass(CharacterClass characterClass)
@@ -45,5 +46,6 @@ public class SelectedClassManager : MonoBehaviour
     public void SaveSelectedCharacter(int selectedClassInt)
     {
         PlayerPrefs.SetInt("SelectedCharacter", selectedClassInt);
+        PlayerPrefs.Save();
     }
 }

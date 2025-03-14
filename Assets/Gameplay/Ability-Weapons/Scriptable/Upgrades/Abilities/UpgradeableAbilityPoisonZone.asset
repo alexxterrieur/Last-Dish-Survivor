@@ -16,4 +16,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a956c54d20d782e4abbab732bc2e1b44, type: 2}
   - {fileID: 11400000, guid: 8f4041dc0f2144c43950986e8b0fad67, type: 2}
   abilityIndex: 2
-  abilityDescription: 
+  abilityDescription: Drop a puddle of hot sauce that deals damage to enemies for
+    several seconds.

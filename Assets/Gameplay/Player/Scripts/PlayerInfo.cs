@@ -40,7 +40,8 @@ public class PlayerInfos : MonoBehaviour
 
     private IEnumerator Start()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitUntil(() => characterClass != null);
+        //yield return new WaitForSeconds(0.1f);
 
         LoadAbilityLevels();
 

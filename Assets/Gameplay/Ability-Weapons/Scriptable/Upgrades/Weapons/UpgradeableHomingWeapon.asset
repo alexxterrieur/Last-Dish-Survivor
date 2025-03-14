@@ -16,4 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 59a9ee817823f7640b3f0a32c79abd9e, type: 2}
   - {fileID: 11400000, guid: 422ffe0ed6a265a4c8b3c3d42a0ee8b2, type: 2}
   - {fileID: 11400000, guid: 486c8e9a67cc91644be9cf5dc78cdbb0, type: 2}
-  requiredBonusForLegendary: {fileID: 11400000, guid: b467205ecf0362945b922aaa6c430ef9, type: 2}
+  requiredBonusForLegendary: {fileID: 11400000, guid: 722a3738bf9ef974586b77f66d3d5736, type: 2}

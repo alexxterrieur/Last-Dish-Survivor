@@ -12,6 +12,8 @@ public class InitializeCharacterClass : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
+
         selectedClassInt = PlayerPrefs.GetInt("SelectedCharacter");
         selectedClass = characterClasses[selectedClassInt];
 

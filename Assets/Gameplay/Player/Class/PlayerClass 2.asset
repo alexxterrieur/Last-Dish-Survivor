@@ -16,7 +16,7 @@ MonoBehaviour:
   className: "Jos\xE9"
   classDescription: bzzz bzzzzzz
   maxHealth: 100
-  speed: 14
+  speed: 10
   damageBonus: 2
   upgradeableAbilities:
   - {fileID: 0}

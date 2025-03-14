@@ -15,3 +15,5 @@ MonoBehaviour:
   abilityLevels:
   - {fileID: 11400000, guid: fb7525f6390205547ac1911b93d35104, type: 2}
   - {fileID: 11400000, guid: 7a4abe9a5663d684481c1e218dfdd465, type: 2}
+  abilityIndex: 0
+  abilityDescription: Dash and deal damage to enemies in your path.

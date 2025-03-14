@@ -11,10 +11,6 @@ public class SelectedAbilitiesManager : MonoBehaviour
 
     [SerializeField] private GameObject confirmButton;
 
-    //public int ability1Index;
-    //public int ability2Index;
-    //public int ability3Index;
-
     public void SelectAbilityMovement(UpgradeableAbility ability)
     {
         selectedAbilityMovement = ability;
@@ -37,29 +33,22 @@ public class SelectedAbilitiesManager : MonoBehaviour
     private void UpdateUI()
     {
         if (selectedAbilityMovement != null)
+        {
+            movementabilityIcon.enabled = true;
             movementabilityIcon.sprite = selectedAbilityMovement.abilityLevels[0].icon;
+        }
 
         for (int i = 0; i < abilitiesIcon.Length; i++)
         {
             if (selectedAbilities[i] != null)
+            {
+                abilitiesIcon[i].enabled = true;
                 abilitiesIcon[i].sprite = selectedAbilities[i].abilityLevels[0].icon;
+            }                
         }
 
         ShowConfirmButton();
     }
-
-    //public void SaveSelectedAbility1(int abilityIndex)
-    //{
-    //    ability1Index = abilityIndex;
-    //}
-    //public void SaveSelectedAbility2(int abilityIndex)
-    //{
-    //    ability2Index = abilityIndex;
-    //}
-    //public void SaveSelectedAbility3(int abilityIndex)
-    //{
-    //    ability3Index = abilityIndex;
-    //}
 
     public void SaveSelectedAbilities()
     {     

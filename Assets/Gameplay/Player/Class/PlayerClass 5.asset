@@ -16,7 +16,7 @@ MonoBehaviour:
   className: Cecile
   classDescription: bzz bzz bz bzz bzzz
   maxHealth: 225
-  speed: 5
+  speed: 6
   damageBonus: 5
   upgradeableAbilities:
   - {fileID: 0}

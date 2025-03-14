@@ -16,4 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7c47507be5c1f448a1e4ca540e306a6, type: 2}
   - {fileID: 11400000, guid: db40a73f1a0d169468c6b5fb8056cedd, type: 2}
   abilityIndex: 1
-  abilityDescription: 
+  abilityDescription: Throw a decoy.
