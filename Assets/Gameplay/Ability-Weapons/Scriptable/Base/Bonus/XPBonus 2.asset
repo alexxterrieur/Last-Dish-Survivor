@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonusName: XP Bonus
   icon: {fileID: 21300000, guid: c6380bcb2823aa040988955690d3cc61, type: 3}
-  description: Blablabla Bonus XP 35%
+  description: Bonus XP +35%
   type: 7
-  value: 15
+  value: 35
   repetitionInterval: 0

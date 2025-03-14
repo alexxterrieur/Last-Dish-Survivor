@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Speed Over Time
   cooldown: 7
   icon: {fileID: 21300000, guid: 52bc3f26efb444c4ea737c96227a1358, type: 3}
-  description: Speed up for 4 seconds level 2
+  description: Cooldown -3   Duration +2 sec
   abilityPrefab: {fileID: 0}
   duration: 6
   damage: 0

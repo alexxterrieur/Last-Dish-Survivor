@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 8115143726899182896, guid: 1cd6687f18be9b842ab16b0b339fb881, type: 3}
   className: Bernadette
-  classDescription: bzz bzz bzz bzzz bzzzz bzzzz
+  classDescription: 'Start Weapon: Homing'
   maxHealth: 170
   speed: 6
   damageBonus: 4

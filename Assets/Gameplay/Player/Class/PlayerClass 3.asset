@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 3906308657588672545, guid: 9055c9ebb346a004a8072cf802a50e47, type: 3}
   className: Francis
-  classDescription: bzzzzzzzzzzzzzz bzz bzzzz
+  classDescription: 'Start Weapon: Knife'
   maxHealth: 200
   speed: 5
   damageBonus: 7

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonusName: Increase Health Over Time
   icon: {fileID: 21300000, guid: ccb7f5ba07b129149aad86dad48a4fb3, type: 3}
-  description: Blablabla Increase Health Over Time lvl2
+  description: Regain 5 health points every 5 seconds
   type: 1
   value: 5
   repetitionInterval: 5

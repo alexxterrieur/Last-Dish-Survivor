@@ -6,18 +6,30 @@ public class GarlickAura : MonoBehaviour
 {
     public float damage;
     public float cooldown;
+    public float newRadiusSize;
+
     private HashSet<GameObject> enemiesInRange = new HashSet<GameObject>();
 
     private SpriteRenderer sprite;
+
     public float activeOpacity = 210f / 255f;
     public float inactiveOpacity = 120f / 255f;
 
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        SetSpriteOpacity(inactiveOpacity);
 
+        SetSpriteOpacity(inactiveOpacity);
         StartCoroutine(ApplyDamage());
+    }
+
+    public void UpdateStats(float newDamage, float newCooldown, float radius)
+    {
+        damage = newDamage;
+        cooldown = newCooldown;
+        newRadiusSize = radius;
+
+        transform.localScale = new Vector3(newRadiusSize, newRadiusSize, 1);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,11 +52,10 @@ public class GarlickAura : MonoBehaviour
     {
         while (true)
         {
-            SetSpriteOpacity(210f / 255f);
+            SetSpriteOpacity(activeOpacity);
             yield return new WaitForSeconds(0.5f);
 
             List<GameObject> enemiesToDamage = new List<GameObject>(enemiesInRange);
-
             foreach (GameObject enemy in enemiesToDamage)
             {
                 if (enemy != null)
@@ -57,11 +68,8 @@ public class GarlickAura : MonoBehaviour
                 }
             }
 
-
             yield return new WaitForSeconds(1f);
-
-            SetSpriteOpacity(120f / 255f);
-
+            SetSpriteOpacity(inactiveOpacity);
             yield return new WaitForSeconds(cooldown - 1.5f);
         }
     }
@@ -75,5 +83,4 @@ public class GarlickAura : MonoBehaviour
             sprite.color = color;
         }
     }
-
 }

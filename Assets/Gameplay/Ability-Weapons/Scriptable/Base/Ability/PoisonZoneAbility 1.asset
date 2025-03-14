@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Poison Zone
   cooldown: 5
   icon: {fileID: 21300000, guid: d958b1fbb3a792a46b9e5d3b7dd37411, type: 3}
-  description: Throw a poison zone lvl 2
+  description: Cooldown -1 sec   Duration +2 sec    Damage +8
   abilityPrefab: {fileID: 319188354455090104, guid: 7edd3333477649f45ad9a0d3462e2d1a, type: 3}
   duration: 5
   damage: 15

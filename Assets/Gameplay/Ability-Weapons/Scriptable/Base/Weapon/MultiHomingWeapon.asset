@@ -15,11 +15,11 @@ MonoBehaviour:
   abilityName: Multi Homing Weapon
   cooldown: 5
   icon: {fileID: 21300000, guid: 8f8965c39d5458a4f900fbb15c927803, type: 3}
-  description: Blablabla multi homing weapon blabla
+  description: Fires a homing projectile at the 3 nearest enemies
   abilityPrefab: {fileID: 4760189001365621660, guid: 514dfc4823de1f342969ffda7702c9f7, type: 3}
   duration: 10
   damage: 15
-  damageBonus: 2
+  damageBonus: 0
   waitBeforeCooldown: 0
   projectileSpeed: 12
   maxTargets: 3

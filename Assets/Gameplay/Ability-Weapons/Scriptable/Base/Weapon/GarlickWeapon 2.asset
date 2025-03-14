@@ -15,9 +15,10 @@ MonoBehaviour:
   abilityName: Garlick
   cooldown: 3
   icon: {fileID: 21300000, guid: 325a5295d1a38a143afdc1fa1d7042b3, type: 3}
-  description: Blablabla garlick blabla lvl 3
+  description: Cooldown -1 sec  Damage +5  Radius +4
   abilityPrefab: {fileID: 4803187480762533967, guid: 4402fe1dcbf9dd748a41a366b96e10fc, type: 3}
   duration: 0
   damage: 20
   damageBonus: 0
   waitBeforeCooldown: 0
+  newRadiusSize: 15

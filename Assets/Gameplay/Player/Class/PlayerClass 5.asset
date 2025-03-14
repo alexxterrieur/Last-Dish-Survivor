@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: -7466813896276497981, guid: 4b881571254aa634780fb9f5ebce7507, type: 3}
   className: Cecile
-  classDescription: bzz bzz bz bzz bzzz
+  classDescription: 'Start Weapon: Garlick'
   maxHealth: 225
   speed: 6
   damageBonus: 5

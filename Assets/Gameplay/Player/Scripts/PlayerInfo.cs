@@ -231,7 +231,7 @@ public class PlayerInfos : MonoBehaviour
     }
     public void ReduceDamageReceived(float amount)
     {
-        lifeManager.reduceDamageValue += amount;
+        lifeManager.reduceDamageValue = amount;
     }
 
     public void ReviveBonus(int amount)
@@ -241,10 +241,10 @@ public class PlayerInfos : MonoBehaviour
 
     public void XPBonus(float value)
     {
-        xpBonus += value; //%
+        xpBonus = value; //%
     }
 
-    public void IncreaseDamageBonus(float amount) => damageBonus += amount;
+    public void IncreaseDamageBonus(float amount) => damageBonus = amount;
     public void IncreaseSpeed(float amount) => speed += amount;
 
     public float GetMaxHealth() => maxHealth;

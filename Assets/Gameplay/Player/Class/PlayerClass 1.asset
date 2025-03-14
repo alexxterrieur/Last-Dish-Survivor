@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 2798218393609543740, guid: 6d6eb22789da8534b82370ae71ab2594, type: 3}
   className: Albert
-  classDescription: bzzz bzzz bzz
+  classDescription: 'Start Weapon: Multi Homing'
   maxHealth: 150
   speed: 7
   damageBonus: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonusName: Increase Damage
   icon: {fileID: 21300000, guid: b84aac6ed947cc541b09b92fc09c8fc3, type: 3}
-  description: Blablabla increase damage blabla lvl 2
+  description: Increases the damage dealt by 20 (40)
   type: 2
   value: 40
   repetitionInterval: 0

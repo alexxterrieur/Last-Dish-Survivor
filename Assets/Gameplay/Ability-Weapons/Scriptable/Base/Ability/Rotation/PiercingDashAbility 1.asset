@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Piercing Dash
   cooldown: 6
   icon: {fileID: 21300000, guid: b31d2cb9d99da90429fe33eabb9409bd, type: 3}
-  description: Dash and damages enemies on your road lvl 2
+  description: Cooldown -3 sec   Damage +5
   abilityPrefab: {fileID: 0}
   duration: 0
   damage: 25

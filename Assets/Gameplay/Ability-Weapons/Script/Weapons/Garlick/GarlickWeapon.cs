@@ -4,17 +4,21 @@ using UnityEngine;
 public class GarlickWeapon : Weapon
 {
     private GameObject garlickInstance;
+    public float newRadiusSize;
 
     public override void Activate(GameObject user)
     {
-        if(garlickInstance == null)
+        if (garlickInstance == null)
         {
             garlickInstance = Instantiate(abilityPrefab, user.transform.position, Quaternion.identity);
             garlickInstance.transform.SetParent(user.transform);
+        }
 
-            GarlickAura garlickAura = garlickInstance.GetComponent<GarlickAura>();
-            garlickAura.damage = damage + damageBonus;
-            garlickAura.cooldown = cooldown;
+        // Mise à jour de l'arme existante
+        GarlickAura garlickAura = garlickInstance.GetComponent<GarlickAura>();
+        if (garlickAura != null)
+        {
+            garlickAura.UpdateStats(damage + damageBonus, cooldown, newRadiusSize);
         }
     }
 }

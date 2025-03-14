@@ -15,8 +15,10 @@ MonoBehaviour:
   abilityName: Whip
   cooldown: 3
   icon: {fileID: 21300000, guid: f1fc05d9eb3dc324f93014b7a6664b54, type: 3}
-  description: Blablabla whip blabla lvl 2
+  description: Damage +10   Time between hits -0.2 sec
   abilityPrefab: {fileID: 7144468707925474340, guid: 3756f2303e0e6524da0369b6d12c716c, type: 3}
   duration: 0
-  damage: 10
-  delayBetweenCollider: 0.5
+  damage: 20
+  damageBonus: 0
+  waitBeforeCooldown: 0
+  delayBetweenCollider: 0.3

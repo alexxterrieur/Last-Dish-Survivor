@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonusName: Reduce Damage Received
   icon: {fileID: 21300000, guid: a2987adf448b6cf4abcd020aa304b341, type: 3}
-  description: 'Blablabla Increase Damage Received '
+  description: Reduces the damage taken by 5%
   type: 5
   value: 5
   repetitionInterval: 0

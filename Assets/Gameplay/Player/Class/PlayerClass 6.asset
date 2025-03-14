@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: -7300695937407439356, guid: 6484931e77d16164fb680d49a3ed1ac9, type: 3}
   className: "Jos\xE9phine"
-  classDescription: bzz bzz bzzzz bzzzzz bz bzz bzz bzzz
+  classDescription: 'Start Weapon: Boomerang'
   maxHealth: 180
   speed: 8
   damageBonus: 3

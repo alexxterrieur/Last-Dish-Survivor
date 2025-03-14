@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: -7213660963784512496, guid: b82c56a29926e0d4ba93faf55421a0fc, type: 3}
   className: "Jos\xE9"
-  classDescription: bzzz bzzzzzz
+  classDescription: 'Start Weapon: Whip'
   maxHealth: 100
   speed: 10
   damageBonus: 2
