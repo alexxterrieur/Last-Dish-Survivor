@@ -200,6 +200,7 @@ public class LifeManager : MonoBehaviour
                 TryDropItem();
             }
 
+            gameObject.SetActive(false);
             OnDeath?.Invoke();
             Destroy(gameObject);
         }

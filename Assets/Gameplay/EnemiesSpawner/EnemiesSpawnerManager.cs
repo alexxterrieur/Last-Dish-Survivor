@@ -9,8 +9,7 @@ public class EnemiesSpawnerManager : MonoBehaviour
     private bool isWaveActive = false;
     [SerializeField] private GameObject enemyPrefab;
 
-    [SerializeField] private GameObject gameOverMenu;
-    [SerializeField] private GameObject reviveButton;
+    [SerializeField] private GameObject victoryMenu;
 
     private int activeEnemiesCount;
 
@@ -120,7 +119,6 @@ public class EnemiesSpawnerManager : MonoBehaviour
     private void EndGame()
     {
         Time.timeScale = 0f;
-        gameOverMenu.SetActive(true);
-        reviveButton.SetActive(false);
+        victoryMenu.SetActive(true);
     }
 }
