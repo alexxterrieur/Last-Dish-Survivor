@@ -4,6 +4,7 @@ using UnityEngine;
 public class CameraControler : MonoBehaviour
 {
     Vector3 originalLocalPosition;
+    Vector3 resetPos = new Vector3(0, 0, -10);
 
     public IEnumerator CameraShake(float duration, float magnitude)
     {
@@ -21,6 +22,6 @@ public class CameraControler : MonoBehaviour
             yield return null;
         }
 
-        transform.localPosition = originalLocalPosition;
+        transform.localPosition = resetPos;
     }
 }
