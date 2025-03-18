@@ -10,7 +10,9 @@ public class EnemiesSpawnerManager : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
 
     [SerializeField] private GameObject gameOverMenu;
-    [SerializeField] private GameObject reeviveButton;
+    [SerializeField] private GameObject reviveButton;
+
+    private int activeEnemiesCount;
 
     void Start()
     {
@@ -48,9 +50,7 @@ public class EnemiesSpawnerManager : MonoBehaviour
 
             if (currentWaveIndex >= waves.Count)
             {
-                Time.timeScale = 0f;
-                gameOverMenu.SetActive(true);
-                reeviveButton.SetActive(false);
+                StartCoroutine(WaitForEnemiesToDie());
             }
         }
     }
@@ -89,7 +89,6 @@ public class EnemiesSpawnerManager : MonoBehaviour
         }
     }
 
-
     Vector2 GetRandomSpawnPosition()
     {
         Camera mainCamera = Camera.main;
@@ -101,5 +100,27 @@ public class EnemiesSpawnerManager : MonoBehaviour
         float yPosition = Random.Range(-screenHeight - 5f, screenHeight + 5f);  // Hors de l'écran verticalement
 
         return new Vector2(xPosition, yPosition);
+    }
+
+    private IEnumerator WaitForEnemiesToDie()
+    {
+        GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        activeEnemiesCount = allEnemies.Length;
+
+        LifeManager.OnDeath += () => activeEnemiesCount--;
+
+        while (activeEnemiesCount > 0)
+        {
+            yield return null;
+        }
+
+        EndGame();
+    }
+
+    private void EndGame()
+    {
+        Time.timeScale = 0f;
+        gameOverMenu.SetActive(true);
+        reviveButton.SetActive(false);
     }
 }
