@@ -37,6 +37,10 @@ public class SelectedAbilitiesManager : MonoBehaviour
             movementabilityIcon.enabled = true;
             movementabilityIcon.sprite = selectedAbilityMovement.abilityLevels[0].icon;
         }
+        else
+        {
+            movementabilityIcon.enabled = false;
+        }
 
         for (int i = 0; i < abilitiesIcon.Length; i++)
         {
@@ -44,7 +48,11 @@ public class SelectedAbilitiesManager : MonoBehaviour
             {
                 abilitiesIcon[i].enabled = true;
                 abilitiesIcon[i].sprite = selectedAbilities[i].abilityLevels[0].icon;
-            }                
+            }
+            else
+            {
+                abilitiesIcon[i].enabled = false;
+            }
         }
 
         ShowConfirmButton();
@@ -83,5 +91,11 @@ public class SelectedAbilitiesManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void UnequipAbility(int index)
+    {
+        selectedAbilities[index] = null;
+        UpdateUI();
     }
 }
