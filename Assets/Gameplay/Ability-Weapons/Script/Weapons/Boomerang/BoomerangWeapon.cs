@@ -11,12 +11,15 @@ public class BoomerangWeapon : Weapon
     {
         base.Activate(user);
 
-        if (lastInstance == null) return;
+        if (lastInstance == null)
+            return;
+
 
         BoomerangProjectile boomerangProjectile = lastInstance.GetComponent<BoomerangProjectile>();
         if (boomerangProjectile != null)
         {
-            boomerangProjectile.Initialize(user.transform, maxDistance, timeBeforeReturn, speed, damage + damageBonus);
+            Vector2 launchDirection = (user.transform.right).normalized;
+            boomerangProjectile.Initialize(user.transform, maxDistance, timeBeforeReturn, speed, damage + damageBonus, launchDirection);
         }
     }
 }

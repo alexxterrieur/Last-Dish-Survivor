@@ -19,16 +19,18 @@ public class BoomerangProjectile : MonoBehaviour
         direction = Random.insideUnitCircle.normalized;
     }
 
-    public void Initialize(Transform playerTransform, float maxDist, float returnTime, float moveSpeed, float dmg)
+    public void Initialize(Transform playerTransform, float maxDist, float returnTime, float moveSpeed, float dmg, Vector2 direction)
     {
         player = playerTransform;
         maxDistance = maxDist;
         timeBeforeReturn = returnTime;
         speed = moveSpeed;
         damage = dmg;
-
+        this.direction = direction.normalized;
+        startPosition = transform.position;
         StartCoroutine(MoveBoomerang());
     }
+
 
     private IEnumerator MoveBoomerang()
     {
@@ -42,15 +44,13 @@ public class BoomerangProjectile : MonoBehaviour
                 isReturning = true;
             }
 
-            // Déplacer le boomerang dans sa direction actuelle
             transform.Translate(direction * speed * Time.deltaTime);
             traveledDistance = Vector2.Distance(startPosition, transform.position);
-
             timeElapsed += Time.deltaTime;
+
             yield return null;
         }
 
-        // Retour vers le joueur
         while (isReturning)
         {
             Vector2 directionToPlayer = (player.position - transform.position).normalized;
@@ -64,6 +64,8 @@ public class BoomerangProjectile : MonoBehaviour
             yield return null;
         }
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

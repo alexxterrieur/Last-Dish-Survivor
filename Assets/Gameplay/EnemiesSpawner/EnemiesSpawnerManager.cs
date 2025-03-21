@@ -113,11 +113,13 @@ public class EnemiesSpawnerManager : MonoBehaviour
             yield return null;
         }
 
-        EndGame();
+        StartCoroutine(EndGame());
     }
 
-    private void EndGame()
+    private IEnumerator EndGame()
     {
+        yield return new WaitForSeconds(5f);
+
         Time.timeScale = 0f;
         victoryMenu.SetActive(true);
     }

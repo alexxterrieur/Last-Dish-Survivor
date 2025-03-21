@@ -69,6 +69,9 @@ public class PlayerMovement : MonoBehaviour
         Vector2 startPosition = transform.position;
         Vector2 targetPosition = startPosition + dashDirection * dashDistance;
 
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        playerCollider.enabled = false;
+
         float startTime = Time.time;
         float duration = dashDistance / dashSpeed;
 
@@ -87,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
+        playerCollider.enabled = true;
         isDashing = false;
     }
 

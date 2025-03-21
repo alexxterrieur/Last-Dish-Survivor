@@ -19,6 +19,6 @@ MonoBehaviour:
   abilityPrefab: {fileID: 4760189001365621660, guid: 514dfc4823de1f342969ffda7702c9f7, type: 3}
   duration: 10
   damage: 30
-  damageBonus: 2
+  damageBonus: 0
   waitBeforeCooldown: 0
   projectileSpeed: 12
