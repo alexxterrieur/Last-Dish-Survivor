@@ -19,7 +19,5 @@ MonoBehaviour:
     spawnChance: 0.4
   - enemyInfo: {fileID: 11400000, guid: 854635b93f6ea5043831773215358700, type: 2}
     spawnChance: 0.4
-  - enemyInfo: {fileID: 11400000, guid: 386d90ea88a386d4a8d5ce253ddfbee5, type: 2}
-    spawnChance: 0.4
   spawnRate: 1.4
   waveDuration: 30

@@ -200,9 +200,8 @@ public class LifeManager : MonoBehaviour
                 TryDropItem();
             }
 
-            gameObject.SetActive(false);
+            PoolingManager.Instance.ReturnToPool("Enemy", gameObject);
             OnDeath?.Invoke();
-            Destroy(gameObject);
         }
     }
 
