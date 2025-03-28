@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class HomingProjectile : MonoBehaviour
 {
-    private Transform target;
-    private float speed;
     public float damage;
+    public float speed;
+    private Transform target;
 
-    public void SetTarget(Transform newTarget, float projectileSpeed)
+    public void SetTarget(Transform newTarget, float newSpeed)
     {
         target = newTarget;
-        speed = projectileSpeed;
+        speed = newSpeed;
     }
 
-    void Update()
+    private void Update()
     {
-        if (target == null)
+        if (target == null || !target.gameObject.activeInHierarchy)
         {
-            Destroy(gameObject);
+            ReturnToPool();
             return;
         }
 
@@ -28,8 +28,13 @@ public class HomingProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<LifeManager>().TakeDamage(damage);
-            Destroy(gameObject);
+            collision.GetComponent<LifeManager>()?.TakeDamage(damage);
+            ReturnToPool();
         }
-    }    
+    }
+
+    private void ReturnToPool()
+    {
+        PoolingManager.Instance.ReturnToPool(gameObject.name, gameObject);
+    }
 }

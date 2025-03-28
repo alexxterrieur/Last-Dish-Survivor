@@ -7,13 +7,16 @@ public class SmokeZoneAbility : Ability
     {
         if (abilityPrefab)
         {
-            GameObject poisonZone = Instantiate(abilityPrefab, user.transform.position, Quaternion.identity);
-            Smoke abilityScript = poisonZone.GetComponent<Smoke>();
+            //GameObject poisonZone = Instantiate(abilityPrefab, user.transform.position, Quaternion.identity);
+            base.Activate(user);
+
+            Smoke abilityScript = lastInstance.GetComponent<Smoke>();
 
             abilityScript.duration = duration;
             abilityScript.damagePerTick = damage;
 
-            Destroy(poisonZone, duration);
+            
+            //Destroy(poisonZone, duration);
         }
     }
 }

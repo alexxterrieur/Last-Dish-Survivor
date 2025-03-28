@@ -9,13 +9,20 @@ public class PoisonZoneAbility : Ability
     {
         if (abilityPrefab)
         {
-            GameObject poisonZone = Instantiate(abilityPrefab, user.transform.position, Quaternion.identity);
-            PoisonZone abilityScript = poisonZone.GetComponent<PoisonZone>();
+            //GameObject poisonZone = Instantiate(abilityPrefab, user.transform.position, Quaternion.identity);
+            base.Activate(user);
+
+            PoisonZone abilityScript = lastInstance.GetComponent<PoisonZone>();
             
             abilityScript.effectDuration = effectDuration;
             abilityScript.damagePerTick = damage + damageBonus;
 
-            Destroy(poisonZone, duration);
+            //Destroy(poisonZone, duration);
         }
+    }
+
+    private void ReturnToPool()
+    {
+        PoolingManager.Instance.ReturnToPool(lastInstance.name, lastInstance);
     }
 }

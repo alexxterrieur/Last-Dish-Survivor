@@ -75,7 +75,7 @@ public class EnemiesSpawnerManager : MonoBehaviour
                 EnemiesInfos selectedEnemyInfo = enemy.enemyInfo;
                 Vector2 spawnPosition = GetRandomSpawnPosition();
 
-                GameObject enemyInstance = PoolingManager.Instance.GetFromPool("Enemy", spawnPosition, Quaternion.identity);
+                GameObject enemyInstance = PoolingManager.Instance.GetFromPool("Enemy(Clone)", spawnPosition, Quaternion.identity);
                 //GameObject enemyInstance = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
                 EnemyInfo enemyInfoScript = enemyInstance.GetComponent<EnemyInfo>();

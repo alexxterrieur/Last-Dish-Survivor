@@ -18,9 +18,7 @@ public class EnemyAI : MonoBehaviour
 
     private float lastX;
 
-    SpriteRenderer playerSprite;
-
-    void Start()
+    private void Start()
     {
         playerTarget = GameObject.FindWithTag("Player");
         currentTarget = playerTarget;
@@ -32,7 +30,7 @@ public class EnemyAI : MonoBehaviour
         lastX = transform.position.x;
     }
 
-    void Update()
+    private void Update()
     {
         if (currentTarget == null)
         {
@@ -60,6 +58,12 @@ public class EnemyAI : MonoBehaviour
         {
             targetLifeManager = newTarget.GetComponent<LifeManager>();
         }
+    }
+
+    public void ResetTarget()
+    {
+        currentTarget = playerTarget;
+        targetLifeManager = playerTarget.GetComponent<LifeManager>();
     }
 
     private IEnumerator AttackTarget()
@@ -93,19 +97,16 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-
-
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !isAttacking)
         {
             isAttacking = true;
-
             StartCoroutine(AttackPlayer());
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

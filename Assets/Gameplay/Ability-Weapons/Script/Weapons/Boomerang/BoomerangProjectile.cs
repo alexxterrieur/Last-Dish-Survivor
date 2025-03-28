@@ -58,13 +58,18 @@ public class BoomerangProjectile : MonoBehaviour
 
             if (Vector2.Distance(transform.position, player.position) < 0.2f)
             {
-                Destroy(gameObject);
+                ReturnToPool();
             }
 
             yield return null;
         }
     }
 
+    private void ReturnToPool()
+    {
+        isReturning = false;
+        PoolingManager.Instance.ReturnToPool(gameObject.name, gameObject);
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -3,61 +3,75 @@ using UnityEngine;
 
 public class PoolingManager : MonoBehaviour
 {
-    public static PoolingManager Instance { get; private set; }
+    public static PoolingManager Instance;
 
-    private Dictionary<string, Queue<GameObject>> pools = new Dictionary<string, Queue<GameObject>>();
-    private Dictionary<string, GameObject> prefabs = new Dictionary<string, GameObject>();
+    public Dictionary<string, Queue<GameObject>> pools = new Dictionary<string, Queue<GameObject>>();
+    public Dictionary<string, GameObject> poolPrefabs = new Dictionary<string, GameObject>();
 
     private void Awake()
     {
         if (Instance == null)
-        {
             Instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-        }
     }
 
-    public void CreatePool(string key, GameObject prefab, int initialSize)
+    public void CreatePool(string key, GameObject prefab, int poolSize)
     {
         if (!pools.ContainsKey(key))
         {
             pools[key] = new Queue<GameObject>();
-            prefabs[key] = prefab;
+            poolPrefabs[key] = prefab;
 
-            for (int i = 0; i < initialSize; i++)
+            for (int i = 0; i < poolSize; i++)
             {
                 GameObject obj = Instantiate(prefab);
+                obj.name = prefab.name + "(Clone)";
                 obj.SetActive(false);
                 pools[key].Enqueue(obj);
             }
+
+            Debug.Log($"[POOL] Pool créée pour {key} avec {poolSize} objets.");
+        }
+        else
+        {
+            Debug.LogWarning($"[POOL] La pool {key} existe déjà.");
         }
     }
 
-    public GameObject GetFromPool(string key, Vector3 position, Quaternion rotation)
+    public GameObject GetFromPool(string poolKey, Vector3 position, Quaternion rotation)
     {
-        if (!pools.ContainsKey(key))
+        if (!pools.ContainsKey(poolKey))
         {
-            Debug.LogError($"Aucun pool trouvé pour {key} !");
+            Debug.LogError($"Le pool {poolKey} n'existe pas !");
             return null;
         }
 
         GameObject obj;
-        if (pools[key].Count > 0)
+
+        if (pools[poolKey].Count == 0)
         {
-            obj = pools[key].Dequeue();
+            Debug.LogWarning($"Pool {poolKey} vide ! Création de nouveaux objets.");
+            if (poolPrefabs.ContainsKey(poolKey))
+            {
+                obj = Instantiate(poolPrefabs[poolKey]);
+                obj.name = poolPrefabs[poolKey].name + "(Clone)";
+                pools[poolKey].Enqueue(obj);
+            }
+            else
+            {
+                Debug.LogError($"Prefab pour {poolKey} introuvable !");
+                return null;
+            }
         }
         else
         {
-            obj = Instantiate(prefabs[key]);
+            obj = pools[poolKey].Dequeue();
         }
 
         obj.transform.position = position;
         obj.transform.rotation = rotation;
         obj.SetActive(true);
-
         return obj;
     }
 
@@ -65,9 +79,7 @@ public class PoolingManager : MonoBehaviour
     {
         if (!pools.ContainsKey(key))
         {
-            Debug.LogError($"Impossible de retourner {key} au pool !");
-            Destroy(obj);
-            return;
+            pools[key] = new Queue<GameObject>();
         }
 
         obj.SetActive(false);

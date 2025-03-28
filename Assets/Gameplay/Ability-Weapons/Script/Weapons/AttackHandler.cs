@@ -5,30 +5,61 @@ public class AttackHandler : MonoBehaviour
 {
     public void StartAttack(GameObject user, GameObject projectilePrefab, int numberOfProjectiles, float timeBetweenProjectiles, float timeBeforeNextSalvo, float projectileSpeed, float damage)
     {
-        StartCoroutine(ShootProjectileSalvo(user, projectilePrefab, numberOfProjectiles, timeBetweenProjectiles, timeBeforeNextSalvo, projectileSpeed, damage));
+        StartCoroutine(ShootProjectileSalvo(user, projectilePrefab.name, numberOfProjectiles, timeBetweenProjectiles, timeBeforeNextSalvo, projectileSpeed, damage));
     }
 
-    private IEnumerator ShootProjectileSalvo(GameObject user, GameObject projectilePrefab, int numberOfProjectiles, float timeBetweenProjectiles, float timeBeforeNextSalvo, float projectileSpeed, float damage)
+    //private IEnumerator ShootProjectileSalvo(GameObject user, GameObject projectilePrefab, int numberOfProjectiles, float timeBetweenProjectiles, float timeBeforeNextSalvo, float projectileSpeed, float damage)
+    //{
+    //    yield return new WaitForSeconds(timeBeforeNextSalvo);
+
+    //    for (int i = 0; i < numberOfProjectiles; i++)
+    //    {
+    //        Vector2 direction = GetPlayerDirection();
+
+    //        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 270;
+
+    //        GameObject projectile = PoolingManager.Instance.GetFromPool(projectilePrefab.name, user.transform.position, Quaternion.Euler(0, 0, angle));
+
+    //        //knife
+    //        KnifeProjectile projectileScript = projectile.GetComponent<KnifeProjectile>();
+    //        if (projectileScript != null)
+    //        {
+    //            projectileScript.Initialize(direction, projectileSpeed, damage);
+    //        }
+
+    //        BombProjectile bombProjectile = projectile.GetComponent<BombProjectile>();
+    //        if(bombProjectile != null)
+    //        {
+    //            bombProjectile.Initialize(direction, projectileSpeed, damage, 0.7f, bombProjectile.explosionRadius);
+    //        }
+
+    //        yield return new WaitForSeconds(timeBetweenProjectiles);
+    //    }
+    //}
+
+    private IEnumerator ShootProjectileSalvo(GameObject user, string projectilePrefabName, int numberOfProjectiles, float timeBetweenProjectiles, float timeBeforeNextSalvo, float projectileSpeed, float damage)
     {
         yield return new WaitForSeconds(timeBeforeNextSalvo);
 
         for (int i = 0; i < numberOfProjectiles; i++)
         {
             Vector2 direction = GetPlayerDirection();
-
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 270;
 
-            GameObject projectile = Instantiate(projectilePrefab, user.transform.position, Quaternion.Euler(0, 0, angle));
+            GameObject projectile = PoolingManager.Instance.GetFromPool(projectilePrefabName + "(Clone)", user.transform.position, Quaternion.Euler(0, 0, angle));
 
-            //knife
+            if (projectile == null) continue;
+
+            //Knife
             KnifeProjectile projectileScript = projectile.GetComponent<KnifeProjectile>();
             if (projectileScript != null)
             {
                 projectileScript.Initialize(direction, projectileSpeed, damage);
             }
 
+            //Bomb
             BombProjectile bombProjectile = projectile.GetComponent<BombProjectile>();
-            if(bombProjectile != null)
+            if (bombProjectile != null)
             {
                 bombProjectile.Initialize(direction, projectileSpeed, damage, 0.7f, bombProjectile.explosionRadius);
             }
@@ -36,6 +67,8 @@ public class AttackHandler : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenProjectiles);
         }
     }
+
+
 
     private Vector2 GetPlayerDirection()
     {

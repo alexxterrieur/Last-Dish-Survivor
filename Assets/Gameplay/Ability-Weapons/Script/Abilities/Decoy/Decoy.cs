@@ -1,19 +1,21 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Decoy : MonoBehaviour
 {
     private Vector2 direction;
     private float speed;
-    private float lifetime;
     private bool isActive = true;
 
-    public void Initialize(Vector2 moveDirection, float moveSpeed, float lifeTime)
+    private List<EnemyAI> enemiesTargetingMe = new List<EnemyAI>();
+
+    public void Initialize(Vector2 moveDirection, float moveSpeed)
     {
+        isActive = true;
+
         direction = moveDirection;
         speed = moveSpeed;
-        lifetime = lifeTime;
-        StartCoroutine(DestroyAfterTime());
+        enemiesTargetingMe.Clear();
     }
 
     private void Update()
@@ -32,18 +34,23 @@ public class Decoy : MonoBehaviour
             if (enemy != null)
             {
                 enemy.SetTarget(gameObject);
+                enemiesTargetingMe.Add(enemy);
             }
         }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         isActive = false;
-    }
 
-    private IEnumerator DestroyAfterTime()
-    {
-        yield return new WaitForSeconds(lifetime);
-        Destroy(gameObject);
+        foreach (EnemyAI enemy in enemiesTargetingMe)
+        {
+            if (enemy != null)
+            {
+                enemy.ResetTarget();
+            }
+        }
+
+        enemiesTargetingMe.Clear();
     }
 }

@@ -36,23 +36,38 @@ public class BombProjectile : MonoBehaviour
     {
         yield return new WaitForSeconds(explosionTime);
         Explode();
+
+        yield return new WaitForSeconds(1f);
+
+        GetComponent<SpriteRenderer>().enabled = true;
+        explosionVisuel.enabled = false;
+
+        ReturnToPool();
     }
 
     private void Explode()
     {
         bombCollider.enabled = true;
         rb.linearVelocity = Vector3.zero;
-
         GetComponent<SpriteRenderer>().enabled = false;
         explosionVisuel.enabled = true;
-
+        
         if (cameraController != null)
         {
             StartCoroutine(cameraController.CameraShake(shakeDuration, shakeMagnitude));
         }
 
-        Destroy(gameObject, 1f);
+        //Invoke("ReturnToPool", 1f);
+
+        //GetComponent<SpriteRenderer>().enabled = true;
+        //explosionVisuel.enabled = false;
     }
+
+    private void ReturnToPool()
+    {
+        PoolingManager.Instance.ReturnToPool(gameObject.name, gameObject);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

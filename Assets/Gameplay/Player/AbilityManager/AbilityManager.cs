@@ -127,25 +127,48 @@ public class AbilityManager : MonoBehaviour
     }
 
 
+    //public void AddWeapon(UpgradeableWeapon upgradeableWeapon, int level)
+    //{
+    //    if (!equippedWeapons.Contains(upgradeableWeapon))
+    //    {
+    //        equippedWeapons.Add(upgradeableWeapon);
+    //        Debug.Log($"Nouvelle arme ajoutée : {upgradeableWeapon.weaponLevels[level].abilityName}");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log($"Arme améliorée : {upgradeableWeapon.weaponLevels[level].abilityName} Niveau {level}");
+    //    }
+
+
+    //    Weapon currentWeapon = upgradeableWeapon.GetWeaponAtLevel(level);
+    //    cooldownTimers[currentWeapon] = 0f;
+    //}
+
     public void AddWeapon(UpgradeableWeapon upgradeableWeapon, int level)
     {
+        Weapon currentWeapon = upgradeableWeapon.GetWeaponAtLevel(level);
+
+        CreateAbilityPool(currentWeapon);
+
         if (!equippedWeapons.Contains(upgradeableWeapon))
         {
             equippedWeapons.Add(upgradeableWeapon);
-            Debug.Log($"Nouvelle arme ajoutée : {upgradeableWeapon.weaponLevels[level].abilityName}");
+            Debug.Log($"Nouvelle arme ajoutée : {currentWeapon.abilityName}");
         }
         else
         {
-            Debug.Log($"Arme améliorée : {upgradeableWeapon.weaponLevels[level].abilityName} Niveau {level}");
+            Debug.Log($"Arme améliorée : {currentWeapon.abilityName} Niveau {level}");
         }
 
-        Weapon currentWeapon = upgradeableWeapon.GetWeaponAtLevel(level);
         cooldownTimers[currentWeapon] = 0f;
     }
+
 
     public void EquipAbility(UpgradeableAbility upgradeableAbility, int level)
     {
         Ability currentAbility = upgradeableAbility.GetAbilityAtLevel(level);
+        CreateAbilityPool(currentAbility);
+
         if (!activeAbilities.Contains(currentAbility))
         {
             activeAbilities.Add(currentAbility);
@@ -155,6 +178,23 @@ public class AbilityManager : MonoBehaviour
         else
         {
             Debug.Log($"Capacité déjà équipée : {currentAbility.abilityName}");
+        }
+    }
+
+    private void CreateAbilityPool(Ability ability)
+    {
+        if (ability.abilityPrefab == null) return;
+
+        string poolKey = ability.abilityPrefab.name + "(Clone)";
+
+        if (!PoolingManager.Instance.pools.ContainsKey(poolKey))
+        {
+            PoolingManager.Instance.CreatePool(poolKey, ability.abilityPrefab, 3);
+            Debug.Log($"[POOL] Pool créée pour {poolKey}");
+        }
+        else
+        {
+            Debug.Log($"[POOL] Pool déjà existante pour {poolKey}");
         }
     }
 }

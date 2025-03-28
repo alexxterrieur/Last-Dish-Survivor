@@ -10,12 +10,14 @@ public class DecoyAbility : Ability
         if (abilityPrefab == null) return;
 
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
-        GameObject decoyInstance = Instantiate(abilityPrefab, user.transform.position, Quaternion.identity);
 
-        Decoy decoyScript = decoyInstance.GetComponent<Decoy>();
+        //GameObject decoyInstance = Instantiate(abilityPrefab, user.transform.position, Quaternion.identity);
+        base.Activate(user);
+
+        Decoy decoyScript = lastInstance.GetComponent<Decoy>();
         if (decoyScript != null)
         {
-            decoyScript.Initialize(randomDirection, decoySpeed, duration);
+            decoyScript.Initialize(randomDirection, decoySpeed);
         }
     }
 }

@@ -14,6 +14,7 @@ public class LifeManager : MonoBehaviour
 
     private EnemyInfo enemyInfo;
     public static Action OnDeath;
+    private bool isDead = false;
 
     [Header("Health Bar UI")]
     private int healthToPrint;
@@ -62,6 +63,7 @@ public class LifeManager : MonoBehaviour
     {
         maxHealth = maxLife;
         currentHealth = maxHealth;
+        isDead = false;
 
         if (gameObject.CompareTag("Player"))
         {
@@ -72,6 +74,8 @@ public class LifeManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isDead) return; //if ennemy is dead -> ignore damages
+
         currentHealth -= damage * (1 - (reduceDamageValue / 100f));
 
         if (gameObject.CompareTag("Player"))
@@ -178,12 +182,15 @@ public class LifeManager : MonoBehaviour
 
     private void Death()
     {
+        if (isDead) return; //avoid to drop many items
+        isDead = true;
+
         if (gameObject.CompareTag("Player"))
         {
             Time.timeScale = 0f;
 
             gameOverMenu.SetActive(true);
-            if(respawnCount > 0)
+            if (respawnCount > 0)
             {
                 respawnButton.SetActive(true);
             }
@@ -191,7 +198,6 @@ public class LifeManager : MonoBehaviour
             {
                 respawnButton.SetActive(false);
             }
-
         }
         else
         {
@@ -200,8 +206,9 @@ public class LifeManager : MonoBehaviour
                 TryDropItem();
             }
 
-            PoolingManager.Instance.ReturnToPool("Enemy", gameObject);
             OnDeath?.Invoke();
+
+            PoolingManager.Instance.ReturnToPool(gameObject.name, gameObject);
         }
     }
 

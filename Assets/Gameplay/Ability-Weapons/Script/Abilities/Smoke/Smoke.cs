@@ -41,6 +41,11 @@ public class Smoke : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isActive = false;
-        Destroy(gameObject);
+        ReturnToPool();
+    }
+
+    private void ReturnToPool()
+    {
+        PoolingManager.Instance.ReturnToPool(gameObject.name, gameObject);
     }
 }

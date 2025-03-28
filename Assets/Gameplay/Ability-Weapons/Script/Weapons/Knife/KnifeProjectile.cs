@@ -23,7 +23,12 @@ public class KnifeProjectile : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<LifeManager>().TakeDamage(damage);
-            Destroy(gameObject);
+            ReturnToPool();
         }
+    }
+
+    private void ReturnToPool()
+    {
+        PoolingManager.Instance.ReturnToPool(gameObject.name, gameObject);
     }
 }
