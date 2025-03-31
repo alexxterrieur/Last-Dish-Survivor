@@ -244,9 +244,18 @@ public class LifeManager : MonoBehaviour
                 }
                 else if (UnityEngine.Random.value <= dropItem.dropChance)
                 {
-                    Instantiate(dropItem.itemPrefab, transform.position, Quaternion.identity);
+                    GameObject xpCapsuleObj = PoolingManager.Instance.GetFromPool("XP Capsule(Clone)", transform.position, Quaternion.identity);
+
+                    if (xpCapsuleObj != null)
+                    {
+                        xpCapsuleObj.SetActive(true);
+
+                        XPCapsuleBehavior xpBehavior = xpCapsuleObj.GetComponent<XPCapsuleBehavior>();
+                        xpBehavior.SetXpCapsule(dropItem.xpCapsule);
+                    }
                     break;
-                }                
+                }
+
             }
         }
     }

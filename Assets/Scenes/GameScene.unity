@@ -9237,7 +9237,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 074051755b522b54aaf73a53858ee2e0, type: 2}
   selectedClass: {fileID: 0}
   enemyPrefab: {fileID: 8073185688478746163, guid: 11e36676c5d8d5640a631ad2679e2d9e, type: 3}
-  projectilePrefab: {fileID: 0}
+  xpCapsulePrefab: {fileID: 504400690112065596, guid: 5179fae22e420874a9fdf9b6079bc19d, type: 3}
 --- !u!4 &1368044283
 Transform:
   m_ObjectHideFlags: 0

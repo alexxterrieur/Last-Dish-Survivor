@@ -13,6 +13,7 @@ public class InitializeCharacterClass : MonoBehaviour
 
     //pools
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject xpCapsulePrefab;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class InitializeCharacterClass : MonoBehaviour
         EquipSelectedAbilities();
 
         PoolingManager.Instance.CreatePool("Enemy(Clone)", enemyPrefab, 20);
+        PoolingManager.Instance.CreatePool("XP Capsule(Clone)", xpCapsulePrefab, 10);
     }
 
     private void EquipSelectedAbilities()

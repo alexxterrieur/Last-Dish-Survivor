@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "KnifeWeapon", menuName = "Scriptable Objects/Weapon/Knife")]
@@ -13,6 +14,17 @@ public class KnifeWeapon : Weapon
         if (attackHandler != null)
         {
             attackHandler.StartAttack(user, abilityPrefab, numberOfProjectiles, timeBetweenProjectiles, cooldown, projectileSpeed, damage + damageBonus);
+        }
+
+        user.GetComponent<MonoBehaviour>().StartCoroutine(ReturnToPoolAfterDuration(lastInstance, duration));
+    }
+
+    private IEnumerator ReturnToPoolAfterDuration(GameObject instance, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (instance.activeInHierarchy)
+        {
+            PoolingManager.Instance.ReturnToPool(instance.name, instance);
         }
     }
 }

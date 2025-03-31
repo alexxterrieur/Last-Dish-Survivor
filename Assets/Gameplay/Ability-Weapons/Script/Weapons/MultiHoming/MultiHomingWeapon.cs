@@ -45,7 +45,7 @@ public class MultiHomingWeapon : Weapon
 
         foreach (Transform target in targets)
         {
-            GameObject instance = PoolingManager.Instance.GetFromPool(abilityPrefab.name, user.transform.position, Quaternion.identity);
+            GameObject instance = PoolingManager.Instance.GetFromPool(abilityPrefab.name + "(Clone)", user.transform.position, Quaternion.identity);
 
             if (instance == null)
             {

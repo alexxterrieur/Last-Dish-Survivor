@@ -20,7 +20,11 @@ MonoBehaviour:
   attackDamage: 10
   speed: 3.2
   dropItems:
-  - itemPrefab: {fileID: 1570744041671280148, guid: 7bd4800b14b5bd944be329e4b97a9c04, type: 3}
+  - itemPrefab: {fileID: 0}
+    xpCapsule: {fileID: 11400000, guid: 19f5f4681ad59b6409b67f05919128e9, type: 2}
+    isChest: 0
     dropChance: 0.7
-  - itemPrefab: {fileID: 5698992535622169429, guid: 34f3d7306254c6640bb240a911db9400, type: 3}
+  - itemPrefab: {fileID: 0}
+    xpCapsule: {fileID: 11400000, guid: 84af7a0d2fc18924abaf3cd3dbdeac9d, type: 2}
+    isChest: 0
     dropChance: 0.3

@@ -22,7 +22,8 @@ public class XPCapsuleBehavior : MonoBehaviour
             if (distanceToPlayer <= 0.2f)
             {
                 playerTransform.gameObject.GetComponent<PlayerLevelManager>().AddXP(capsuleScriptable.xpValue);
-                Destroy(gameObject);
+                isAttracted = false;
+                PoolingManager.Instance.ReturnToPool(gameObject.name, gameObject);
             }
         }
     }
@@ -31,5 +32,11 @@ public class XPCapsuleBehavior : MonoBehaviour
     {
         this.playerTransform = playerTransform;
         isAttracted = true;
+    }
+
+    public void SetXpCapsule(XpCapsule capsuleData)
+    {
+        this.capsuleScriptable = capsuleData;
+        GetComponent<SpriteRenderer>().sprite = capsuleData.sprite;
     }
 }
